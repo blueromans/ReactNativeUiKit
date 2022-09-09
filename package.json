@@ -1,0 +1,20 @@
+{
+  "name": "rnuikit",
+  "version": "1.0.0",
+  "description": "React Native Ui Kit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yaşar ÖZYURT",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.6.2"
+  },
+  "peerDependencies": {
+    "react-native-keyboard-aware-scrollview": "^2.1.0"
+  },
+  "devDependencies": {
+    "metro-react-native-babel-preset": "^0.72.2"
+  }
+}
