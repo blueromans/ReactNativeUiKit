@@ -57,7 +57,8 @@
     "@babel/core": "^7.17.0",
     "@babel/runtime": "^7.10.3",
     "@callstack/eslint-config": "^9.0.0",
-    "@commitlint/config-conventional": "^17.1.0",
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
     "@release-it/conventional-changelog": "^1.1.0",
     "@testing-library/jest-native": "^4.0.11",
     "@testing-library/react-native": "11.0.0",
@@ -76,7 +77,7 @@
     "babel-loader": "^8.2.3",
     "babel-test": "^0.1.1",
     "chalk": "^4.0.0",
-    "commitlint": "^17.1.2",
+    "commitlint": "^8.3.4",
     "conventional-changelog-cli": "^2.0.11",
     "dedent": "^0.7.0",
     "eslint": "^6.7.2",
@@ -99,7 +100,7 @@
     "react-test-renderer": "16.13.1",
     "release-it": "^13.4.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.5.4"
+    "typescript": "^4.7.3"
   },
   "peerDependencies": {
     "react": "*",
@@ -108,6 +109,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "yarn lint && yarn typescript"
     }
   },
