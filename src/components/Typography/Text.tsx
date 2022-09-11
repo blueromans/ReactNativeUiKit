@@ -12,10 +12,19 @@ type Props = React.ComponentProps<typeof NativeText> & {
   theme?: Theme;
 };
 
-const Text = ({ style, theme, ...rest }: Props) => {
+const Text: React.ForwardRefRenderFunction<{}, Props> = (
+  { style, theme, ...rest }: Props,
+  ref
+) => {
+  const root = React.useRef<NativeText | null>(null);
+
+  React.useImperativeHandle(ref, () => ({
+    setNativeProps: (args: Object) => root.current?.setNativeProps(args),
+  }));
   return (
     <NativeText
       {...rest}
+      ref={root}
       style={[
         {
           ...theme?.fonts?.regular,
@@ -34,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Text;
+export default React.forwardRef(Text);
