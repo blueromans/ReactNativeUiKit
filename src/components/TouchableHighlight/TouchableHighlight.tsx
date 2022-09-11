@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   StyleProp,
-  TouchableHighlight,
+  TouchableHighlight as RNTouchableHighlight,
   TouchableWithoutFeedback,
   ViewStyle,
   StyleSheet,
@@ -21,7 +21,7 @@ type Props = React.ComponentProps<typeof TouchableWithoutFeedback> & {
   theme: Theme;
 };
 
-const TouchableRipple = ({
+const TouchableHighlight = ({
   style,
   borderless = false,
   disabled: disabledProp,
@@ -39,14 +39,14 @@ const TouchableRipple = ({
   });
 
   return (
-    <TouchableHighlight
+    <RNTouchableHighlight
       {...rest}
       disabled={disabled}
       style={[borderless && styles.overflowHidden, style]}
       underlayColor={calculatedUnderlayColor}
     >
       {React.Children.only(children)}
-    </TouchableHighlight>
+    </RNTouchableHighlight>
   );
 };
 
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTheme(TouchableRipple);
+export default withTheme(TouchableHighlight);

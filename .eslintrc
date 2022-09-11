@@ -2,9 +2,7 @@
     "env": {
       "browser": true
     },
-  
-    "extends": ["@callstack"],
-  
+      
     "plugins": ["react-native"],
   
     "rules": {

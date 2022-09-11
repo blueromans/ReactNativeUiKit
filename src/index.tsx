@@ -6,6 +6,8 @@ export { AppTheme } from './styles/theme';
 export { default as Provider } from './core/Provider';
 export { default as configureFonts } from './styles/fonts';
 
+export { ActivityIndicator } from './components/ActivityIndicator';
+
 export {
   useTheme,
   withTheme,
@@ -24,3 +26,5 @@ export {
 } from './components/Typography';
 
 export { default as Text } from './components/Typography/Text';
+
+export { View } from './components/View';

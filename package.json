@@ -1,5 +1,5 @@
 {
-  "name": "react-native-ui-kit",
+  "name": "@blueromans/react-native-ui-kit",
   "version": "0.0.1",
   "description": "Ui kit for React Native",
   "main": "lib/commonjs/index.js",
@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.7",
+    "axios": "^0.27.2",
     "color": "^3.1.2",
     "react-native-iphone-x-helper": "^1.3.1",
     "react-native-keyboard-aware-scrollview": "^2.1.0"
@@ -95,10 +96,10 @@
     "metro-react-native-babel-preset": "^0.67.0",
     "prettier": "^2.5.0",
     "react": "^18.2.0",
-    "react-dom": "17.0.2",
+    "react-dom": "^18.2.0",
     "react-native": "0.68.2",
     "react-native-builder-bob": "^0.17.1",
-    "react-native-vector-icons": "^9.1.0",
+    "react-native-vector-icons": "^9.2.0",
     "react-test-renderer": "16.13.1",
     "release-it": "^13.4.0",
     "rimraf": "^3.0.2",
