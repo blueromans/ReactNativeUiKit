@@ -2,9 +2,9 @@
     "env": {
       "browser": true
     },
-      
-    "plugins": ["react-native"],
-  
+    "extends": "@react-native-community",
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
     "rules": {
       "one-var": "off",
       "no-multi-assign": "off",

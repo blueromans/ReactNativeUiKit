@@ -1,8 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import {
   StyleProp,
   TouchableHighlight as RNTouchableHighlight,
-  TouchableWithoutFeedback,
   ViewStyle,
   StyleSheet,
 } from 'react-native';
@@ -10,7 +9,7 @@ import { withTheme } from '../../core/theming';
 import type { Theme } from '../../types';
 import { getTouchableRippleColors } from './utils';
 
-type Props = React.ComponentProps<typeof TouchableWithoutFeedback> & {
+type Props = React.ComponentProps<typeof RNTouchableHighlight> & {
   borderless?: boolean;
   disabled?: boolean;
   onPress?: () => void | null;

@@ -67,11 +67,9 @@ const ActivityIndicator = ({
 
   React.useEffect(() => {
     if (rotation.current === undefined) {
-      // Circular animation in loop
       rotation.current = Animated.timing(timer, {
         duration: DURATION,
         easing: Easing.linear,
-        // Animated.loop does not work if useNativeDriver is true on web
         useNativeDriver: Platform.OS !== 'web',
         toValue: 1,
         isInteraction: false,
@@ -81,7 +79,6 @@ const ActivityIndicator = ({
     if (animating) {
       startRotation();
     } else if (hidesWhenStopped) {
-      // Hide indicator first and then stop rotation
       Animated.timing(fade, {
         duration: 200 * 1,
         toValue: 0,
