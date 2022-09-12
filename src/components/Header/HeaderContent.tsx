@@ -29,7 +29,7 @@ export type Props = $RemoveChildren<typeof View> & {
   theme: Theme;
 };
 
-const AppBarContent = ({
+const HeaderContent = ({
   color: titleColor,
   subtitle,
   subtitleStyle,
@@ -76,7 +76,7 @@ const AppBarContent = ({
   );
 };
 
-AppBarContent.displayName = 'AppBar.Content';
+HeaderContent.displayName = 'Header.Content';
 
 const styles = StyleSheet.create({
   container: {
@@ -105,9 +105,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTheme(AppBarContent);
+export default withTheme(HeaderContent);
 
 // @component-docs ignore-next-line
-const AppBarContentWithTheme = withTheme(AppBarContent);
+const HeaderContentWithTheme = withTheme(HeaderContent);
 // @component-docs ignore-next-line
-export { AppBarContentWithTheme as AppBarContent };
+export { HeaderContentWithTheme as HeaderContent };

@@ -2,21 +2,21 @@ import React from 'react';
 import { View, ViewStyle, Platform, StyleSheet, StyleProp } from 'react-native';
 import color from 'color';
 
-import AppBarContent from './AppBarContent';
-import AppBarAction from './AppBarAction';
-import AppBarBackAction from './AppBarBackAction';
+import HeaderContent from './HeaderContent';
+import HeaderAction from './HeaderAction';
+import HeaderBackAction from './HeaderBackAction';
 
 import { withTheme } from '../../core/theming';
 import type { Theme } from '../../types';
 
 import {
-  getAppBarColor,
-  renderAppBarContent,
-  DEFAULT_AppBar_HEIGHT,
-  AppBarModes,
+  getHeaderColor,
+  renderHeaderContent,
+  DEFAULT_Header_HEIGHT,
+  HeaderModes,
 } from './utils';
 
-import AppBarHeader from './AppBarHeader';
+import HeaderWrapper from './HeaderWrapper';
 
 export type Props = Partial<React.ComponentPropsWithRef<typeof View>> & {
   dark?: boolean;
@@ -33,7 +33,7 @@ export type Props = Partial<React.ComponentPropsWithRef<typeof View>> & {
   style?: StyleProp<ViewStyle>;
 };
 
-const AppBar = ({
+const Header = ({
   children,
   dark,
   style,
@@ -51,12 +51,12 @@ const AppBar = ({
 
   let isDark: boolean;
 
-  const backgroundColor = getAppBarColor(
+  const backgroundColor = getHeaderColor(
     theme,
     elevated
   );
 
-  const isMode = (modeToCompare: AppBarModes) => {
+  const isMode = (modeToCompare: HeaderModes) => {
     return mode === modeToCompare;
   };
 
@@ -76,15 +76,15 @@ const AppBar = ({
   let shouldAddLeftSpacing = false;
   let shouldAddRightSpacing = false;
   if ((Platform.OS === 'ios')) {
-    let hasAppBarContent = false;
+    let hasHeaderContent = false;
     let leftItemsCount = 0;
     let rightItemsCount = 0;
 
     React.Children.forEach(children, (child) => {
       if (React.isValidElement(child)) {
-        if (child.type === AppBarContent) {
-          hasAppBarContent = true;
-        } else if (hasAppBarContent) {
+        if (child.type === HeaderContent) {
+          hasHeaderContent = true;
+        } else if (hasHeaderContent) {
           rightItemsCount++;
         } else {
           leftItemsCount++;
@@ -93,14 +93,14 @@ const AppBar = ({
     });
 
     shouldCenterContent =
-      hasAppBarContent &&
+      hasHeaderContent &&
       leftItemsCount < 2 &&
       rightItemsCount < (2);
     shouldAddLeftSpacing = shouldCenterContent && leftItemsCount === 0;
     shouldAddRightSpacing = shouldCenterContent && rightItemsCount === 0;
   }
 
-  const filterAppBarActions = React.useCallback(
+  const filterHeaderActions = React.useCallback(
     (isLeading = false) =>
       React.Children.toArray(children).filter((child) =>
         // @ts-expect-error: TypeScript complains about the type of type but it doesn't matter
@@ -122,9 +122,9 @@ const AppBar = ({
     <View
       style={[
         { backgroundColor },
-        styles.AppBar,
+        styles.Header,
         {
-          height: DEFAULT_AppBar_HEIGHT,
+          height: DEFAULT_Header_HEIGHT,
         },
         insets,
         restStyle,
@@ -133,7 +133,7 @@ const AppBar = ({
     >
       {shouldAddLeftSpacing ? <View style={spacingStyle} /> : null}
       {(isMode('small') || isMode('center-aligned')) &&
-        renderAppBarContent({
+        renderHeaderContent({
           children,
           isDark,
           shouldCenterContent,
@@ -145,41 +145,41 @@ const AppBar = ({
             isMode('center-aligned') && styles.centerAlignedContainer,
           ]}
         >
-          {/* AppBar top row with controls */}
+          {/* Header top row with controls */}
           <View style={styles.controlsRow}>
-            {/* Left side of row container, can contain AppBarBackAction or AppBarAction if it's leading icon  */}
-            {renderAppBarContent({
+            {/* Left side of row container, can contain HeaderBackAction or HeaderAction if it's leading icon  */}
+            {renderHeaderContent({
               children,
               isDark,
-              renderOnly: [AppBarBackAction],
+              renderOnly: [HeaderBackAction],
               mode,
             })}
-            {renderAppBarContent({
-              children: filterAppBarActions(true),
+            {renderHeaderContent({
+              children: filterHeaderActions(true),
               isDark,
-              renderOnly: [AppBarAction],
+              renderOnly: [HeaderAction],
               mode,
             })}
-            {/* Right side of row container, can contain other AppBarAction if they are not leading icons */}
+            {/* Right side of row container, can contain other HeaderAction if they are not leading icons */}
             <View style={styles.rightActionControls}>
-              {renderAppBarContent({
-                children: filterAppBarActions(false),
+              {renderHeaderContent({
+                children: filterHeaderActions(false),
                 isDark,
                 renderExcept: [
-                  AppBar,
-                  AppBarBackAction,
-                  AppBarContent,
-                  AppBarHeader,
+                  Header,
+                  HeaderBackAction,
+                  HeaderContent,
+                  HeaderWrapper,
                 ],
                 mode,
               })}
             </View>
           </View>
-          {/* Middle of the row, can contain only AppBarContent */}
-          {renderAppBarContent({
+          {/* Middle of the row, can contain only HeaderContent */}
+          {renderHeaderContent({
             children,
             isDark,
-            renderOnly: [AppBarContent],
+            renderOnly: [HeaderContent],
             mode,
           })}
         </View>
@@ -190,7 +190,7 @@ const AppBar = ({
 };
 
 const styles = StyleSheet.create({
-  AppBar: {
+  Header: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 4,
@@ -222,8 +222,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTheme(AppBar);
+export default withTheme(Header);
 // @component-docs ignore-next-line
-const AppBarWithTheme = withTheme(AppBar);
+const HeaderWithTheme = withTheme(Header);
 // @component-docs ignore-next-line
-export { AppBarWithTheme as AppBar };
+export { HeaderWithTheme as Header };

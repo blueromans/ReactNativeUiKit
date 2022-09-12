@@ -3,7 +3,7 @@ import { Platform, I18nManager, View, Image, StyleSheet } from 'react-native';
 
 import MaterialCommunityIcon from '../Icon/MaterialCommunityIcon';
 
-const AppBarBackIcon = ({ size, color }: { size: number; color: string }) => {
+const HeaderBackIcon = ({ size, color }: { size: number; color: string }) => {
   const iosIconSize = size - 3;
 
   return Platform.OS === 'ios' ? (
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AppBarBackIcon;
+export default HeaderBackIcon;
 
 // @component-docs ignore-next-line
-export { AppBarBackIcon };
+export { HeaderBackIcon };

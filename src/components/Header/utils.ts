@@ -2,16 +2,16 @@ import React from 'react';
 import color from 'color';
 import { StyleSheet } from 'react-native';
 import type { StyleProp, ViewStyle } from 'react-native';
-import AppBarContent from './AppBarContent';
-import AppBarAction from './AppBarAction';
-import AppBarBackAction from './AppBarBackAction';
+import HeaderContent from './HeaderContent';
+import HeaderAction from './HeaderAction';
+import HeaderBackAction from './HeaderBackAction';
 
 import type { Theme } from '../../types';
 import { black, white } from '../../styles/colors';
 
-export type AppBarModes = 'small' | 'medium' | 'large' | 'center-aligned';
+export type HeaderModes = 'small' | 'medium' | 'large' | 'center-aligned';
 
-export const getAppBarColor = (
+export const getHeaderColor = (
   theme: Theme,
   elevated?: boolean
 ) => {
@@ -26,16 +26,16 @@ export const getAppBarColor = (
   return colors?.surface;
 };
 
-type RenderAppBarContentProps = {
+type RenderHeaderContentProps = {
   children: React.ReactNode;
   isDark: boolean;
   shouldCenterContent?: boolean;
   renderOnly?: any;
   renderExcept?: any;
-  mode?: AppBarModes;
+  mode?: HeaderModes;
 };
 
-export const DEFAULT_AppBar_HEIGHT = 56;
+export const DEFAULT_Header_HEIGHT = 56;
 
 export const modeTextVariant = {
   small: 'titleLarge',
@@ -44,14 +44,14 @@ export const modeTextVariant = {
   'center-aligned': 'titleLarge',
 };
 
-export const renderAppBarContent = ({
+export const renderHeaderContent = ({
   children,
   isDark,
   shouldCenterContent = false,
   renderOnly,
   renderExcept,
   mode = 'small',
-}: RenderAppBarContentProps) => {
+}: RenderHeaderContentProps) => {
   return (
     React.Children.toArray(children)
       .filter((child) => child != null && typeof child !== 'boolean')
@@ -64,7 +64,7 @@ export const renderAppBarContent = ({
       .map((child, i) => {
         if (
           !React.isValidElement(child) ||
-          ![AppBarContent, AppBarAction, AppBarBackAction].includes(
+          ![HeaderContent, HeaderAction, HeaderBackAction].includes(
             // @ts-expect-error: TypeScript complains about the type of type but it doesn't matter
             child.type
           )
@@ -75,7 +75,7 @@ export const renderAppBarContent = ({
         const props: {
           color?: string;
           style?: StyleProp<ViewStyle>;
-          mode?: AppBarModes;
+          mode?: HeaderModes;
         } = {
           color: undefined
             ? typeof child.props.color !== 'undefined'
@@ -86,7 +86,7 @@ export const renderAppBarContent = ({
             : null
         };
 
-        if (child.type === AppBarContent) {
+        if (child.type === HeaderContent) {
           props.mode = mode;
           props.style = [i !== 0 && styles.v2Spacing,
             shouldCenterContent && styles.centerAlignedContent,

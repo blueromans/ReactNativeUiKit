@@ -23,7 +23,7 @@ export type Props = React.ComponentProps<typeof IconButton> & {
 };
 
 
-const AppBarAction = ({
+const HeaderAction = ({
   size = 24,
   color: iconColor,
   icon,
@@ -49,8 +49,8 @@ const AppBarAction = ({
   );
 };
 
-AppBarAction.displayName = 'AppBar.Action';
+HeaderAction.displayName = 'Header.Action';
 
-export default AppBarAction;
+export default HeaderAction;
 
-export { AppBarAction };
+export { HeaderAction };

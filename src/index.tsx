@@ -33,7 +33,7 @@ export {
 export { default as Text } from './components/Typography/Text';
 export { default as Button } from './components/Button/Button';
 export { default as IconButton } from './components/IconButton/IconButton';
-export { default as AppBar } from './components/AppBar';
+export { default as Header } from './components/Header';
 export { default as TouchableHighlight } from './components/TouchableHighlight/TouchableHighlight';
 
 export { View } from './components/View';

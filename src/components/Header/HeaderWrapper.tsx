@@ -7,16 +7,16 @@ import {
   ViewStyle,
   Platform,
 } from 'react-native';
-import { AppBar } from './AppBar';
+import { Header } from './Header';
 import { withTheme } from '../../core/theming';
 import { APPROX_STATUSBAR_HEIGHT } from '../../constants';
 import type { Theme } from '../../types';
 import {
-  DEFAULT_AppBar_HEIGHT,
-  getAppBarColor,
+  DEFAULT_Header_HEIGHT,
+  getHeaderColor,
 } from './utils';
 
-export type Props = React.ComponentProps<typeof AppBar> & {
+export type Props = React.ComponentProps<typeof Header> & {
   dark?: boolean;
   statusBarHeight?: number;
   children: React.ReactNode;
@@ -27,7 +27,7 @@ export type Props = React.ComponentProps<typeof AppBar> & {
 };
 
 
-const AppBarHeader = ({
+const HeaderWrapper = ({
   statusBarHeight,
   style,
   dark,
@@ -37,14 +37,14 @@ const AppBarHeader = ({
 }: Props) => {
 
   const {
-    height = DEFAULT_AppBar_HEIGHT,
+    height = DEFAULT_Header_HEIGHT,
     elevation =  4,
     backgroundColor: customBackground,
     zIndex = 0,
     ...restStyle
   }: ViewStyle = StyleSheet.flatten(style) || {};
 
-  const backgroundColor = getAppBarColor(
+  const backgroundColor = getHeaderColor(
     rest.theme,
     elevated
   );
@@ -64,8 +64,8 @@ const AppBarHeader = ({
         ] as StyleProp<ViewStyle>
       }
     >
-      <AppBar
-        style={[{ height, backgroundColor }, styles.AppBar, restStyle]}
+      <Header
+        style={[{ height, backgroundColor }, styles.Header, restStyle]}
         dark={dark}
         {...rest}
       />
@@ -73,17 +73,17 @@ const AppBarHeader = ({
   );
 };
 
-AppBarHeader.displayName = 'AppBar.Header';
+HeaderWrapper.displayName = 'Header.Wrapper';
 
 const styles = StyleSheet.create({
-  AppBar: {
+  Header: {
     elevation: 0,
   },
 });
 
-export default withTheme(AppBarHeader);
+export default withTheme(HeaderWrapper);
 
 // @component-docs ignore-next-line
-const AppBarHeaderWithTheme = withTheme(AppBarHeader);
+const HeaderWrapperWithTheme = withTheme(HeaderWrapper);
 // @component-docs ignore-next-line
-export { AppBarHeaderWithTheme as AppBarHeader };
+export { HeaderWrapperWithTheme as HeaderWrapper };
