@@ -1,6 +1,6 @@
 import color from 'color';
 import type { Theme } from '../types';
-import configureFonts from './fonts';
+import getFonts from './fonts';
 import { black, pinkA100, white } from './colors';
 
 export const AppTheme: Theme = {
@@ -19,5 +19,5 @@ export const AppTheme: Theme = {
     backdrop: color(black).alpha(0.5).rgb().string(),
     notification: pinkA100,
   },
-  fonts: configureFonts(),
+  fonts: getFonts(),
 };

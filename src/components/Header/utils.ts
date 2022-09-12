@@ -2,6 +2,7 @@ import React from 'react';
 import color from 'color';
 import { StyleSheet } from 'react-native';
 import type { StyleProp, ViewStyle } from 'react-native';
+
 import HeaderContent from './HeaderContent';
 import HeaderAction from './HeaderAction';
 import HeaderBackAction from './HeaderBackAction';
@@ -77,13 +78,11 @@ export const renderHeaderContent = ({
           style?: StyleProp<ViewStyle>;
           mode?: HeaderModes;
         } = {
-          color: undefined
-            ? typeof child.props.color !== 'undefined'
+          color: typeof child.props.color !== 'undefined'
             ? child.props.color
             : isDark
             ? white
             : black
-            : null
         };
 
         if (child.type === HeaderContent) {

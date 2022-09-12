@@ -4,8 +4,7 @@ export { Colors };
 export { AppTheme } from './styles/theme';
 
 export { default as Provider } from './core/Provider';
-export { default as configureFonts } from './styles/fonts';
-
+export { default as getFonts } from './styles/fonts';
 
 export { ActivityIndicator } from './components/ActivityIndicator';
 
