@@ -41,3 +41,11 @@ export { ScrollView } from './components/ScrollView';
 export { Snackbar } from './components/SnackBar';
 export { default as Text } from './components/Typography/Text';
 export { View } from './components/View';
+export {
+  ViewPager,
+  ScalingDot,
+  ExpandingDot,
+  SlidingBorder,
+  SlidingDot,
+  LiquidLike,
+} from './components/ViewPager';

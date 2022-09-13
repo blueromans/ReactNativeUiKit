@@ -12,7 +12,6 @@ const getUnderlayColor = ({
   if (underlayColor != null) {
     return underlayColor;
   }
-
   return color(calculatedRippleColor).fade(0.5).rgb().string();
 };
 

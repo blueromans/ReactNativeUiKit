@@ -12,7 +12,7 @@ const LayoutView = (props: Props) => {
   const {
     bg,
     theme,
-    padding,
+    padding = 0,
     children,
     style,
     insetTop,

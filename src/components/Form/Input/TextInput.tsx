@@ -59,6 +59,7 @@ const TextInput = ({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 1,
+    minHeight: 60,
   },
   textInput: {
     width: '100%',

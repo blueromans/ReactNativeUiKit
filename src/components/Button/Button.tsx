@@ -28,8 +28,6 @@ export type Props = React.ComponentProps<typeof View> & {
   disabled?: boolean;
   children: React.ReactNode;
   uppercase?: boolean;
-  accessibilityLabel?: string;
-  accessibilityHint?: string;
   onPress?: () => void;
   contentStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
@@ -47,15 +45,12 @@ const Button = ({
   buttonColor: customButtonColor,
   textColor: customTextColor,
   children,
-  accessibilityLabel,
-  accessibilityHint,
   onPress,
   style,
   theme,
   uppercase,
   contentStyle,
   labelStyle,
-  accessible,
   ...rest
 }: Props) => {
   const { roundness } = theme;
@@ -114,16 +109,11 @@ const Button = ({
     >
       <TouchableHighlight
         borderless
-        delayPressIn={0}
         onPress={onPress}
-        accessibilityLabel={accessibilityLabel}
-        accessibilityHint={accessibilityHint}
-        accessibilityRole="button"
-        accessibilityState={{ disabled }}
-        accessible={accessible}
         disabled={disabled}
         rippleColor={rippleColor}
         style={touchableStyle}
+        delayPressIn={0}
       >
         <View style={[styles.content, contentStyle]}>
           {icon && loading !== true ? (
