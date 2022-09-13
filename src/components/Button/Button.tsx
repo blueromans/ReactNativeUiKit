@@ -8,16 +8,15 @@ import {
 } from 'react-native';
 import color from 'color';
 
-import {ActivityIndicator} from '../ActivityIndicator';
+import { ActivityIndicator } from '../ActivityIndicator';
 import Icon, { IconSource } from '../Icon/Icon';
 import Text from '../Typography/Text';
-import {TouchableHighlight} from '../TouchableHighlight';
+import { TouchableHighlight } from '../TouchableHighlight';
 import { withTheme } from '../../core/theming';
 import type { Theme } from '../../types';
 import { getButtonColors } from './utils';
 
 export type Props = React.ComponentProps<typeof View> & {
- 
   mode?: 'text' | 'outlined' | 'contained' | 'elevated' | 'contained-tonal';
   dark?: boolean;
   compact?: boolean;
@@ -37,7 +36,6 @@ export type Props = React.ComponentProps<typeof View> & {
   labelStyle?: StyleProp<TextStyle>;
   theme: Theme;
 };
-
 
 const Button = ({
   disabled,
@@ -60,11 +58,10 @@ const Button = ({
   accessible,
   ...rest
 }: Props) => {
-  
   const { roundness } = theme;
-  
+
   const borderRadius = roundness;
-  const iconSize =  16;
+  const iconSize = 16;
 
   const { backgroundColor, borderColor, textColor, borderWidth } =
     getButtonColors({
@@ -96,16 +93,12 @@ const Button = ({
 
   const textStyle = {
     color: textColor,
-    ...(theme?.fonts?.medium),
+    ...theme?.fonts?.medium,
   };
   const iconStyle =
     StyleSheet.flatten(contentStyle)?.flexDirection === 'row-reverse'
-      ? [
-          styles.iconReverse,
-        ]
-      : [
-          styles.icon,
-        ];
+      ? [styles.iconReverse]
+      : [styles.icon];
 
   return (
     <View
@@ -196,22 +189,6 @@ const styles = StyleSheet.create({
   iconReverse: {
     marginRight: 12,
     marginLeft: -4,
-  },
-  md3Icon: {
-    marginLeft: 16,
-    marginRight: -16,
-  },
-  md3IconReverse: {
-    marginLeft: -16,
-    marginRight: 16,
-  },
-  md3IconTextMode: {
-    marginLeft: 12,
-    marginRight: -8,
-  },
-  md3IconReverseTextMode: {
-    marginLeft: -8,
-    marginRight: 12,
   },
   label: {
     textAlign: 'center',

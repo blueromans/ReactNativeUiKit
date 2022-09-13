@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { View as RNView, StyleProp, ViewStyle, StyleSheet } from 'react-native';
+import { StyleProp, ViewStyle, StyleSheet } from 'react-native';
+// @ts-ignore
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 
-export type Props = React.ComponentProps<typeof RNView> & {
+export type Props = React.ComponentProps<typeof KeyboardAwareScrollView> & {
   flex?: number;
   row?: boolean;
   center?: boolean;
@@ -38,7 +40,7 @@ export type Props = React.ComponentProps<typeof RNView> & {
   children: React.ReactNode;
 };
 
-const View = ({
+const ScrollView = ({
   flex,
   row,
   style,
@@ -111,9 +113,14 @@ const View = ({
     style,
   ];
   return (
-    <RNView style={viewStyles} {...rest}>
+    <KeyboardAwareScrollView
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      style={viewStyles}
+      {...rest}
+    >
       {children}
-    </RNView>
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -130,4 +137,4 @@ const styles = StyleSheet.create({
   around: { justifyContent: 'space-around' },
 });
 
-export default View;
+export default ScrollView;
