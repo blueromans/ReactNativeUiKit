@@ -3,6 +3,7 @@ import React from 'react';
 import { ThemeProvider } from './theming';
 import type { ThemeProp } from '../types';
 import { AppTheme } from '../styles/theme';
+import { View } from '../components/View';
 
 export type Props = {
   children: React.ReactNode;
@@ -11,8 +12,10 @@ export type Props = {
 
 const Provider = (props: Props) => {
   const getTheme = () => {
+    const defaultThemeBase = AppTheme;
+
     const extendedThemeBase = {
-      ...AppTheme,
+      ...defaultThemeBase,
       ...props.theme,
     };
 
@@ -21,7 +24,13 @@ const Provider = (props: Props) => {
     } as ReactNativeUiKit.AppTheme;
   };
 
-  return <ThemeProvider theme={getTheme()}></ThemeProvider>;
+  const { children } = props;
+
+  return (
+    <View flex={1}>
+      <ThemeProvider theme={getTheme()}>{children}</ThemeProvider>
+    </View>
+  );
 };
 
 export default Provider;
