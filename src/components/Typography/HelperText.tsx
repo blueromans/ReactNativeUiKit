@@ -1,10 +1,6 @@
 import React from 'react';
 import color from 'color';
-import {
-  StyleSheet,
-  StyleProp,
-  TextStyle,
-} from 'react-native';
+import { StyleSheet, StyleProp, TextStyle } from 'react-native';
 import Text from './Text';
 import { withTheme } from '../../core/theming';
 import type { $Omit, Theme } from '../../types';
@@ -13,7 +9,7 @@ export type Props = $Omit<
   $Omit<React.ComponentProps<typeof Text>, 'padding'>,
   'type'
 > & {
-  type: 'error' | 'info';
+  type?: 'error' | 'info';
   visible?: boolean;
   padding?: 'none' | 'normal';
   children: React.ReactNode;
@@ -29,7 +25,6 @@ const HelperText = ({
   padding = 'normal',
   ...rest
 }: Props) => {
-
   const { colors, dark } = theme;
 
   const textColor =
