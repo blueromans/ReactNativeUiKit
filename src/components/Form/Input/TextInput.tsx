@@ -13,7 +13,7 @@ import { HelperText } from '../../Typography';
 
 import type { Theme } from '../../../types';
 import { withTheme } from '../../../core/theming';
-import { MIN_HEIGHT, INPUT_PADDING_HORIZONTAL } from './constants';
+import { INPUT_PADDING_HORIZONTAL } from './constants';
 import { getOutlinedInputColors } from './helpers';
 
 export type Props = React.ComponentProps<typeof View> & {
@@ -28,8 +28,9 @@ export type Props = React.ComponentProps<typeof View> & {
   outlineColor?: string;
   activeOutlineColor?: string;
   disabled?: boolean;
-  errorStyle?: StyleProp<ViewStyle>;
+  errorStyle?: StyleProp<TextStyle>;
   labelStyle?: StyleProp<TextStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
 };
 
 const TextInput = ({
@@ -46,18 +47,10 @@ const TextInput = ({
   error: errorMessage,
   errorStyle,
   labelStyle,
+  containerStyle,
   ...rest
 }: Props) => {
-  const { roundness: borderRadius } = theme;
-  const {
-    fontSize: fontSizeStyle,
-    fontWeight,
-    lineHeight,
-    height,
-    backgroundColor = theme?.colors?.background,
-    textAlign,
-    ...viewStyle
-  } = (StyleSheet.flatten(style) || {}) as TextStyle;
+  const { roundness: borderRadius, baseHeight } = theme;
   const [focused, setFocused] = React.useState<boolean>(false);
   const error: boolean = errorMessage != null ? true : false;
   const hasActiveOutline = focused || error;
@@ -77,7 +70,7 @@ const TextInput = ({
   });
 
   return (
-    <View style={viewStyle}>
+    <React.Fragment>
       <HelperText
         style={[labelStyle, { color: error ? errorColor : inputTextColor }]}
         visible={label != null}
@@ -87,44 +80,43 @@ const TextInput = ({
       <View
         style={[
           styles.container,
+          { height: baseHeight },
           {
             borderRadius,
             borderColor: hasActiveOutline ? activeColor : outlineColor,
           },
+          containerStyle,
         ]}
       >
-        <View flex={1}>
-          <Controller
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <RnTextInput
-                style={[styles.textInput, style]}
-                placeholderTextColor={placeholderColor}
-                onBlur={() => {
-                  setFocused(false);
-                  onBlur();
-                }}
-                onFocus={() => setFocused(true)}
-                onChangeText={(value) => onChange(value)}
-                value={value}
-                {...rest}
-              />
-            )}
-            name={name}
-            rules={rules}
-          />
-        </View>
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <RnTextInput
+              style={[styles.textInput, style]}
+              placeholderTextColor={placeholderColor}
+              onBlur={() => {
+                setFocused(false);
+                onBlur();
+              }}
+              onFocus={() => setFocused(true)}
+              onChangeText={(value) => onChange(value)}
+              value={value}
+              {...rest}
+            />
+          )}
+          name={name}
+          rules={rules}
+        />
       </View>
       <HelperText type="error" visible={error}>
         {errorMessage}
       </HelperText>
-    </View>
+    </React.Fragment>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: MIN_HEIGHT,
     borderWidth: 1,
   },
   textInput: {
@@ -132,11 +124,6 @@ const styles = StyleSheet.create({
     height: '100%',
     padding: 0,
     paddingHorizontal: INPUT_PADDING_HORIZONTAL,
-  },
-  input: {
-    flexGrow: 1,
-    margin: 0,
-    zIndex: 1,
   },
 });
 

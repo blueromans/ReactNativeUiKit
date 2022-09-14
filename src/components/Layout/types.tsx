@@ -12,5 +12,5 @@ export type Props = React.ComponentProps<typeof View> & {
   padding?: number;
   style?: StyleProp<ViewStyle>;
   children: React.ReactNode;
-  theme?: Theme;
+  theme: Theme;
 };
