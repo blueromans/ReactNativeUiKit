@@ -138,10 +138,6 @@ const styles = StyleSheet.create({
     margin: 0,
     zIndex: 1,
   },
-  inputOutlined: {
-    paddingTop: 8,
-    paddingBottom: 8,
-  },
 });
 
 export default withTheme(TextInput);
