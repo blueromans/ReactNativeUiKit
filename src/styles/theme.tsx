@@ -2,6 +2,7 @@ import color from 'color';
 import type { Theme } from '../types';
 import getFonts from './fonts';
 import { black, pinkA400, white } from './colors';
+import { BASE_HEIGHT } from '../constants';
 
 export const AppTheme: Theme = {
   dark: false,
@@ -11,6 +12,7 @@ export const AppTheme: Theme = {
     accent: '#03dac4',
     background: '#f6f6f6',
     surface: white,
+    onSurface: black,
     error: '#B00020',
     text: black,
     disabled: color(black).alpha(0.26).rgb().string(),
@@ -19,4 +21,5 @@ export const AppTheme: Theme = {
     notification: pinkA400,
   },
   fonts: getFonts(),
+  baseHeight: BASE_HEIGHT,
 };

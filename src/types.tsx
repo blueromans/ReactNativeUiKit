@@ -1,5 +1,5 @@
 import type { $DeepPartial } from '@callstack/react-theme-provider';
-import type * as React from 'react';
+import type React from 'react';
 
 export type Font = {
   fontFamily: string;
@@ -30,6 +30,7 @@ export type Colors = {
   primary: string;
   background: string;
   surface: string;
+  onSurface: string;
   accent: string;
   error: string;
   text: string;
@@ -47,6 +48,7 @@ export type Theme = {
   roundness: number;
   colors?: Colors;
   fonts?: Fonts;
+  baseHeight?: number;
 };
 
 export type $Omit<T, K> = Pick<T, Exclude<keyof T, K>>;

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   StyleProp,
   StyleSheet,
-  Animated,
   TouchableWithoutFeedback,
   View as RNView,
   ViewStyle,
@@ -37,7 +36,7 @@ type ContainedCardProps = {
 type Mode = 'elevated' | 'outlined' | 'contained';
 
 export type Props = React.ComponentProps<typeof View> & {
-  elevation?: 0 | 1 | 2 | 3 | 4 | 5 | Animated.Value;
+  elevation?: 0 | 1 | 2 | 3 | 4 | 5 | number;
   onPress?: () => void;
   mode?: Mode;
   children: React.ReactNode;
@@ -118,7 +117,6 @@ const styles = StyleSheet.create({
   },
   outline: {
     borderWidth: 1,
-    position: 'absolute',
     width: '100%',
     height: '100%',
     zIndex: 2,

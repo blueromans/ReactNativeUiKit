@@ -134,7 +134,7 @@ const Snackbar = ({
                 },
               ],
             },
-            { backgroundColor: colors?.surface },
+            { backgroundColor: colors?.onSurface },
             style,
           ] as StyleProp<ViewStyle>
         }
