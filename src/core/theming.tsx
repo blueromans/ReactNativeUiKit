@@ -1,6 +1,6 @@
 import { createTheming } from '@callstack/react-theme-provider';
-import { AppTheme } from 'src/styles/theme';
-import type { Theme } from 'src/types';
+import { AppTheme } from '../styles/theme';
+import type { Theme } from '../types';
 
 export const DefaultTheme = AppTheme;
 

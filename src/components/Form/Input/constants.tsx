@@ -10,7 +10,6 @@ export const ICON_OFFSET = 12;
 
 // Text input common
 export const MIN_HEIGHT = 64;
-export const ADORNMENT_OFFSET = 12;
 
 export const INPUT_PADDING_HORIZONTAL = 14;
 

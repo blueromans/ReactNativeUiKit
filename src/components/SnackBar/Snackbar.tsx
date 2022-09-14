@@ -32,7 +32,6 @@ const DURATION_SHORT = 4000;
 const DURATION_MEDIUM = 7000;
 const DURATION_LONG = 10000;
 
-
 const Snackbar = ({
   visible,
   action,
@@ -108,13 +107,13 @@ const Snackbar = ({
   } = action || {};
 
   const marginRight = action ? 0 : 16;
-  const textColor = theme?.colors?.accent
+  const textColor = theme?.colors?.accent;
   return (
     <SafeAreaView
       pointerEvents="box-none"
       style={[styles.wrapper, wrapperStyle]}
     >
-      <View
+      <Animated.View
         pointerEvents="box-none"
         accessibilityLiveRegion="polite"
         style={
@@ -159,7 +158,7 @@ const Snackbar = ({
             {actionLabel}
           </Button>
         ) : null}
-      </View>
+      </Animated.View>
     </SafeAreaView>
   );
 };

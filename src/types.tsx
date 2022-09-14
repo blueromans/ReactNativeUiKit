@@ -54,3 +54,5 @@ export type $RemoveChildren<T extends React.ComponentType<any>> = $Omit<
   React.ComponentPropsWithoutRef<T>,
   'children'
 >;
+
+export type EllipsizeProp = 'head' | 'middle' | 'tail' | 'clip';
