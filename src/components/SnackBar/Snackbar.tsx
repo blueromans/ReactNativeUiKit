@@ -16,11 +16,9 @@ import type { Theme } from '../../types';
 
 export type Props = React.ComponentPropsWithoutRef<typeof View> & {
   visible?: boolean;
-  action?: Omit<React.ComponentProps<typeof Button>, 'children'> & {
-    label: string;
-  };
+  action?: any;
   duration?: number;
-  onDismiss?: () => void;
+  onDismiss?: any;
   children?: React.ReactNode;
   elevation?: 0 | 1 | 2 | 3 | 4 | 5 | Animated.Value;
   wrapperStyle?: StyleProp<ViewStyle>;

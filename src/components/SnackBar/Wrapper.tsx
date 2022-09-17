@@ -1,27 +1,12 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import type { Animated, StyleProp, ViewStyle } from 'react-native';
 
 import Snackbar from './Snackbar';
 import { View } from '../View';
 import Text from '../Typography/Text';
-import type Button from '../Button/Button';
 import type { Theme } from '../../types';
 
 const DURATION_SHORT = 4000;
-
-export type Props = React.ComponentPropsWithRef<typeof View> & {
-  visible?: boolean;
-  action?: Omit<React.ComponentProps<typeof Button>, 'children'> & {
-    label: string;
-  };
-  duration?: number;
-  onDismiss?: () => void;
-  elevation?: 0 | 1 | 2 | 3 | 4 | 5 | Animated.Value;
-  wrapperStyle?: StyleProp<ViewStyle>;
-  style?: StyleProp<ViewStyle>;
-  theme: Theme;
-};
 
 class SnackBarWrapper extends React.PureComponent {
   state = {
@@ -30,8 +15,9 @@ class SnackBarWrapper extends React.PureComponent {
     title: '',
     subTitle: '',
     image: '',
-    action: () => null,
+    action: {},
     type: 'success',
+    onDismiss: () => null,
   };
   theme: Theme;
   static _ref: any = null;
@@ -46,10 +32,11 @@ class SnackBarWrapper extends React.PureComponent {
     image: string,
     type: string,
     duration: number,
-    action: () => null
+    action: any,
+    onDismiss: () => void
   ) {
     if (this._ref !== null) {
-      this._ref.show(title, subTitle, image, type, duration, action);
+      this._ref.show(title, subTitle, image, type, duration, action, onDismiss);
     }
   }
 
@@ -63,7 +50,8 @@ class SnackBarWrapper extends React.PureComponent {
     image: string,
     type: string,
     duration: number,
-    action: () => null
+    action: any,
+    onDismiss: any
   ) {
     await this._setState({
       isVisible: true,
@@ -73,6 +61,7 @@ class SnackBarWrapper extends React.PureComponent {
       type,
       duration,
       action,
+      onDismiss,
     });
   }
 
@@ -84,7 +73,7 @@ class SnackBarWrapper extends React.PureComponent {
     await this._setState({ isVisible: !this.state.isVisible });
   }
 
-  constructor(props: Props) {
+  constructor(props: any) {
     super(props);
     const { theme } = props;
     this.theme = theme;
@@ -101,19 +90,27 @@ class SnackBarWrapper extends React.PureComponent {
   }
 
   render() {
-    const { isVisible, title, subTitle, image, action, duration } = this.state;
+    const { isVisible, title, subTitle, action, duration, onDismiss } =
+      this.state;
     return (
-      <Snackbar visible={isVisible} duration={duration}>
+      <Snackbar
+        visible={isVisible}
+        action={action}
+        onDismiss={() => {
+          onDismiss?.();
+          this.hide();
+        }}
+        duration={duration}
+      >
         <View pv={5}>
-          <View row mr={action() ? 0 : 16}>
-            {image !== null && <View middle ml={10} children={undefined} />}
+          <View row mr={action ? 0 : 16}>
             <View middle>
               <Text
                 style={[styles.content, { color: this.theme?.colors?.surface }]}
               >
                 {title}
               </Text>
-              {subTitle !== null && (
+              {subTitle !== '' && (
                 <Text
                   style={[
                     styles.content,
@@ -131,24 +128,8 @@ class SnackBarWrapper extends React.PureComponent {
   }
 }
 const styles = StyleSheet.create({
-  wrapper: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-  },
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: 8,
-    borderRadius: 4,
-  },
   content: {
     marginLeft: 16,
-  },
-  button: {
-    marginHorizontal: 8,
-    marginVertical: 6,
   },
 });
 export default SnackBarWrapper;

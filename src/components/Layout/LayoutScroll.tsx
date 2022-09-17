@@ -15,8 +15,8 @@ const LayoutView = (props: Props) => {
     padding = 0,
     children,
     style,
-    insetTop,
-    insetBottom,
+    insetTop = false,
+    insetBottom = false,
     ...rest
   } = props;
   return (

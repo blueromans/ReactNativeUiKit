@@ -4,8 +4,8 @@ import type { View } from '../View';
 import type { Theme } from '../../types';
 
 export type Props = React.ComponentProps<typeof View> & {
-  insetBottom?: number;
-  insetTop?: number;
+  insetBottom?: boolean;
+  insetTop?: boolean;
   bg?: string;
   loading?: boolean;
   scroll?: boolean;

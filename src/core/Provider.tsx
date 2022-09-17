@@ -6,8 +6,8 @@ import { AppTheme } from '../styles/theme';
 import { View } from '../components/View';
 
 export type Props = {
-  children: React.ReactNode;
   theme?: ThemeProp;
+  children: React.ReactNode;
 };
 
 const Provider = (props: Props) => {
