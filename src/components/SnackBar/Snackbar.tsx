@@ -14,23 +14,21 @@ import Text from '../Typography/Text';
 import { withTheme } from '../../core/theming';
 import type { Theme } from '../../types';
 
-export type Props = React.ComponentProps<typeof View> & {
-  visible: boolean;
+export type Props = React.ComponentPropsWithoutRef<typeof View> & {
+  visible?: boolean;
   action?: Omit<React.ComponentProps<typeof Button>, 'children'> & {
     label: string;
   };
   duration?: number;
-  onDismiss: () => void;
-  children: React.ReactNode;
+  onDismiss?: () => void;
+  children?: React.ReactNode;
   elevation?: 0 | 1 | 2 | 3 | 4 | 5 | Animated.Value;
   wrapperStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
   theme: Theme;
 };
 
-const DURATION_SHORT = 4000;
 const DURATION_MEDIUM = 7000;
-const DURATION_LONG = 10000;
 
 const Snackbar = ({
   visible,
@@ -75,7 +73,7 @@ const Snackbar = ({
 
           if (finished && !isInfinity) {
             hideTimeout.current = setTimeout(
-              onDismiss,
+              onDismiss!!,
               duration
             ) as unknown as NodeJS.Timeout;
           }
@@ -147,7 +145,7 @@ const Snackbar = ({
           <Button
             onPress={() => {
               onPressAction?.();
-              onDismiss();
+              onDismiss?.();
             }}
             style={[styles.button, actionStyle]}
             textColor={textColor}
@@ -162,10 +160,6 @@ const Snackbar = ({
     </SafeAreaView>
   );
 };
-
-Snackbar.DURATION_SHORT = DURATION_SHORT;
-Snackbar.DURATION_MEDIUM = DURATION_MEDIUM;
-Snackbar.DURATION_LONG = DURATION_LONG;
 
 const styles = StyleSheet.create({
   wrapper: {

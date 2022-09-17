@@ -10,7 +10,7 @@ export const AppTheme: Theme = {
   colors: {
     primary: '#6200ee',
     accent: '#03dac4',
-    background: '#f6f6f6',
+    background: white,
     surface: white,
     onSurface: black,
     error: '#B00020',
