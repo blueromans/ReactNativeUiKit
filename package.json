@@ -1,6 +1,6 @@
 {
   "name": "@blueromans/react-native-ui-kit",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Ui kit for React Native",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",

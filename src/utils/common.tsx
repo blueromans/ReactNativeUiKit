@@ -13,9 +13,7 @@ export const showToast = (
   duration: number = DURATION_SHORT,
   action = {
     label: 'Undo',
-    onPress: () => {
-      // Do something
-    },
+    onPress: () => {},
   },
   onDismiss = () => null
 ) => {
