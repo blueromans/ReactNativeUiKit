@@ -22,4 +22,5 @@ export const AppTheme: Theme = {
   },
   fonts: getFonts(),
   baseHeight: BASE_HEIGHT,
+  styles: {},
 };

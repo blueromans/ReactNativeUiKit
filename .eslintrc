@@ -1,34 +1,34 @@
 {
-    "env": {
-      "browser": true
+  "env": {
+    "browser": true
+  },
+  "extends": "@react-native-community",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "one-var": "off",
+    "no-multi-assign": "off",
+    "no-nested-ternary": "off",
+    "no-undef": "off",
+    "global-require": "off",
+
+    "import/no-extraneous-dependencies": "off",
+    "import/first": "off",
+
+    "react-native/no-unused-styles": "error",
+    "react-native/split-platform-components": "off",
+    "react-native/no-raw-text": "off"
+  },
+
+  "settings": {
+    "import/extensions": [".js", ".ts", ".tsx"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
-    "extends": "@react-native-community",
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
-    "rules": {
-      "one-var": "off",
-      "no-multi-assign": "off",
-      "no-nested-ternary": "off",
-      "no-undef": "off",
-      "global-require": "off",
-  
-      "import/no-extraneous-dependencies": "off",
-      "import/first": "off",
-  
-      "react-native/no-unused-styles": "error",
-      "react-native/split-platform-components": "off",
-      "react-native/no-raw-text": "off"
-    },
-  
-    "settings": {
-      "import/extensions": [".js", ".ts", ".tsx"],
-      "import/parsers": {
-        "@typescript-eslint/parser": [".ts", ".tsx"]
-      },
-      "import/resolver": {
-        "node": {
-          "extensions": [".js", ".ts", ".tsx"]
-        }
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".tsx"]
       }
     }
   }
+}

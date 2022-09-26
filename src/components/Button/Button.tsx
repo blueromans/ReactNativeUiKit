@@ -98,14 +98,13 @@ const Button = ({
   return (
     <View
       {...rest}
-      style={
-        [
-          styles.button,
-          compact && styles.compact,
-          buttonStyle,
-          style,
-        ] as ViewStyle
-      }
+      style={[
+        styles.button,
+        compact && styles.compact,
+        buttonStyle,
+        style,
+        theme?.styles?.button?.content,
+      ]}
     >
       <TouchableHighlight
         borderless
@@ -149,6 +148,7 @@ const Button = ({
               uppercase && styles.uppercaseLabel,
               textStyle,
               labelStyle,
+              theme?.styles?.button?.label,
             ]}
           >
             {children}

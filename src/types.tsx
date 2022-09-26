@@ -49,6 +49,7 @@ export type Theme = {
   colors?: Colors;
   fonts?: Fonts;
   baseHeight?: number;
+  styles?: any;
 };
 
 export type $Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
