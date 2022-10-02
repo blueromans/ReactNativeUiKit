@@ -2,6 +2,7 @@ import type {
   ColorValue,
   StatusBarStyle,
   StyleProp,
+  TextStyle,
   ViewStyle,
 } from 'react-native';
 
@@ -20,4 +21,5 @@ export type Props = React.ComponentProps<typeof View> & {
   theme: Theme;
   statusBarStyle?: StatusBarStyle;
   statusBarColor?: string;
+  snackBarStyle?: { titleStyle?: TextStyle; subTitleStyle: TextStyle };
 };

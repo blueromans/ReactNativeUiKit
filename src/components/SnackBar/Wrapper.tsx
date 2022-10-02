@@ -8,7 +8,11 @@ import type { Theme } from '../../types';
 
 const DURATION_SHORT = 4000;
 
-class SnackBarWrapper extends React.PureComponent<{ theme: Theme }> {
+class SnackBarWrapper extends React.PureComponent<{
+  theme: Theme;
+  titleStyle?: TextStyle;
+  subTitleStyle?: TextStyle;
+}> {
   state = {
     duration: DURATION_SHORT,
     isVisible: false,
@@ -20,8 +24,6 @@ class SnackBarWrapper extends React.PureComponent<{ theme: Theme }> {
     onDismiss: () => null,
   };
   theme: Theme;
-  titleStyle: TextStyle;
-  subTitleStyle: TextStyle;
   static _ref: any = null;
 
   static setRef(ref: any) {
@@ -79,8 +81,6 @@ class SnackBarWrapper extends React.PureComponent<{ theme: Theme }> {
     super(props);
     const { theme } = props;
     this.theme = theme;
-    this.titleStyle = this.theme?.styles?.snackBar.titleStyle;
-    this.subTitleStyle = this.theme?.styles?.snackBar.subTitleStyle;
     this._setState = this._setState.bind(this);
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
@@ -113,7 +113,8 @@ class SnackBarWrapper extends React.PureComponent<{ theme: Theme }> {
                 style={[
                   styles.content,
                   { color: this.theme?.colors?.surface },
-                  this.titleStyle,
+                  this.theme?.styles?.snackBar?.titleStyle,
+                  this.props?.titleStyle,
                 ]}
               >
                 {title}
@@ -123,7 +124,8 @@ class SnackBarWrapper extends React.PureComponent<{ theme: Theme }> {
                   style={[
                     styles.content,
                     { color: this.theme?.colors?.surface },
-                    this.subTitleStyle,
+                    this.theme?.styles?.snackBar?.subTitleStyle,
+                    this.props?.subTitleStyle,
                   ]}
                 >
                   {subTitle}

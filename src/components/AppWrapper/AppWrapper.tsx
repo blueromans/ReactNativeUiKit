@@ -4,6 +4,7 @@ import {
   StatusBar,
   StatusBarStyle,
   StyleProp,
+  TextStyle,
   View,
   ViewStyle,
 } from 'react-native';
@@ -22,6 +23,7 @@ export type Props = {
   appBackgroundColor?: ColorValue;
   statusBarStyle?: StatusBarStyle;
   statusBarColor?: string;
+  snackBarStyle?: { titleStyle?: TextStyle; subTitleStyle: TextStyle };
   theme?: Theme;
 };
 
@@ -32,6 +34,7 @@ const AppWrapper = (props: Props) => {
     appBackgroundColor,
     statusBarStyle = 'light-content',
     statusBarColor,
+    snackBarStyle = { titleStyle: {}, subTitleStyle: {} },
     children,
   } = props;
   const handleSnackBar = (ref: any) => SnackBarWrapper.setRef(ref);
@@ -54,7 +57,12 @@ const AppWrapper = (props: Props) => {
           <Layout insetBottom insetTop style={style}>
             {children}
           </Layout>
-          <SnackBarWrapper theme={theme} ref={handleSnackBar} />
+          <SnackBarWrapper
+            theme={theme}
+            titleStyle={snackBarStyle?.titleStyle}
+            subTitleStyle={snackBarStyle?.subTitleStyle}
+            ref={handleSnackBar}
+          />
         </ThemeProvider>
       </SafeAreaProvider>
     </View>
