@@ -61,5 +61,9 @@ export {
   SlidingDot,
   LiquidLike,
 } from './components/ViewPager';
-
-export { showToast } from './utils/common';
+export {
+  RecyclerListView as LisView,
+  LayoutProvider,
+  DataProvider,
+} from 'recyclerlistview';
+export { showToast, layoutMaker } from './utils/common';
