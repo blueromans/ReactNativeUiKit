@@ -54,7 +54,7 @@ const AppWrapper = (props: Props) => {
           <Layout insetBottom insetTop style={style}>
             {children}
           </Layout>
-          <SnackBarWrapper ref={handleSnackBar} />
+          <SnackBarWrapper theme={theme} ref={handleSnackBar} />
         </ThemeProvider>
       </SafeAreaProvider>
     </View>

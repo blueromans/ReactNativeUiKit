@@ -11,14 +11,23 @@ import { SnackBarWrapper } from '../SnackBar';
 
 const LayoutWrapper = (props: Props) => {
   const handleSnackBar = (ref: any) => SnackBarWrapper.setRef(ref);
-  const { scroll, theme } = props;
-  const statusBarColor = color(theme?.colors?.primary).darken(0.2).hex();
-
+  const {
+    scroll,
+    theme,
+    statusBarStyle = 'light-content',
+    statusBarColor,
+  } = props;
+  const statusBarBackground = color(statusBarColor)
+    ? statusBarColor
+    : color(theme?.colors?.primary).darken(0.3).hex();
   return (
     <React.Fragment>
-      <StatusBar barStyle={'light-content'} backgroundColor={statusBarColor} />
+      <StatusBar
+        barStyle={statusBarStyle}
+        backgroundColor={statusBarBackground}
+      />
       {scroll ? <LayoutScroll {...props} /> : <Layout {...props} />}
-      <SnackBarWrapper ref={handleSnackBar} />
+      <SnackBarWrapper theme={theme} ref={handleSnackBar} />
     </React.Fragment>
   );
 };

@@ -8,7 +8,7 @@ import type { Theme } from '../../types';
 
 const DURATION_SHORT = 4000;
 
-class SnackBarWrapper extends React.PureComponent {
+class SnackBarWrapper extends React.PureComponent<{ theme: Theme }> {
   state = {
     duration: DURATION_SHORT,
     isVisible: false,
