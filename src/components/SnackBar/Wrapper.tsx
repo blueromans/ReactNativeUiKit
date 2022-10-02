@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextStyle } from 'react-native';
+import type { TextStyle } from 'react-native';
 
 import Snackbar from './Snackbar';
 import { View } from '../View';
@@ -111,7 +111,6 @@ class SnackBarWrapper extends React.PureComponent<{
             <View middle>
               <Text
                 style={[
-                  styles.content,
                   { color: this.theme?.colors?.surface },
                   this.theme?.styles?.snackBar?.titleStyle,
                   this.props?.titleStyle,
@@ -122,7 +121,6 @@ class SnackBarWrapper extends React.PureComponent<{
               {subTitle !== '' && (
                 <Text
                   style={[
-                    styles.content,
                     { color: this.theme?.colors?.surface },
                     this.theme?.styles?.snackBar?.subTitleStyle,
                     this.props?.subTitleStyle,
@@ -138,9 +136,4 @@ class SnackBarWrapper extends React.PureComponent<{
     );
   }
 }
-const styles = StyleSheet.create({
-  content: {
-    marginLeft: 16,
-  },
-});
 export default SnackBarWrapper;
