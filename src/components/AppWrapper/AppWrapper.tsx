@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  ColorValue,
   StatusBar,
   StatusBarStyle,
   StyleProp,
@@ -20,7 +19,7 @@ import type { Theme } from '../../types';
 export type Props = {
   style?: StyleProp<ViewStyle>;
   children?: React.ReactNode;
-  appBackgroundColor?: ColorValue;
+  appBackgroundColor?: string;
   statusBarStyle?: StatusBarStyle;
   statusBarColor?: string;
   snackBarStyle?: { titleStyle?: TextStyle; subTitleStyle: TextStyle };
@@ -38,16 +37,15 @@ const AppWrapper = (props: Props) => {
     children,
   } = props;
   const handleSnackBar = (ref: any) => SnackBarWrapper.setRef(ref);
-  const statusBarBackground = color(statusBarColor)
+  const statusBarBackground = statusBarColor
     ? statusBarColor
     : color(theme?.colors?.primary).darken(0.3).hex();
-
-  const backgroundColor = color(appBackgroundColor)
+  const backgroundColor = appBackgroundColor
     ? appBackgroundColor
-    : color(theme?.colors?.background);
+    : theme?.colors?.background;
 
   return (
-    <View style={{ flex: 1, backgroundColor: backgroundColor as ColorValue }}>
+    <View style={{ flex: 1, backgroundColor: backgroundColor }}>
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
           <StatusBar

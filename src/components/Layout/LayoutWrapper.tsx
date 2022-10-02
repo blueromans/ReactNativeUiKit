@@ -18,7 +18,7 @@ const LayoutWrapper = (props: Props) => {
     statusBarColor,
     snackBarStyle = { titleStyle: {}, subTitleStyle: {} },
   } = props;
-  const statusBarBackground = color(statusBarColor)
+  const statusBarBackground = statusBarColor
     ? statusBarColor
     : color(theme?.colors?.primary).darken(0.3).hex();
   return (
