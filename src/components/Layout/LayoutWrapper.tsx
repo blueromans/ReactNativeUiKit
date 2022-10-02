@@ -17,6 +17,7 @@ const LayoutWrapper = (props: Props) => {
     statusBarStyle = 'light-content',
     statusBarColor,
     snackBarStyle = { titleStyle: {}, subTitleStyle: {} },
+    ...rest
   } = props;
   const statusBarBackground = statusBarColor
     ? statusBarColor
@@ -27,7 +28,11 @@ const LayoutWrapper = (props: Props) => {
         barStyle={statusBarStyle}
         backgroundColor={statusBarBackground}
       />
-      {scroll ? <LayoutScroll {...props} /> : <Layout {...props} />}
+      {scroll ? (
+        <LayoutScroll {...props} {...rest} />
+      ) : (
+        <Layout {...props} {...rest} />
+      )}
       <SnackBarWrapper
         theme={theme}
         titleStyle={snackBarStyle?.titleStyle}
