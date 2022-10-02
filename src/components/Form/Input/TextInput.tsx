@@ -73,9 +73,9 @@ const TextInput = ({
     <React.Fragment>
       <HelperText
         style={[
+          theme?.styles?.input?.label,
           labelStyle,
           { color: error ? errorColor : inputTextColor },
-          theme?.styles?.input?.label,
         ]}
         visible={label != null}
       >
@@ -89,15 +89,15 @@ const TextInput = ({
             borderRadius,
             borderColor: hasActiveOutline ? activeColor : outlineColor,
           },
-          containerStyle,
           theme?.styles?.input?.container,
+          containerStyle,
         ]}
       >
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
             <RnTextInput
-              style={[styles.textInput, style, theme?.styles?.input?.textInput]}
+              style={[styles.textInput, theme?.styles?.input?.textInput, style]}
               placeholderTextColor={placeholderColor}
               onBlur={() => {
                 setFocused(false);

@@ -13,9 +13,7 @@ export const showToast = (
     label: 'Undo',
     onPress: () => {},
   },
-  onDismiss = () => null,
-  titleStyle = {},
-  subTitleStyle = {}
+  onDismiss = () => null
 ) => {
   SnackBarWrapper.show(
     title,
@@ -24,9 +22,7 @@ export const showToast = (
     theme,
     duration,
     action,
-    onDismiss,
-    titleStyle,
-    subTitleStyle
+    onDismiss
   );
 };
 

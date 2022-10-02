@@ -18,10 +18,10 @@ class SnackBarWrapper extends React.PureComponent {
     action: {},
     type: 'success',
     onDismiss: () => null,
-    titleStyle: {} as TextStyle,
-    subTitleStyle: {} as TextStyle,
   };
   theme: Theme;
+  titleStyle: TextStyle;
+  subTitleStyle: TextStyle;
   static _ref: any = null;
 
   static setRef(ref: any) {
@@ -35,22 +35,10 @@ class SnackBarWrapper extends React.PureComponent {
     type: string,
     duration: number,
     action: any,
-    onDismiss: () => void,
-    titleStyle: TextStyle,
-    subTitleStyle: TextStyle
+    onDismiss: () => void
   ) {
     if (this._ref !== null) {
-      this._ref.show(
-        title,
-        subTitle,
-        image,
-        type,
-        duration,
-        action,
-        onDismiss,
-        titleStyle,
-        subTitleStyle
-      );
+      this._ref.show(title, subTitle, image, type, duration, action, onDismiss);
     }
   }
 
@@ -65,9 +53,7 @@ class SnackBarWrapper extends React.PureComponent {
     type: string,
     duration: number,
     action: any,
-    onDismiss: any,
-    titleStyle: TextStyle,
-    subTitleStyle: TextStyle
+    onDismiss: any
   ) {
     await this._setState({
       isVisible: true,
@@ -78,8 +64,6 @@ class SnackBarWrapper extends React.PureComponent {
       duration,
       action,
       onDismiss,
-      titleStyle,
-      subTitleStyle,
     });
   }
 
@@ -95,6 +79,8 @@ class SnackBarWrapper extends React.PureComponent {
     super(props);
     const { theme } = props;
     this.theme = theme;
+    this.titleStyle = this.theme?.styles?.snackBar.titleStyle;
+    this.subTitleStyle = this.theme?.styles?.snackBar.subTitleStyle;
     this._setState = this._setState.bind(this);
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
@@ -108,16 +94,8 @@ class SnackBarWrapper extends React.PureComponent {
   }
 
   render() {
-    const {
-      isVisible,
-      title,
-      subTitle,
-      action,
-      duration,
-      onDismiss,
-      titleStyle,
-      subTitleStyle,
-    } = this.state;
+    const { isVisible, title, subTitle, action, duration, onDismiss } =
+      this.state;
     return (
       <Snackbar
         visible={isVisible}
@@ -135,7 +113,7 @@ class SnackBarWrapper extends React.PureComponent {
                 style={[
                   styles.content,
                   { color: this.theme?.colors?.surface },
-                  titleStyle,
+                  this.titleStyle,
                 ]}
               >
                 {title}
@@ -145,7 +123,7 @@ class SnackBarWrapper extends React.PureComponent {
                   style={[
                     styles.content,
                     { color: this.theme?.colors?.surface },
-                    subTitleStyle,
+                    this.subTitleStyle,
                   ]}
                 >
                   {subTitle}
