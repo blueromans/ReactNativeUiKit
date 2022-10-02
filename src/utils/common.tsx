@@ -1,8 +1,6 @@
 import { LayoutProvider } from 'recyclerlistview';
 import { SnackBarWrapper } from '../components/SnackBar';
 
-import { Dimensions } from 'react-native';
-const { width } = Dimensions.get('window');
 const DURATION_SHORT = 4000;
 
 export const showToast = (
@@ -15,7 +13,9 @@ export const showToast = (
     label: 'Undo',
     onPress: () => {},
   },
-  onDismiss = () => null
+  onDismiss = () => null,
+  titleStyle = {},
+  subTitleStyle = {}
 ) => {
   SnackBarWrapper.show(
     title,
@@ -24,11 +24,13 @@ export const showToast = (
     theme,
     duration,
     action,
-    onDismiss
+    onDismiss,
+    titleStyle,
+    subTitleStyle
   );
 };
 
-export const layoutMaker = (height: number) =>
+export const layoutMaker = (width: number, height: number) =>
   new LayoutProvider(
     (_i: any) => {
       return 'VSEL';
