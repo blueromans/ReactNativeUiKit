@@ -1,5 +1,12 @@
 import React from 'react';
-import { StatusBar, StyleProp, ViewStyle } from 'react-native';
+import {
+  ColorValue,
+  StatusBar,
+  StatusBarStyle,
+  StyleProp,
+  View,
+  ViewStyle,
+} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import color from 'color';
 
@@ -12,27 +19,45 @@ import type { Theme } from '../../types';
 export type Props = {
   style?: StyleProp<ViewStyle>;
   children?: React.ReactNode;
+  appBackgroundColor?: ColorValue;
+  statusBarStyle?: StatusBarStyle;
+  statusBarColor?: string;
   theme?: Theme;
 };
 
 const AppWrapper = (props: Props) => {
-  const { theme = AppTheme, style, children } = props;
+  const {
+    theme = AppTheme,
+    style,
+    appBackgroundColor,
+    statusBarStyle = 'light-content',
+    statusBarColor,
+    children,
+  } = props;
   const handleSnackBar = (ref: any) => SnackBarWrapper.setRef(ref);
-  const statusBarColor = color(theme?.colors?.primary).darken(0.3).hex();
+  const statusBarBackground = color(statusBarColor)
+    ? statusBarColor
+    : color(theme?.colors?.primary).darken(0.3).hex();
+
+  const backgroundColor = color(appBackgroundColor)
+    ? appBackgroundColor
+    : color(theme?.colors?.background);
 
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <StatusBar
-          barStyle={'light-content'}
-          backgroundColor={statusBarColor}
-        />
-        <Layout insetBottom insetTop style={style}>
-          {children}
-        </Layout>
-        <SnackBarWrapper ref={handleSnackBar} />
-      </ThemeProvider>
-    </SafeAreaProvider>
+    <View style={{ flex: 1, backgroundColor: backgroundColor as ColorValue }}>
+      <SafeAreaProvider>
+        <ThemeProvider theme={theme}>
+          <StatusBar
+            barStyle={statusBarStyle}
+            backgroundColor={statusBarBackground}
+          />
+          <Layout insetBottom insetTop style={style}>
+            {children}
+          </Layout>
+          <SnackBarWrapper ref={handleSnackBar} />
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </View>
   );
 };
 

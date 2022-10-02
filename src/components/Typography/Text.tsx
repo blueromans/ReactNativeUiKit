@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {
   Text as NativeText,
   TextStyle,
@@ -12,19 +12,10 @@ type Props = React.ComponentProps<typeof NativeText> & {
   theme?: Theme;
 };
 
-const Text: React.ForwardRefRenderFunction<{}, Props> = (
-  { style, theme, ...rest }: Props,
-  ref
-) => {
-  const root = React.useRef<NativeText | null>(null);
-
-  React.useImperativeHandle(ref, () => ({
-    setNativeProps: (args: Object) => root.current?.setNativeProps(args),
-  }));
+const Text = ({ style, theme, ...rest }: Props) => {
   return (
     <NativeText
       {...rest}
-      ref={root}
       style={[
         {
           ...theme?.fonts?.regular,
@@ -43,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.forwardRef(Text);
+export default Text;

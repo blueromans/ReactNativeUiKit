@@ -115,7 +115,8 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-vector-icons": "*"
+    "react-native-vector-icons": "*",
+    "react-native-safe-area-context": "*"
   },
   "husky": {
     "hooks": {

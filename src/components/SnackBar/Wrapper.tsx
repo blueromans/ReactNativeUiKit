@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TextStyle } from 'react-native';
 
 import Snackbar from './Snackbar';
 import { View } from '../View';
@@ -18,6 +18,8 @@ class SnackBarWrapper extends React.PureComponent {
     action: {},
     type: 'success',
     onDismiss: () => null,
+    titleStyle: {} as TextStyle,
+    subTitleStyle: {} as TextStyle,
   };
   theme: Theme;
   static _ref: any = null;
@@ -33,10 +35,22 @@ class SnackBarWrapper extends React.PureComponent {
     type: string,
     duration: number,
     action: any,
-    onDismiss: () => void
+    onDismiss: () => void,
+    titleStyle: TextStyle,
+    subTitleStyle: TextStyle
   ) {
     if (this._ref !== null) {
-      this._ref.show(title, subTitle, image, type, duration, action, onDismiss);
+      this._ref.show(
+        title,
+        subTitle,
+        image,
+        type,
+        duration,
+        action,
+        onDismiss,
+        titleStyle,
+        subTitleStyle
+      );
     }
   }
 
@@ -51,7 +65,9 @@ class SnackBarWrapper extends React.PureComponent {
     type: string,
     duration: number,
     action: any,
-    onDismiss: any
+    onDismiss: any,
+    titleStyle: TextStyle,
+    subTitleStyle: TextStyle
   ) {
     await this._setState({
       isVisible: true,
@@ -62,6 +78,8 @@ class SnackBarWrapper extends React.PureComponent {
       duration,
       action,
       onDismiss,
+      titleStyle,
+      subTitleStyle,
     });
   }
 
@@ -90,8 +108,16 @@ class SnackBarWrapper extends React.PureComponent {
   }
 
   render() {
-    const { isVisible, title, subTitle, action, duration, onDismiss } =
-      this.state;
+    const {
+      isVisible,
+      title,
+      subTitle,
+      action,
+      duration,
+      onDismiss,
+      titleStyle,
+      subTitleStyle,
+    } = this.state;
     return (
       <Snackbar
         visible={isVisible}
@@ -106,7 +132,11 @@ class SnackBarWrapper extends React.PureComponent {
           <View row mr={action ? 0 : 16}>
             <View middle>
               <Text
-                style={[styles.content, { color: this.theme?.colors?.surface }]}
+                style={[
+                  styles.content,
+                  { color: this.theme?.colors?.surface },
+                  titleStyle,
+                ]}
               >
                 {title}
               </Text>
@@ -115,6 +145,7 @@ class SnackBarWrapper extends React.PureComponent {
                   style={[
                     styles.content,
                     { color: this.theme?.colors?.surface },
+                    subTitleStyle,
                   ]}
                 >
                   {subTitle}
