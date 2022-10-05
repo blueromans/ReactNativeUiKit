@@ -6,7 +6,9 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
+
 import { Controller } from 'react-hook-form';
+import { TextInputMask, TextInputMaskTypeProp } from 'react-native-masked-text';
 
 import { View } from '../../View';
 import { HelperText } from '../../Typography';
@@ -23,6 +25,8 @@ export type Props = React.ComponentProps<typeof View> & {
   theme: Theme;
   control: any;
   rules?: any;
+  options?: any;
+  type?: TextInputMaskTypeProp;
   error?: string;
   underlineColor?: string;
   outlineColor?: string;
@@ -40,6 +44,8 @@ const TextInput = ({
   style,
   theme,
   rules,
+  options,
+  type = 'cpf',
   underlineColor: _underlineColor,
   outlineColor: customOutlineColor,
   activeOutlineColor,
@@ -69,6 +75,12 @@ const TextInput = ({
     theme,
   });
 
+  const InputComponentWithMask = (props: any) => (
+    <TextInputMask type={type} {...props} />
+  );
+  const InputComponent = (props: any) => <RnTextInput {...props} />;
+  const TextInput = type && options ? InputComponentWithMask : InputComponent;
+
   return (
     <React.Fragment>
       <HelperText
@@ -96,7 +108,7 @@ const TextInput = ({
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
-            <RnTextInput
+            <TextInput
               style={[styles.textInput, theme?.styles?.input?.textInput, style]}
               placeholderTextColor={placeholderColor}
               onBlur={() => {
@@ -104,7 +116,7 @@ const TextInput = ({
                 onBlur();
               }}
               onFocus={() => setFocused(true)}
-              onChangeText={(value) => onChange(value)}
+              onChangeText={(value: any) => onChange(value)}
               value={value}
               {...rest}
             />
