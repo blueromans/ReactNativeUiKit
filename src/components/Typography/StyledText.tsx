@@ -7,14 +7,23 @@ import { useTheme } from '../../core/theming';
 
 type Props = React.ComponentProps<typeof Text> & {
   alpha?: number;
+  color?: string;
   family: 'regular' | 'medium' | 'light' | 'thin';
   style?: StyleProp<TextStyle>;
 };
 
-const StyledText = ({ alpha = 1, family, style, ...rest }: Props) => {
+const StyledText = ({
+  alpha = 1,
+  family,
+  color: TextColor,
+  style,
+  ...rest
+}: Props) => {
   const theme = useTheme();
 
-  const textColor = color(theme.colors?.text).alpha(alpha).rgb().string();
+  const textColor = TextColor
+    ? TextColor
+    : color(theme.colors?.text).alpha(alpha).rgb().string();
   const writingDirection = I18nManager.isRTL ? 'rtl' : 'ltr';
 
   return (

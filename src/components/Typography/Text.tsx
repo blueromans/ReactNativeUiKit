@@ -9,17 +9,18 @@ import type { Theme } from '../../types';
 
 type Props = React.ComponentProps<typeof NativeText> & {
   style?: StyleProp<TextStyle>;
+  color?: string;
   theme?: Theme;
 };
 
-const Text = ({ style, theme, ...rest }: Props) => {
+const Text = ({ style, theme, color, ...rest }: Props) => {
   return (
     <NativeText
       {...rest}
       style={[
         {
           ...theme?.fonts?.regular,
-          color: theme?.colors?.text,
+          color: color ? color : theme?.colors?.text,
         },
         styles.text,
         style,

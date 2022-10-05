@@ -4,6 +4,7 @@ import StyledText from './StyledText';
 
 export type Props = React.ComponentProps<typeof Text> & {
   style?: StyleProp<TextStyle>;
+  color?: string;
   children: React.ReactNode;
 };
 

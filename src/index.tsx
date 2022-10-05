@@ -27,31 +27,34 @@ export {
   HelperText,
 } from './components/Typography';
 
-export { useForm } from 'react-hook-form';
-
-export { ActivityIndicator } from './components/ActivityIndicator';
-export { AppWrapper } from './components/AppWrapper';
+export { default as ActivityIndicator } from './components/ActivityIndicator/ActivityIndicator';
+export { default as AppWrapper } from './components/AppWrapper/AppWrapper';
 export { Avatar, List };
 export { default as Badge } from './components/Badge/Badge';
 export { default as Button } from './components/Button/Button';
 export { default as Card } from './components/Card/Card';
 export { default as Checkbox } from './components/Checkbox';
-export { Divider } from './components/Divider';
-export { Input } from './components/Form';
+export { default as Divider } from './components/Divider/Divider';
+export { default as Input } from './components/Form/Input/TextInput';
 export { default as Header } from './components/Header';
 export { default as Icon } from './components/Icon/Icon';
 export { default as IconButton } from './components/IconButton/IconButton';
-export { Layout } from './components/Layout';
+export { default as Layout } from './components/Layout/LayoutWrapper';
 export { default as Menu } from './components/Menu/Menu';
-
 export { default as RadioButton } from './components/RadioButton';
-export { ScrollView } from './components/ScrollView';
-export { Snackbar } from './components/SnackBar';
+export { default as ScrollView } from './components/ScrollView/ScrollView';
+export { default as Snackbar } from './components/SnackBar/Snackbar';
+export { default as SnackbarWrapper } from './components/SnackBar/Wrapper';
 export { default as Switch } from './components/Switch/Switch';
 export { default as ToggleButton } from './components/ToggleButton';
 export { default as SegmentedButtons } from './components/SegmentedButtons/SegmentedButtons';
 export { default as Text } from './components/Typography/Text';
-export { View } from './components/View';
+export { default as View } from './components/View/View';
+
+export { showToast, layoutMaker } from './utils/common';
+
+//THIRD PARTY PLUGINS
+export * from 'react-hook-form';
 
 export {
   ViewPager,
@@ -66,4 +69,3 @@ export {
   LayoutProvider,
   DataProvider,
 } from 'recyclerlistview';
-export { showToast, layoutMaker } from './utils/common';
