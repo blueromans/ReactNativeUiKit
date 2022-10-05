@@ -9,7 +9,7 @@ A flexible and easy way to manage ui Android and IOS!
 - [React Native 0.64.0+](https://reactnative.dev)
 - [React Native Safe Area Context](https://www.npmjs.com/package/@blueromans/react-native-ui-kit)
 
-## Getting started {.tabset .tabset-fade}
+## Getting started
 
 ### Npm
 
