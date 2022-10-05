@@ -19,6 +19,8 @@ npm install @blueromans/react-native-ui-kit
 
 ### Yarn
 
+```
 yarn add @blueromans/react-native-ui-kit
+```
 
 ##
