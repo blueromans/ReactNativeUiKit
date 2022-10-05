@@ -109,17 +109,8 @@ const ActivityIndicator = ({
   };
 
   return (
-    <View
-      style={[styles.container, style]}
-      {...rest}
-      accessible
-      accessibilityRole="progressbar"
-      accessibilityState={{ busy: animating }}
-    >
-      <Animated.View
-        style={[{ width: size, height: size, opacity: fade }]}
-        collapsable={false}
-      >
+    <View style={[styles.container, style]} {...rest}>
+      <Animated.View style={[{ width: size, height: size, opacity: fade }]}>
         {[0, 1].map((index) => {
           const inputRange = Array.from(
             new Array(frames),
@@ -177,12 +168,9 @@ const ActivityIndicator = ({
           return (
             <Animated.View key={index} style={[styles.layer]}>
               <Animated.View style={layerStyle}>
-                <Animated.View
-                  style={[containerStyle, offsetStyle]}
-                  collapsable={false}
-                >
+                <Animated.View style={[containerStyle, offsetStyle]}>
                   <Animated.View style={viewportStyle}>
-                    <Animated.View style={containerStyle} collapsable={false}>
+                    <Animated.View style={containerStyle}>
                       <Animated.View style={lineStyle} />
                     </Animated.View>
                   </Animated.View>
