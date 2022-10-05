@@ -54,7 +54,7 @@ export { default as View } from './components/View/View';
 export { showToast, layoutMaker } from './utils/common';
 
 //THIRD PARTY PLUGINS
-export * from 'react-hook-form';
+export { useForm } from 'react-hook-form';
 
 export {
   ViewPager,
