@@ -57,13 +57,14 @@ export { showToast, layoutMaker } from './utils/common';
 export { useForm } from 'react-hook-form';
 
 export {
-  ViewPager,
+  PagerView,
   ScalingDot,
   ExpandingDot,
   SlidingBorder,
   SlidingDot,
   LiquidLike,
-} from './components/ViewPager';
+} from './components/PagerView';
+
 export {
   RecyclerListView as LisView,
   LayoutProvider,

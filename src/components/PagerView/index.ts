@@ -1,4 +1,4 @@
-export { default as ViewPager } from './ViewPager';
+export { default as PagerView } from './PagerView';
 
 export {
   ScalingDot,

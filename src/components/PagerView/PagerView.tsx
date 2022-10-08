@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import type { StyleProp, ViewStyle } from 'react-native';
-import PagerView from 'react-native-pager-view';
+import RNPagerView from 'react-native-pager-view';
 
-export type Props = React.ComponentProps<typeof PagerView> & {
+export type Props = React.ComponentProps<typeof RNPagerView> & {
   flex?: number;
   items: any;
   initialPage?: number;
@@ -12,7 +12,7 @@ export type Props = React.ComponentProps<typeof PagerView> & {
   children: React.ReactNode;
 };
 
-const ViewPager = ({
+const PagerView = ({
   flex,
   items = [],
   initialPage = 0,
@@ -21,9 +21,9 @@ const ViewPager = ({
   ...rest
 }: Props) => {
   return (
-    <PagerView initialPage={initialPage} style={styles.pagerView} {...rest}>
+    <RNPagerView initialPage={initialPage} style={styles.pagerView} {...rest}>
       {items.map((item: any, index: number) => renderItem(item, index))}
-    </PagerView>
+    </RNPagerView>
   );
 };
 
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ViewPager;
+export default PagerView;
