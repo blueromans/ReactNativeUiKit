@@ -17,7 +17,7 @@ import type { Theme } from '../../types';
 import { getButtonColors } from './utils';
 
 export type Props = React.ComponentProps<typeof View> & {
-  mode?: 'text' | 'outlined' | 'contained' | 'elevated' | 'contained-tonal';
+  mode?: 'text' | 'outlined' | 'contained' | 'elevated';
   dark?: boolean;
   compact?: boolean;
   color?: string;

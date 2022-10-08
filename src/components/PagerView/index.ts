@@ -1,4 +1,4 @@
-export { default as PagerView } from './PagerView';
+export { default as PagerView } from 'react-native-pager-view';
 
 export {
   ScalingDot,
