@@ -57,7 +57,6 @@ export { showToast, layoutMaker } from './utils/common';
 export { useForm } from 'react-hook-form';
 
 export {
-  PagerView,
   ScalingDot,
   ExpandingDot,
   SlidingBorder,
