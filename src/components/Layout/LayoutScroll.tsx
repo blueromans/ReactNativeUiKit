@@ -41,7 +41,8 @@ const LayoutView = (props: Props) => {
 
 const LayoutScroll = (props: Props) => {
   const { loading } = props;
-  return loading ? <ActivityIndicator /> : <LayoutView {...props} />;
+  if (loading) return <ActivityIndicator />;
+  return <LayoutView {...props} />;
 };
 
 export default LayoutScroll;

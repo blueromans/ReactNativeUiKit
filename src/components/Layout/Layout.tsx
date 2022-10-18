@@ -40,7 +40,8 @@ const LayoutView = (props: Props) => {
 
 const Layout = (props: Props) => {
   const { loading } = props;
-  return loading ? <ActivityIndicator /> : <LayoutView {...props} />;
+  if (loading) return <ActivityIndicator />;
+  return <LayoutView {...props} />;
 };
 
 export default Layout;

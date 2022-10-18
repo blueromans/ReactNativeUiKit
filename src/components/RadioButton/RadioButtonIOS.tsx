@@ -24,7 +24,6 @@ const RadioButtonIOS = ({
   theme,
   status,
   value,
-  testID,
   ...rest
 }: Props) => {
   return (
