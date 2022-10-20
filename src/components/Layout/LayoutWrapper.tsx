@@ -8,7 +8,8 @@ import type { Props } from './types';
 
 const LayoutWrapper = (props: Props) => {
   const { scroll } = props;
-  return scroll ? <LayoutScroll {...props} /> : <Layout {...props} />;
+  if (scroll) return <LayoutScroll {...props} />;
+  return <Layout {...props} />;
 };
 
 export default withTheme(LayoutWrapper);

@@ -52,9 +52,7 @@ const AppWrapper = (props: Props) => {
             barStyle={statusBarStyle}
             backgroundColor={statusBarBackground}
           />
-          <Layout insetBottom insetTop style={style}>
-            {children}
-          </Layout>
+          <Layout style={style}>{children}</Layout>
           <SnackBarWrapper
             theme={theme}
             titleStyle={snackBarStyle?.titleStyle}
