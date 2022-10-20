@@ -35,7 +35,7 @@ export { default as Button } from './components/Button/Button';
 export { default as Card } from './components/Card/Card';
 export { default as Checkbox } from './components/Checkbox';
 export { default as Divider } from './components/Divider/Divider';
-export { default as Input } from './components/Form/Input/TextInput';
+export { default as TextInput } from './components/Form/Input/TextInput';
 export { default as Header } from './components/Header';
 export { default as Icon } from './components/Icon/Icon';
 export { default as IconButton } from './components/IconButton/IconButton';
