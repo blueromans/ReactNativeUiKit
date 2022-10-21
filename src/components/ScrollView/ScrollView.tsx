@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StyleProp, ViewStyle, StyleSheet } from 'react-native';
-// @ts-ignore
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export type Props = React.ComponentProps<typeof KeyboardAwareScrollView> & {
   flex?: number;

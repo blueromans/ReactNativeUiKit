@@ -64,7 +64,9 @@ A flexible and easy way to manage ui Android and IOS!
 ### Components
 
 #### ActivityIndicator
+
 <img width="300" src="https://user-images.githubusercontent.com/29883389/197247955-a2afc205-cbc0-428f-894b-6f6b0124bb17.gif">
+
 Activity indicator is used to present progress of some activity in the app.
 
 ```javascript
@@ -80,7 +82,9 @@ export default MyComponent;
 ```
 
 #### Badge
+
 <img width="300" src="https://user-images.githubusercontent.com/29883389/197246620-cda0b1ca-670a-4076-b463-af009287027a.png">
+
 Badges are small status descriptors for UI elements. A badge consists of a small circle, typically containing a number or other short set of characters.
 
 ```javascript
@@ -96,7 +100,9 @@ export default MyComponent;
 ```
 
 #### Button
+
 <img width="300" src="https://user-images.githubusercontent.com/29883389/197247692-7ccd23c4-fec8-487e-b6f2-7e410837b3c0.png">
+
 A button is component that the user can press to trigger an action.
 
 ```javascript
