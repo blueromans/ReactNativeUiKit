@@ -64,7 +64,7 @@ A flexible and easy way to manage ui Android and IOS!
 ### Components
 
 #### ActivityIndicator
-
+<img width="300" src="https://user-images.githubusercontent.com/29883389/197247955-a2afc205-cbc0-428f-894b-6f6b0124bb17.gif">
 Activity indicator is used to present progress of some activity in the app.
 
 ```javascript
@@ -93,7 +93,6 @@ const MyComponent = () => (
 
 export default MyComponent;
 );
-
 ```
 
 #### Button
