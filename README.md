@@ -1,4 +1,4 @@
-# <img alt="React Native Ui Kit" src="https://user-images.githubusercontent.com/29883389/197212969-5c3b98c8-63d2-4cf9-af35-05e1f26d4e37.png">
+<img alt="React Native Ui Kit" src="https://user-images.githubusercontent.com/29883389/197212969-5c3b98c8-63d2-4cf9-af35-05e1f26d4e37.png">
 
 # React Native Ui Kit
 
@@ -14,7 +14,15 @@ A flexible and easy way to manage ui Android and IOS!
   - [Requirements](#requirements)
   - [Installation](#installation)
     - [With react-native-cli](#with-react-native-cli)
-  - [Components](#components)
+  - [Usage](#usage)
+    - [Theming](#theming)
+    - [Components](#components)
+      - [ActivityIndicator](#activityindicator)
+      - [Badge](#badge)
+      - [Button](#button)
+        - [Props](#props)
+          - [mode](#mode)
+          - [children (required)](#children-required)
   - [Troubleshooting](#troubleshooting)
 
 ## Requirements
@@ -49,7 +57,77 @@ A flexible and easy way to manage ui Android and IOS!
    cd ios && pod install
    ```
 
-## Components
+## Usage
+
+### Theming
+
+### Components
+
+#### ActivityIndicator
+
+Activity indicator is used to present progress of some activity in the app.
+
+```javascript
+import React from 'react';
+import { ActivityIndicator } from '@blueromans/react-native-ui-kit';
+
+const MyComponent = () => (
+  <ActivityIndicator animating={true} color={'red'} />
+);
+
+export default MyComponent;
+);
+```
+
+#### Badge
+
+Badges are small status descriptors for UI elements. A badge consists of a small circle, typically containing a number or other short set of characters.
+
+```javascript
+import React from 'react';
+import { Badge } from '@blueromans/react-native-ui-kit';
+
+const MyComponent = () => (
+  <Badge>3</Badge>
+);
+
+export default MyComponent;
+);
+```
+
+#### Button
+
+A button is component that the user can press to trigger an action.
+
+```javascript
+import React from 'react';
+import { Button } from '@blueromans/react-native-ui-kit';
+
+const MyComponent = () => (
+  <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
+    Press me
+  </Button>
+);
+
+export default MyComponent;
+```
+
+##### Props
+
+###### mode
+
+Type: 'text' | 'outlined' | 'contained' | 'elevated' | 'contained-tonal'
+Default value: 'text'
+Mode of the button. You can change the mode to adjust the styling to give it desired emphasis.
+
+- text - flat button without background or outline.
+- outlined - button with an outline without background.
+- contained - button with a background color.
+
+###### children (required)
+
+Type: React.ReactNode
+Label text of the button.
 
 ## Troubleshooting
 
