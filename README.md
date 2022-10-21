@@ -116,9 +116,9 @@ export default MyComponent;
 
 ###### mode
 
-Type: 'text' | 'outlined' | 'contained' | 'elevated' | 'contained-tonal'
+Type: 'text' | 'outlined' | 'contained'
 Default value: 'text'
-Mode of the button. You can change the mode to adjust the styling to give it desired emphasis.
+Mode of the button.
 
 - text - flat button without background or outline.
 - outlined - button with an outline without background.
