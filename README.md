@@ -80,7 +80,7 @@ export default MyComponent;
 ```
 
 #### Badge
-<img width="200" src="https://user-images.githubusercontent.com/29883389/197246620-cda0b1ca-670a-4076-b463-af009287027a.png">
+<img width="300" src="https://user-images.githubusercontent.com/29883389/197246620-cda0b1ca-670a-4076-b463-af009287027a.png">
 Badges are small status descriptors for UI elements. A badge consists of a small circle, typically containing a number or other short set of characters.
 
 ```javascript
@@ -93,10 +93,11 @@ const MyComponent = () => (
 
 export default MyComponent;
 );
+
 ```
 
 #### Button
-
+<img width="300" src="https://user-images.githubusercontent.com/29883389/197246620-cda0b1ca-670a-4076-b463-af009287027a.png">
 A button is component that the user can press to trigger an action.
 
 ```javascript
