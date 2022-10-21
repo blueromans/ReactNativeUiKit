@@ -97,7 +97,7 @@ export default MyComponent;
 ```
 
 #### Button
-<img width="300" src="https://user-images.githubusercontent.com/29883389/197246620-cda0b1ca-670a-4076-b463-af009287027a.png">
+<img width="300" src="https://user-images.githubusercontent.com/29883389/197247692-7ccd23c4-fec8-487e-b6f2-7e410837b3c0.png">
 A button is component that the user can press to trigger an action.
 
 ```javascript
