@@ -7,7 +7,6 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import color from 'color';
 
 import { AppTheme } from '../../styles/theme';
@@ -50,23 +49,21 @@ const AppWrapper = (props: Props) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: backgroundColor }}>
-      <SafeAreaProvider>
-        <ThemeProvider theme={theme}>
-          <StatusBar
-            barStyle={statusBarStyle}
-            backgroundColor={statusBarBackground}
-          />
-          <Layout insetBottom={insetBottom} insetTop={insetTop} style={style}>
-            {children}
-          </Layout>
-          <SnackBarWrapper
-            theme={theme}
-            titleStyle={snackBarStyle?.titleStyle}
-            subTitleStyle={snackBarStyle?.subTitleStyle}
-            ref={handleSnackBar}
-          />
-        </ThemeProvider>
-      </SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <StatusBar
+          barStyle={statusBarStyle}
+          backgroundColor={statusBarBackground}
+        />
+        <Layout insetBottom={insetBottom} insetTop={insetTop} style={style}>
+          {children}
+        </Layout>
+        <SnackBarWrapper
+          theme={theme}
+          titleStyle={snackBarStyle?.titleStyle}
+          subTitleStyle={snackBarStyle?.subTitleStyle}
+          ref={handleSnackBar}
+        />
+      </ThemeProvider>
     </View>
   );
 };

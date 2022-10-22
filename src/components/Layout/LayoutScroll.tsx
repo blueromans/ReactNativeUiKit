@@ -1,6 +1,8 @@
 import React from 'react';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
+import {
+  getStatusBarHeight,
+  getBottomSpace,
+} from 'react-native-iphone-x-helper';
 import { View } from '../View';
 import { ActivityIndicator } from '../ActivityIndicator';
 import { ScrollView } from '../ScrollView';
@@ -8,7 +10,8 @@ import { ScrollView } from '../ScrollView';
 import type { Props } from './types';
 
 const LayoutView = (props: Props) => {
-  const { top, left, bottom, right } = useSafeAreaInsets();
+  const TOP_INSET = getStatusBarHeight(true);
+  const BOTTOM_INSET = getBottomSpace();
   const {
     bg,
     theme,
@@ -24,10 +27,10 @@ const LayoutView = (props: Props) => {
       <ScrollView
         style={[
           {
-            paddingTop: insetTop ? padding + top : padding + 0,
-            paddingBottom: insetBottom ? padding + bottom : padding + 0,
-            paddingRight: padding + right,
-            paddingLeft: padding + left,
+            paddingTop: insetTop ? padding + TOP_INSET : padding + 0,
+            paddingBottom: insetBottom ? padding + BOTTOM_INSET : padding + 0,
+            paddingRight: padding,
+            paddingLeft: padding,
           },
           style,
         ]}

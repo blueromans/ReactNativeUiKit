@@ -23,13 +23,11 @@ A flexible and easy way to manage ui Android and IOS!
         - [Props](#props)
           - [mode](#mode)
           - [children (required)](#children-required)
+  - [Author](#author)
   - [Troubleshooting](#troubleshooting)
 
 ## Requirements
 
-- [React Native 0.64.0+](https://reactnative.dev)
-- [React Native Safe Area Context](https://www.npmjs.com/package/react-native-safe-area-context)
-- [React Native Svg](https://www.npmjs.com/package/react-native-svg)
 - [React Native Masket Text](https://www.npmjs.com/package/react-native-masked-text)
 - [React Native Vector Icons](https://www.npmjs.com/package/react-native-vector-icons)
 
@@ -42,13 +40,13 @@ A flexible and easy way to manage ui Android and IOS!
    from npm
 
    ```bash
-   npm install @blueromans/react-native-ui-kit react-native-safe-area-context react-native-svg react-native-masked-text react-native-vector-icons
+   npm install @blueromans/react-native-ui-kit react-native-masked-text react-native-vector-icons
    ```
 
    from yarn
 
    ```bash
-   yarn add @blueromans/react-native-ui-kit react-native-safe-area-context react-native-svg react-native-masked-text react-native-vector-icons
+   yarn add @blueromans/react-native-ui-kit react-native-masked-text react-native-vector-icons
    ```
 
 2. Link native code
@@ -134,6 +132,10 @@ Mode of the button.
 
 Type: React.ReactNode
 Label text of the button.
+
+## Author
+
+- [Yasar Ozyurt](https://yasarozyurt.com)
 
 ## Troubleshooting
 

@@ -1,24 +1,29 @@
-import React, { useCallback, useState } from 'react';
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react-native/no-inline-styles */
+import React, { useState } from 'react';
 import { FlatList } from 'react-native';
 
 import { Divider } from '../Divider';
 import RadioButton from '../RadioButton';
-import type { Props } from './types';
+import type { DataItem, Props } from './types';
 
 const SelectList = ({ data, style, onPressItem }: Props) => {
   const [value, setValue] = useState<string>(data[0]?.value);
 
-  const _renderItem = useCallback(({ item }: { item: any }) => {
-    return <RadioButton.Item label={item?.label} value={item.value} />;
-  }, []);
+  const _renderItem = ({ item }: { item: any }) => (
+    <RadioButton.Item label={item?.label} value={item.value} />
+  );
 
   const keyExtractor = (_item: any, index: number) => `key-${index}`;
 
   const Divider_ = () => <Divider />;
 
-  const _onPressItem = (value: string) => {
-    setValue(value);
-    onPressItem(value);
+  const _onPressItem = (_value: string) => {
+    setValue(_value);
+    const item: DataItem = data?.find(
+      (_item) => _item.value === _value
+    ) as DataItem;
+    onPressItem(item);
   };
 
   return (
@@ -40,4 +45,5 @@ const SelectList = ({ data, style, onPressItem }: Props) => {
     </RadioButton.Group>
   );
 };
+
 export default SelectList;
