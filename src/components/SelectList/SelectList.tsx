@@ -6,7 +6,7 @@ import RadioButton from '../RadioButton';
 import type { Props } from './types';
 
 const SelectList = ({ data, style, onPressItem }: Props) => {
-  const [value, setValue] = useState<Number>(data[0]?.value);
+  const [value, setValue] = useState<string>(data[0]?.value);
 
   const _renderItem = useCallback(({ item }: { item: any }) => {
     return <RadioButton.Item label={item?.label} value={item.value} />;
@@ -16,13 +16,13 @@ const SelectList = ({ data, style, onPressItem }: Props) => {
 
   const Divider_ = () => <Divider />;
 
-  const _onPressItem = (value: any) => {
+  const _onPressItem = (value: string) => {
     setValue(value);
     onPressItem(value);
   };
 
   return (
-    <RadioButton.Group onValueChange={_onPressItem} value={value.toString()}>
+    <RadioButton.Group onValueChange={_onPressItem} value={value}>
       <FlatList
         style={[style]}
         data={data || []}

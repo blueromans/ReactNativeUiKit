@@ -117,7 +117,7 @@ const getIOSCheckedColor = ({
     return customColor;
   }
 
-  return theme?.colors?.accent;
+  return theme?.colors?.primary;
 };
 
 const getIOSRippleColor = ({
