@@ -22,6 +22,8 @@ export type Props = {
   appBackgroundColor?: string;
   statusBarStyle?: StatusBarStyle;
   statusBarColor?: string;
+  insetTop: boolean;
+  insetBottom: boolean;
   snackBarStyle?: { titleStyle?: TextStyle; subTitleStyle: TextStyle };
   theme?: Theme;
 };
@@ -33,6 +35,8 @@ const AppWrapper = (props: Props) => {
     appBackgroundColor,
     statusBarStyle = 'light-content',
     statusBarColor,
+    insetBottom = false,
+    insetTop = false,
     snackBarStyle = { titleStyle: {}, subTitleStyle: {} },
     children,
   } = props;
@@ -52,7 +56,9 @@ const AppWrapper = (props: Props) => {
             barStyle={statusBarStyle}
             backgroundColor={statusBarBackground}
           />
-          <Layout style={style}>{children}</Layout>
+          <Layout insetBottom={insetBottom} insetTop={insetTop} style={style}>
+            {children}
+          </Layout>
           <SnackBarWrapper
             theme={theme}
             titleStyle={snackBarStyle?.titleStyle}

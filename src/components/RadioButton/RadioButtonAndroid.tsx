@@ -26,7 +26,6 @@ const RadioButtonAndroid = ({
   theme,
   value,
   status,
-  testID,
   ...rest
 }: Props) => {
   const { current: borderAnim } = React.useRef<Animated.Value>(
