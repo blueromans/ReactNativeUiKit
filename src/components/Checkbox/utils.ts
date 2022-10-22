@@ -11,7 +11,7 @@ const getAndroidCheckedColor = ({
   if (customColor) {
     return customColor;
   }
-  return theme?.colors?.accent;
+  return theme?.colors?.primary;
 };
 
 const getAndroidUncheckedColor = ({

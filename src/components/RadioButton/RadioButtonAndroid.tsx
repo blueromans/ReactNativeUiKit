@@ -86,7 +86,6 @@ const RadioButtonAndroid = ({
         return (
           <TouchableHighlight
             {...rest}
-            borderless
             rippleColor={rippleColor}
             onPress={
               disabled

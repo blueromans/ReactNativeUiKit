@@ -1,7 +1,7 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
 export type Props = {
-  data: Array<{ key: number; value: string }>;
+  data: Array<{ value: number; label: string }>;
   style?: StyleProp<ViewStyle>;
-  onSelectItem: (item: any) => null;
+  onPressItem: (item: any) => null;
 };
