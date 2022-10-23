@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Platform, StyleProp, ViewStyle } from 'react-native';
-import Modal from '../Modal/Modal';
+import RnModal from '../Modal/Modal';
 import DialogContent from './DialogContent';
 import DialogActions from './DialogActions';
 import DialogIcon from './DialogIcon';
@@ -8,6 +8,7 @@ import DialogTitle from './DialogTitle';
 import DialogScrollArea from './DialogScrollArea';
 import { withTheme } from '../../core/theming';
 import type { Theme } from '../../types';
+import type { Direction } from 'react-native-modal';
 
 export type Props = {
   dismissable?: boolean;
@@ -15,6 +16,10 @@ export type Props = {
   visible: boolean;
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  swipeDirection?: Direction;
+  backdropOpacity?: any;
+  backdropColor?: string;
+  modalStyle?: StyleProp<ViewStyle>;
   theme: Theme;
 };
 
@@ -26,6 +31,9 @@ const Dialog = ({
   onDismiss,
   visible = false,
   style,
+  modalStyle,
+  backdropColor,
+  backdropOpacity,
   theme,
 }: Props) => {
   const { colors, roundness } = theme;
@@ -35,11 +43,14 @@ const Dialog = ({
   const backgroundColor = colors?.surface;
 
   return (
-    <Modal
+    <RnModal
       dismissable={dismissable}
       onDismiss={onDismiss}
+      backdropOpacity={backdropOpacity}
+      backdropColor={backdropColor}
       visible={visible}
-      contentContainerStyle={[
+      modalStyle={modalStyle}
+      style={[
         {
           borderRadius,
           backgroundColor,
@@ -49,24 +60,8 @@ const Dialog = ({
       ]}
       theme={theme}
     >
-      {React.Children.toArray(children)
-        .filter((child) => child != null && typeof child !== 'boolean')
-        .map((child, i) => {
-          if (
-            i === 0 &&
-            React.isValidElement(child) &&
-            child.type === DialogContent
-          ) {
-            // Dialog content is the first item, so we add a top padding
-            //@ts-ignore
-            return React.cloneElement(child, {
-              //@ts-ignore
-              style: [{ paddingTop: 24 }, child.props.style],
-            });
-          }
-          return child;
-        })}
-    </Modal>
+      {children}
+    </RnModal>
   );
 };
 

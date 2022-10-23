@@ -43,18 +43,11 @@ const Header = ({
   safeAreaInsets,
   ...rest
 }: Props) => {
-  const {
-    backgroundColor: customBackground,
-    elevation = 4,
-    ...restStyle
-  }: ViewStyle = StyleSheet.flatten(style) || {};
+  const { ...restStyle }: ViewStyle = StyleSheet.flatten(style) || {};
 
   let isDark: boolean;
 
-  const backgroundColor = getHeaderColor(
-    theme,
-    elevated
-  );
+  const backgroundColor = getHeaderColor(theme, elevated);
 
   const isMode = (modeToCompare: HeaderModes) => {
     return mode === modeToCompare;
@@ -71,11 +64,10 @@ const Header = ({
         : true;
   }
 
-
   let shouldCenterContent = false;
   let shouldAddLeftSpacing = false;
   let shouldAddRightSpacing = false;
-  if ((Platform.OS === 'ios')) {
+  if (Platform.OS === 'ios') {
     let hasHeaderContent = false;
     let leftItemsCount = 0;
     let rightItemsCount = 0;
@@ -93,9 +85,7 @@ const Header = ({
     });
 
     shouldCenterContent =
-      hasHeaderContent &&
-      leftItemsCount < 2 &&
-      rightItemsCount < (2);
+      hasHeaderContent && leftItemsCount < 2 && rightItemsCount < 2;
     shouldAddLeftSpacing = shouldCenterContent && leftItemsCount === 0;
     shouldAddRightSpacing = shouldCenterContent && rightItemsCount === 0;
   }
@@ -197,9 +187,6 @@ const styles = StyleSheet.create({
   },
   spacing: {
     width: 48,
-  },
-  v3Spacing: {
-    width: 52,
   },
   controlsRow: {
     flex: 1,

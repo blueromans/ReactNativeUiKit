@@ -27,9 +27,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexShrink: 1,
   },
-  v3Container: {
-    marginBottom: 24,
-  },
 });
 
 export default DialogScrollArea;

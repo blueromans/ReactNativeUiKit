@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {
   TextInput as RnTextInput,
@@ -18,24 +19,25 @@ import { withTheme } from '../../../core/theming';
 import { INPUT_PADDING_HORIZONTAL } from './constants';
 import { getOutlinedInputColors } from './helpers';
 
-export type Props = React.ComponentProps<typeof View> & {
-  name: string;
-  label?: string;
-  style?: StyleProp<ViewStyle>;
-  theme: Theme;
-  control: any;
-  rules?: any;
-  options?: any;
-  type?: TextInputMaskTypeProp;
-  error?: string;
-  underlineColor?: string;
-  outlineColor?: string;
-  activeOutlineColor?: string;
-  disabled?: boolean;
-  errorStyle?: StyleProp<TextStyle>;
-  labelStyle?: StyleProp<TextStyle>;
-  containerStyle?: StyleProp<ViewStyle>;
-};
+export type Props = React.ComponentProps<typeof View> &
+  React.ComponentProps<typeof RnTextInput> & {
+    name: string;
+    label?: string;
+    style?: StyleProp<ViewStyle>;
+    theme: Theme;
+    control: any;
+    rules?: any;
+    options?: any;
+    type?: TextInputMaskTypeProp;
+    error?: string;
+    underlineColor?: string;
+    outlineColor?: string;
+    activeOutlineColor?: string;
+    disabled?: boolean;
+    errorStyle?: StyleProp<TextStyle>;
+    labelStyle?: StyleProp<TextStyle>;
+    containerStyle?: StyleProp<ViewStyle>;
+  };
 
 const TextInput = ({
   name,
@@ -79,7 +81,7 @@ const TextInput = ({
     <TextInputMask type={type} {...props} />
   );
   const InputComponent = (props: any) => <RnTextInput {...props} />;
-  const TextInput = type && options ? InputComponentWithMask : InputComponent;
+  const _TextInput = type && options ? InputComponentWithMask : InputComponent;
 
   return (
     <React.Fragment>
@@ -88,6 +90,7 @@ const TextInput = ({
           theme?.styles?.input?.label,
           labelStyle,
           { color: error ? errorColor : inputTextColor },
+          errorStyle,
         ]}
         visible={label != null}
       >
@@ -108,7 +111,7 @@ const TextInput = ({
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
+            <_TextInput
               style={[styles.textInput, theme?.styles?.input?.textInput, style]}
               placeholderTextColor={placeholderColor}
               onBlur={() => {
@@ -116,7 +119,7 @@ const TextInput = ({
                 onBlur();
               }}
               onFocus={() => setFocused(true)}
-              onChangeText={(value: any) => onChange(value)}
+              onChangeText={(_value: any) => onChange(_value)}
               value={value}
               {...rest}
             />
@@ -125,7 +128,7 @@ const TextInput = ({
           rules={rules}
         />
       </View>
-      <HelperText type="error" visible={error}>
+      <HelperText type="error" visible={error} style={errorStyle}>
         {errorMessage}
       </HelperText>
     </React.Fragment>

@@ -7,9 +7,6 @@ import type { Theme } from '../../types';
 export type Props = React.ComponentPropsWithRef<typeof Title> & {
   children: React.ReactNode;
   style?: StyleProp<TextStyle>;
-  /**
-   * @optional
-   */
   theme: Theme;
 };
 
@@ -31,10 +28,6 @@ const styles = StyleSheet.create({
     marginTop: 22,
     marginBottom: 18,
     marginHorizontal: 24,
-  },
-  v3Text: {
-    marginTop: 16,
-    marginBottom: 16,
   },
 });
 

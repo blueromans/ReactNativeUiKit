@@ -45,5 +45,6 @@ const SelectList = ({ data, style, onPressItem }: Props) => {
     </RadioButton.Group>
   );
 };
+SelectList.displayName = 'Select.List';
 
 export default SelectList;

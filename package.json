@@ -1,6 +1,6 @@
 {
   "name": "@blueromans/react-native-ui-kit",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "Ui kit for React Native",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -56,6 +56,7 @@
     "react-native-iphone-x-helper": "^1.3.1",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-masked-text": "^1.13.0",
+    "react-native-modal": "^13.0.1",
     "react-native-svg": "^13.4.0",
     "recyclerlistview": "^4.1.3"
   },
