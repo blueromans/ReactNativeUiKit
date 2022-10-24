@@ -1,1 +1,1 @@
-export { default as Layout } from './LayoutWrapper';
+export { default as Layout } from './Layout';

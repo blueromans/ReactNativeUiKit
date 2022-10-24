@@ -5,7 +5,7 @@ import {
 } from 'react-native-iphone-x-helper';
 import { View } from '../View';
 import { ActivityIndicator } from '../ActivityIndicator';
-import { ScrollView } from '../ScrollView';
+import { AwareView } from '../AwareView';
 
 import type { Props } from './types';
 
@@ -24,7 +24,7 @@ const LayoutWrapper = (props: Props) => {
   } = props;
   return (
     <View flex={1} bg={bg ?? theme?.colors?.background}>
-      <ScrollView
+      <AwareView
         style={[
           {
             paddingTop: insetTop ? padding + TOP_INSET : padding + 0,
@@ -37,12 +37,12 @@ const LayoutWrapper = (props: Props) => {
         {...rest}
       >
         {children}
-      </ScrollView>
+      </AwareView>
     </View>
   );
 };
 
-const LayoutScroll = (props: Props) => {
+const LayoutAware = (props: Props) => {
   const { loading } = props;
   if (loading) {
     return <ActivityIndicator />;
@@ -50,4 +50,4 @@ const LayoutScroll = (props: Props) => {
   return <LayoutWrapper {...props} />;
 };
 
-export default LayoutScroll;
+export default LayoutAware;

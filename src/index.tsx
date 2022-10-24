@@ -30,6 +30,7 @@ export {
 export { default as ActivityIndicator } from './components/ActivityIndicator/ActivityIndicator';
 export { default as AppWrapper } from './components/AppWrapper/AppWrapper';
 export { Avatar, List };
+export { default as AwareView } from './components/AwareView/AwareView';
 export { default as Badge } from './components/Badge/Badge';
 export { default as Button } from './components/Button/Button';
 export { default as Card } from './components/Card/Card';
@@ -40,7 +41,7 @@ export { default as TextInput } from './components/Form/Input/TextInput';
 export { default as Header } from './components/Header';
 export { default as Icon } from './components/Icon/Icon';
 export { default as IconButton } from './components/IconButton/IconButton';
-export { default as Layout } from './components/Layout/LayoutWrapper';
+export { default as Layout } from './components/Layout/Layout';
 export { default as Menu } from './components/Menu/Menu';
 export { default as Modal } from './components/Modal/Modal';
 export { default as RadioButton } from './components/RadioButton';

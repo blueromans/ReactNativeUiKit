@@ -5,7 +5,6 @@ import {
 } from 'react-native-iphone-x-helper';
 import { View } from '../View';
 import { ActivityIndicator } from '../ActivityIndicator';
-import { ScrollView } from '../ScrollView';
 
 import type { Props } from './types';
 
@@ -18,31 +17,31 @@ const LayoutWrapper = (props: Props) => {
     p: padding = 0,
     children,
     style,
-    insetTop = false,
-    insetBottom = false,
+    insetTop,
+    insetBottom,
     ...rest
   } = props;
   return (
-    <View flex={1} bg={bg ?? theme?.colors?.background}>
-      <ScrollView
-        style={[
-          {
-            paddingTop: insetTop ? padding + TOP_INSET : padding + 0,
-            paddingBottom: insetBottom ? padding + BOTTOM_INSET : padding + 0,
-            paddingRight: padding,
-            paddingLeft: padding,
-          },
-          style,
-        ]}
-        {...rest}
-      >
-        {children}
-      </ScrollView>
+    <View
+      flex={1}
+      style={[
+        {
+          paddingTop: insetTop ? padding + TOP_INSET : padding + 0,
+          paddingBottom: insetBottom ? padding + BOTTOM_INSET : padding + 0,
+          paddingRight: padding,
+          paddingLeft: padding,
+        },
+        style,
+      ]}
+      bg={bg ?? theme?.colors?.background}
+      {...rest}
+    >
+      {children}
     </View>
   );
 };
 
-const LayoutScroll = (props: Props) => {
+const LayoutView = (props: Props) => {
   const { loading } = props;
   if (loading) {
     return <ActivityIndicator />;
@@ -50,4 +49,4 @@ const LayoutScroll = (props: Props) => {
   return <LayoutWrapper {...props} />;
 };
 
-export default LayoutScroll;
+export default LayoutView;

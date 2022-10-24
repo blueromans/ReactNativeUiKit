@@ -1,12 +1,6 @@
 import color from 'color';
 import * as React from 'react';
-import {
-  I18nManager,
-  StyleProp,
-  TextStyle,
-  StyleSheet,
-  Falsy,
-} from 'react-native';
+import { I18nManager, StyleProp, TextStyle, StyleSheet } from 'react-native';
 
 import NativeText from './Text';
 import { useTheme } from '../../core/theming';

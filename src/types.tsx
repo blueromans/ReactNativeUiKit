@@ -1,5 +1,6 @@
 import type { $DeepPartial } from '@callstack/react-theme-provider';
 import type React from 'react';
+import type { ColorValue, StyleProp, View, ViewStyle } from 'react-native';
 
 export type Font = {
   fontFamily: string;
@@ -59,3 +60,39 @@ export type $RemoveChildren<T extends React.ComponentType<any>> = $Omit<
 >;
 
 export type EllipsizeProp = 'head' | 'middle' | 'tail' | 'clip';
+
+export type ViewProps = React.ComponentProps<typeof View> & {
+  flex?: number;
+  row?: boolean;
+  center?: boolean;
+  start?: boolean;
+  end?: boolean;
+  middle?: boolean;
+  bottom?: boolean;
+  top?: boolean;
+  between?: boolean;
+  around?: boolean;
+  mb?: number;
+  mt?: number;
+  ml?: number;
+  mr?: number;
+  mv?: number;
+  mh?: number;
+  p?: number;
+  m?: number;
+  pl?: number;
+  pr?: number;
+  pv?: number;
+  ph?: number;
+  pb?: number;
+  pt?: number;
+  bg?: ColorValue;
+  bc?: string;
+  full?: boolean;
+  br?: number;
+  btlr?: number;
+  btrr?: number;
+  bblr?: number;
+  bbrr?: number;
+  style?: StyleProp<ViewStyle>;
+};
