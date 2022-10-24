@@ -30,7 +30,7 @@ export {
 export { default as ActivityIndicator } from './components/ActivityIndicator/ActivityIndicator';
 export { default as AppWrapper } from './components/AppWrapper/AppWrapper';
 export { Avatar, List };
-export { default as AwareView } from './components/AwareView/AwareView';
+export { default as KeyboardAwareView } from './components/AwareView/AwareView';
 export { default as Badge } from './components/Badge/Badge';
 export { default as Button } from './components/Button/Button';
 export { default as Card } from './components/Card/Card';
