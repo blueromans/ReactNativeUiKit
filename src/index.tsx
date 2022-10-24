@@ -50,7 +50,8 @@ export { default as SnackbarWrapper } from './components/SnackBar/Wrapper';
 export { default as Switch } from './components/Switch/Switch';
 export { default as ToggleButton } from './components/ToggleButton';
 export { default as SegmentedButtons } from './components/SegmentedButtons/SegmentedButtons';
-export { default as Text } from './components/Typography/Text';
+export { default as Text } from './components/Typography/StyledText';
+export { default as NativeText } from './components/Typography/Text';
 export { default as View } from './components/View/View';
 export { default as Select } from './components/Select';
 

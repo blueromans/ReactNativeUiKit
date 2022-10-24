@@ -1,26 +1,24 @@
-import React from 'react';
-import {
-  Text as NativeText,
-  TextStyle,
-  StyleProp,
-  StyleSheet,
-} from 'react-native';
+import * as React from 'react';
+import { Text as RNText, TextStyle, StyleProp, StyleSheet } from 'react-native';
 import type { Theme } from '../../types';
+import { useTheme } from '../../core/theming';
 
-type Props = React.ComponentProps<typeof NativeText> & {
+type Props = React.ComponentProps<typeof RNText> & {
   style?: StyleProp<TextStyle>;
-  color?: string;
   theme?: Theme;
 };
 
-const Text = ({ style, theme, color, ...rest }: Props) => {
+const NativeText = ({ style, theme: overrideTheme, ...rest }: Props) => {
+  const theme = useTheme(overrideTheme);
+
   return (
-    <NativeText
+    <RNText
       {...rest}
       style={[
+        //@ts-ignore
         {
-          ...theme?.fonts?.regular,
-          color: color ? color : theme?.colors?.text,
+          ...theme.fonts?.regular,
+          color: theme.colors.text,
         },
         styles.text,
         style,
@@ -35,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Text;
+export default NativeText;

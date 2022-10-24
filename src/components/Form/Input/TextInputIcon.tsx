@@ -18,17 +18,10 @@ export type Props = $Omit<
   theme?: Theme;
 };
 
-const TextInputIcon = ({
-  icon,
-  onPress,
-  color,
-  style,
-  ...rest
-}: Props) => {
-
+const TextInputIcon = ({ icon, onPress, color, style, ...rest }: Props) => {
   const theme = useTheme();
 
-  let iconColor =  theme?.colors?.text;
+  let iconColor = theme?.colors?.text;
 
   return (
     <View style={[styles.container, style]}>
