@@ -29,14 +29,14 @@ const TouchableOpacity = ({
   const disabled = disabledProp || !rest.onPress;
 
   return (
-    <TouchableOpacity
+    <RNTouchableOpacity
       {...rest}
       disabled={disabled}
       style={[borderless && styles.overflowHidden, style]}
       activeOpacity={activeOpacity}
     >
       {React.Children.only(children)}
-    </TouchableOpacity>
+    </RNTouchableOpacity>
   );
 };
 

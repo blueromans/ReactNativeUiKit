@@ -13,6 +13,7 @@ type Props = React.ComponentProps<typeof RNTouchableHighlight> & {
   borderless?: boolean;
   disabled?: boolean;
   onPress?: () => void | null;
+  rippleColor?: string;
   underlayColor?: string;
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
@@ -23,12 +24,16 @@ const TouchableHighlight = ({
   style,
   borderless = false,
   disabled: disabledProp,
+  rippleColor,
   underlayColor,
   children,
+  theme,
   ...rest
 }: Props) => {
   const disabled = disabledProp || !rest.onPress;
   const { calculatedUnderlayColor } = getTouchableRippleColors({
+    theme,
+    rippleColor,
     underlayColor,
   });
 

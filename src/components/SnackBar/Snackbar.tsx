@@ -49,14 +49,18 @@ const Snackbar = ({
 
   React.useEffect(() => {
     return () => {
-      if (hideTimeout.current) clearTimeout(hideTimeout.current);
+      if (hideTimeout.current) {
+        clearTimeout(hideTimeout.current);
+      }
     };
   }, []);
 
   React.useLayoutEffect(() => {
     if (visible) {
       // show
-      if (hideTimeout.current) clearTimeout(hideTimeout.current);
+      if (hideTimeout.current) {
+        clearTimeout(hideTimeout.current);
+      }
       setHidden(false);
       Animated.timing(opacity, {
         toValue: 1,
@@ -79,21 +83,27 @@ const Snackbar = ({
       });
     } else {
       // hide
-      if (hideTimeout.current) clearTimeout(hideTimeout.current);
+      if (hideTimeout.current) {
+        clearTimeout(hideTimeout.current);
+      }
 
       Animated.timing(opacity, {
         toValue: 0,
         duration: 100,
         useNativeDriver: true,
       }).start(({ finished }) => {
-        if (finished) setHidden(true);
+        if (finished) {
+          setHidden(true);
+        }
       });
     }
   }, [visible, duration, opacity, onDismiss]);
 
   const { colors, roundness } = theme;
 
-  if (hidden) return null;
+  if (hidden) {
+    return null;
+  }
 
   const {
     style: actionStyle,

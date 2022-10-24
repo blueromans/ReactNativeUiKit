@@ -1,5 +1,6 @@
 import React from 'react';
 import { ViewStyle, StyleSheet, StyleProp, TextStyle } from 'react-native';
+import color from 'color';
 
 import { ActivityIndicator } from '../ActivityIndicator';
 import Icon, { IconSource } from '../Icon/Icon';
@@ -8,13 +9,14 @@ import { TouchableHighlight } from '../TouchableHighlight';
 import { withTheme } from '../../core/theming';
 import type { Theme } from '../../types';
 import { getButtonColors } from './utils';
-import { View } from '../View';
 import { TouchableOpacity } from '../TouchableOpacity';
+import { View } from '../View';
 
 export type Props = React.ComponentProps<typeof View> & {
-  mode?: 'text' | 'outlined' | 'contained' | 'elevated';
-  type?: 'opacity' | 'highlight';
+  mode?: 'text' | 'outlined' | 'contained';
+  type?: 'highlight' | 'opacity';
   dark?: boolean;
+  activeOpacity?: number;
   compact?: boolean;
   color?: string;
   buttonColor?: string;
@@ -22,9 +24,11 @@ export type Props = React.ComponentProps<typeof View> & {
   loading?: boolean;
   icon?: IconSource;
   disabled?: boolean;
+  children: React.ReactNode;
   uppercase?: boolean;
   onPress?: () => void;
   contentStyle?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<TextStyle>;
   theme: Theme;
 };
@@ -35,6 +39,7 @@ const Button = ({
   mode = 'text',
   type = 'highlight',
   dark,
+  activeOpacity = 1,
   loading,
   icon,
   buttonColor: customButtonColor,
@@ -49,7 +54,9 @@ const Button = ({
   ...rest
 }: Props) => {
   const { roundness } = theme;
-
+  const _type = theme?.settings?.button?.type
+    ? theme?.settings?.button?.type
+    : type;
   const borderRadius = roundness;
   const iconSize = 16;
 
@@ -62,6 +69,8 @@ const Button = ({
       disabled,
       dark,
     });
+
+  const rippleColor = color(textColor).alpha(0.12).rgb().string();
 
   const buttonStyle = {
     backgroundColor,
@@ -87,11 +96,6 @@ const Button = ({
     StyleSheet.flatten(contentStyle)?.flexDirection === 'row-reverse'
       ? [styles.iconReverse]
       : [styles.icon];
-  const _type = type
-    ? type
-    : theme?.settings?.button?.type
-    ? theme?.settings?.button?.type
-    : 'highlight';
   const ButtonComponent =
     _type === 'highlight' ? TouchableHighlight : TouchableOpacity;
   return (
@@ -107,8 +111,10 @@ const Button = ({
     >
       <ButtonComponent
         borderless
+        activeOpacity={activeOpacity}
         onPress={onPress}
         disabled={disabled}
+        rippleColor={rippleColor}
         style={touchableStyle}
         delayPressIn={0}
       >

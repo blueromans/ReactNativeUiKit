@@ -1,6 +1,6 @@
 import type { $DeepPartial } from '@callstack/react-theme-provider';
 import type React from 'react';
-import type { ColorValue, StyleProp, View, ViewStyle } from 'react-native';
+import type { ColorValue, View } from 'react-native';
 
 export type Font = {
   fontFamily: string;
@@ -23,6 +23,10 @@ export type Fonts = {
   medium: Font;
   light: Font;
   thin: Font;
+  extralight: Font;
+  bold: Font;
+  black: Font;
+  semibold: Font;
 };
 
 type Mode = 'adaptive' | 'exact';

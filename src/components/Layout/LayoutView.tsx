@@ -19,6 +19,10 @@ const LayoutWrapper = (props: Props) => {
     style,
     insetTop,
     insetBottom,
+    pb,
+    pt,
+    pl,
+    pr,
     ...rest
   } = props;
   return (
@@ -26,10 +30,14 @@ const LayoutWrapper = (props: Props) => {
       flex={1}
       style={[
         {
-          paddingTop: insetTop ? padding + TOP_INSET : padding + 0,
-          paddingBottom: insetBottom ? padding + BOTTOM_INSET : padding + 0,
-          paddingRight: padding,
-          paddingLeft: padding,
+          paddingTop: pt ? pt : insetTop ? padding + TOP_INSET : padding + 0,
+          paddingBottom: pb
+            ? pb
+            : insetBottom
+            ? padding + BOTTOM_INSET
+            : padding + 0,
+          paddingRight: pr ? pr : padding,
+          paddingLeft: pl ? pl : padding,
         },
         style,
       ]}

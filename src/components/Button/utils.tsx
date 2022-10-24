@@ -102,9 +102,7 @@ const getButtonBorderColor = ({ isMode, theme }: BaseProps) => {
   return 'transparent';
 };
 
-const getButtonBorderWidth = ({
-  isMode,
-}: Omit<BaseProps, 'disabled'>) => {
+const getButtonBorderWidth = ({ isMode }: Omit<BaseProps, 'disabled'>) => {
   if (isMode('outlined')) {
     return StyleSheet.hairlineWidth;
   }

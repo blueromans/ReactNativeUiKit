@@ -13,7 +13,15 @@ import { useTheme } from '../../core/theming';
 
 type Props = React.ComponentProps<typeof NativeText> & {
   alpha?: number;
-  family: 'regular' | 'medium' | 'light' | 'thin';
+  family:
+    | 'regular'
+    | 'medium'
+    | 'light'
+    | 'thin'
+    | 'semibold'
+    | 'bold'
+    | 'black'
+    | 'extralight';
   color?: ColorValue;
   style?: StyleProp<TextStyle>;
   fs?: number;
