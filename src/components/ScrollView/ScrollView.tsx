@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyleSheet, ScrollView as RNScrollView } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import type { ViewProps } from '../../types';
 
 export type Props = React.ComponentProps<typeof RNScrollView> &
