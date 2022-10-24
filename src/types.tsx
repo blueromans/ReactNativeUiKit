@@ -50,6 +50,7 @@ export type Theme = {
   colors?: Colors;
   fonts?: Fonts;
   baseHeight?: number;
+  settings?: any;
   styles?: any;
 };
 
@@ -94,5 +95,4 @@ export type ViewProps = React.ComponentProps<typeof View> & {
   btrr?: number;
   bblr?: number;
   bbrr?: number;
-  style?: StyleProp<ViewStyle>;
 };

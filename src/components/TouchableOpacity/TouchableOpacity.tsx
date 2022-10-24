@@ -1,46 +1,42 @@
 import React from 'react';
 import {
   StyleProp,
-  TouchableHighlight as RNTouchableHighlight,
+  TouchableOpacity as RNTouchableOpacity,
   ViewStyle,
   StyleSheet,
 } from 'react-native';
 import { withTheme } from '../../core/theming';
 import type { Theme } from '../../types';
-import { getTouchableRippleColors } from './utils';
 
-type Props = React.ComponentProps<typeof RNTouchableHighlight> & {
+type Props = React.ComponentProps<typeof RNTouchableOpacity> & {
   borderless?: boolean;
   disabled?: boolean;
   onPress?: () => void | null;
-  underlayColor?: string;
+  activeOpacity?: number;
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   theme: Theme;
 };
 
-const TouchableHighlight = ({
+const TouchableOpacity = ({
   style,
   borderless = false,
   disabled: disabledProp,
-  underlayColor,
+  activeOpacity,
   children,
   ...rest
 }: Props) => {
   const disabled = disabledProp || !rest.onPress;
-  const { calculatedUnderlayColor } = getTouchableRippleColors({
-    underlayColor,
-  });
 
   return (
-    <RNTouchableHighlight
+    <TouchableOpacity
       {...rest}
       disabled={disabled}
       style={[borderless && styles.overflowHidden, style]}
-      underlayColor={calculatedUnderlayColor}
+      activeOpacity={activeOpacity}
     >
       {React.Children.only(children)}
-    </RNTouchableHighlight>
+    </TouchableOpacity>
   );
 };
 
@@ -50,4 +46,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withTheme(TouchableHighlight);
+export default withTheme(TouchableOpacity);

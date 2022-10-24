@@ -9,7 +9,6 @@ export type Props = ViewProps & {
   loading?: boolean;
   aware?: boolean;
   scroll?: boolean;
-  children: React.ReactNode;
   theme: Theme;
   statusBarStyle?: StatusBarStyle;
   statusBarColor?: string;

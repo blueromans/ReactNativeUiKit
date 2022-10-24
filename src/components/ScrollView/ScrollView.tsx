@@ -2,10 +2,7 @@ import * as React from 'react';
 import { StyleSheet, ScrollView as RNScrollView } from 'react-native';
 import type { ViewProps } from '../../types';
 
-export type Props = React.ComponentProps<typeof RNScrollView> &
-  ViewProps & {
-    children: React.ReactNode;
-  };
+export type Props = React.ComponentProps<typeof RNScrollView> & ViewProps;
 
 const ScrollView = ({
   flex,

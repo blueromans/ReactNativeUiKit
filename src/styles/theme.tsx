@@ -3,6 +3,7 @@ import type { Theme } from '../types';
 import getFonts from './fonts';
 import { black, pinkA400, white } from './colors';
 import { BASE_HEIGHT } from '../constants';
+import * as InitialColors from './colors';
 
 export const AppTheme: Theme = {
   dark: false,
@@ -19,8 +20,10 @@ export const AppTheme: Theme = {
     placeholder: color(black).alpha(0.54).rgb().string(),
     backdrop: color(black).alpha(0.5).rgb().string(),
     notification: pinkA400,
+    ...InitialColors,
   },
   fonts: getFonts(),
   baseHeight: BASE_HEIGHT,
   styles: {},
+  settings: {},
 };

@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  ViewStyle,
-  StyleSheet,
-  StyleProp,
-  TextStyle,
-} from 'react-native';
-import color from 'color';
+import { ViewStyle, StyleSheet, StyleProp, TextStyle } from 'react-native';
 
 import { ActivityIndicator } from '../ActivityIndicator';
 import Icon, { IconSource } from '../Icon/Icon';
@@ -15,9 +8,12 @@ import { TouchableHighlight } from '../TouchableHighlight';
 import { withTheme } from '../../core/theming';
 import type { Theme } from '../../types';
 import { getButtonColors } from './utils';
+import { View } from '../View';
+import { TouchableOpacity } from '../TouchableOpacity';
 
 export type Props = React.ComponentProps<typeof View> & {
   mode?: 'text' | 'outlined' | 'contained' | 'elevated';
+  type?: 'opacity' | 'highlight';
   dark?: boolean;
   compact?: boolean;
   color?: string;
@@ -26,11 +22,9 @@ export type Props = React.ComponentProps<typeof View> & {
   loading?: boolean;
   icon?: IconSource;
   disabled?: boolean;
-  children: React.ReactNode;
   uppercase?: boolean;
   onPress?: () => void;
   contentStyle?: StyleProp<ViewStyle>;
-  style?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<TextStyle>;
   theme: Theme;
 };
@@ -39,6 +33,7 @@ const Button = ({
   disabled,
   compact,
   mode = 'text',
+  type = 'highlight',
   dark,
   loading,
   icon,
@@ -68,8 +63,6 @@ const Button = ({
       dark,
     });
 
-  const rippleColor = color(textColor).alpha(0.12).rgb().string();
-
   const buttonStyle = {
     backgroundColor,
     borderColor,
@@ -94,7 +87,13 @@ const Button = ({
     StyleSheet.flatten(contentStyle)?.flexDirection === 'row-reverse'
       ? [styles.iconReverse]
       : [styles.icon];
-
+  const _type = type
+    ? type
+    : theme?.settings?.button?.type
+    ? theme?.settings?.button?.type
+    : 'highlight';
+  const ButtonComponent =
+    _type === 'highlight' ? TouchableHighlight : TouchableOpacity;
   return (
     <View
       {...rest}
@@ -106,11 +105,10 @@ const Button = ({
         theme?.styles?.button?.content,
       ]}
     >
-      <TouchableHighlight
+      <ButtonComponent
         borderless
         onPress={onPress}
         disabled={disabled}
-        rippleColor={rippleColor}
         style={touchableStyle}
         delayPressIn={0}
       >
@@ -154,7 +152,7 @@ const Button = ({
             {children}
           </Text>
         </View>
-      </TouchableHighlight>
+      </ButtonComponent>
     </View>
   );
 };
@@ -191,16 +189,6 @@ const styles = StyleSheet.create({
   },
   uppercaseLabel: {
     textTransform: 'uppercase',
-  },
-  md3Label: {
-    marginVertical: 10,
-    marginHorizontal: 24,
-  },
-  md3LabelText: {
-    marginHorizontal: 12,
-  },
-  md3LabelTextAddons: {
-    marginHorizontal: 16,
   },
 });
 

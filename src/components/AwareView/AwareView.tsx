@@ -4,9 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import type { ViewProps } from '../../types';
 
 export type Props = React.ComponentProps<typeof KeyboardAwareScrollView> &
-  ViewProps & {
-    children: React.ReactNode;
-  };
+  ViewProps;
 
 const ScrollView = ({
   flex,
