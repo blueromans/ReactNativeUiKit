@@ -10,7 +10,7 @@ import HeaderBackAction from './HeaderBackAction';
 import type { Theme } from '../../types';
 import { black, white } from '../../styles/colors';
 
-export type HeaderModes = 'left' | 'center-aligned';
+export type HeaderModes = 'small' | 'medium' | 'large' | 'center-aligned';
 
 export const getHeaderColor = (theme: Theme, elevated?: boolean) => {
   const { colors } = theme;
