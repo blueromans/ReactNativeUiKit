@@ -11,14 +11,12 @@ import { Header } from './Header';
 import { withTheme } from '../../core/theming';
 import { APPROX_STATUSBAR_HEIGHT } from '../../constants';
 import type { Theme } from '../../types';
-import {
-  DEFAULT_Header_HEIGHT,
-  getHeaderColor,
-} from './utils';
+import { DEFAULT_Header_HEIGHT, getHeaderColor } from './utils';
 
 export type Props = React.ComponentProps<typeof Header> & {
   dark?: boolean;
   statusBarHeight?: number;
+  bg?: string;
   children: React.ReactNode;
   mode?: 'small' | 'medium' | 'large' | 'center-aligned';
   elevated?: boolean;
@@ -26,30 +24,24 @@ export type Props = React.ComponentProps<typeof Header> & {
   style?: StyleProp<ViewStyle>;
 };
 
-
 const HeaderWrapper = ({
   statusBarHeight,
   style,
   dark,
   mode = Platform.OS === 'ios' ? 'center-aligned' : 'small',
+  bg,
   elevated = false,
   ...rest
 }: Props) => {
-
   const {
     height = DEFAULT_Header_HEIGHT,
-    elevation =  4,
-    backgroundColor: customBackground,
+    elevation = 4,
     zIndex = 0,
     ...restStyle
   }: ViewStyle = StyleSheet.flatten(style) || {};
 
-  const backgroundColor = getHeaderColor(
-    rest.theme,
-    elevated
-  );
+  const backgroundColor = bg ? bg : getHeaderColor(rest.theme, elevated);
 
-  // Let the user override the behaviour
   const Wrapper = typeof statusBarHeight === 'number' ? View : SafeAreaView;
   return (
     <Wrapper

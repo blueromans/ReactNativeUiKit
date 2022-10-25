@@ -76,6 +76,7 @@ const ScrollView = ({
     typeof bbrr !== 'undefined' && { borderBottomRightRadius: bbrr },
     style,
   ];
+
   return (
     <RNScrollView
       showsHorizontalScrollIndicator={false}

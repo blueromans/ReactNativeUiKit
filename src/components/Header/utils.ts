@@ -10,12 +10,9 @@ import HeaderBackAction from './HeaderBackAction';
 import type { Theme } from '../../types';
 import { black, white } from '../../styles/colors';
 
-export type HeaderModes = 'small' | 'medium' | 'large' | 'center-aligned';
+export type HeaderModes = 'left' | 'center-aligned';
 
-export const getHeaderColor = (
-  theme: Theme,
-  elevated?: boolean
-) => {
+export const getHeaderColor = (theme: Theme, elevated?: boolean) => {
   const { colors } = theme;
 
   if (elevated) {
@@ -78,16 +75,18 @@ export const renderHeaderContent = ({
           style?: StyleProp<ViewStyle>;
           mode?: HeaderModes;
         } = {
-          color: typeof child.props.color !== 'undefined'
-            ? child.props.color
-            : isDark
-            ? white
-            : black
+          color:
+            typeof child.props.color !== 'undefined'
+              ? child.props.color
+              : isDark
+              ? white
+              : black,
         };
 
         if (child.type === HeaderContent) {
           props.mode = mode;
-          props.style = [i !== 0 && styles.v2Spacing,
+          props.style = [
+            i !== 0 && styles.v2Spacing,
             shouldCenterContent && styles.centerAlignedContent,
             child.props.style,
           ];
