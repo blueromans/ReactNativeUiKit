@@ -10,22 +10,24 @@ import {
 
 import NativeText from './Text';
 import { useTheme } from '../../core/theming';
+import type { PositionProps } from '../../types';
 
-type Props = React.ComponentProps<typeof NativeText> & {
-  alpha?: number;
-  family:
-    | 'regular'
-    | 'medium'
-    | 'light'
-    | 'thin'
-    | 'semibold'
-    | 'bold'
-    | 'black'
-    | 'extralight';
-  color?: ColorValue;
-  style?: StyleProp<TextStyle>;
-  fs?: number;
-};
+type Props = React.ComponentProps<typeof NativeText> &
+  PositionProps & {
+    alpha?: number;
+    family:
+      | 'regular'
+      | 'medium'
+      | 'light'
+      | 'thin'
+      | 'semibold'
+      | 'bold'
+      | 'black'
+      | 'extralight';
+    color?: ColorValue;
+    style?: StyleProp<TextStyle>;
+    fs?: number;
+  };
 
 const StyledText = ({
   alpha = 1,
@@ -33,6 +35,20 @@ const StyledText = ({
   style,
   color: overrideColor,
   fs,
+  mb,
+  mt,
+  ml,
+  mr,
+  mv,
+  mh,
+  p,
+  m,
+  pl,
+  pr,
+  pv,
+  ph,
+  pb,
+  pt,
   ...rest
 }: Props) => {
   const theme = useTheme();
@@ -51,9 +67,23 @@ const StyledText = ({
         {
           fontSize: fs,
           color: textColor,
-          ...theme.fonts?.[family],
+          ...theme.fonts?.[family || 'regular'],
           writingDirection,
         },
+        typeof mb !== 'undefined' && { marginBottom: mb },
+        typeof mt !== 'undefined' && { marginTop: mt },
+        typeof ml !== 'undefined' && { marginLeft: ml },
+        typeof mr !== 'undefined' && { marginRight: mr },
+        typeof pr !== 'undefined' && { paddingRight: pr },
+        typeof pl !== 'undefined' && { paddingLeft: pl },
+        typeof pb !== 'undefined' && { paddingBottom: pb },
+        typeof pt !== 'undefined' && { paddingTop: pt },
+        typeof mh !== 'undefined' && { marginHorizontal: mh },
+        typeof mv !== 'undefined' && { marginVertical: mv },
+        typeof ph !== 'undefined' && { paddingHorizontal: ph },
+        typeof pv !== 'undefined' && { paddingVertical: pv },
+        typeof p !== 'undefined' && { padding: p },
+        typeof m !== 'undefined' && { margin: m },
         style,
       ]}
     />

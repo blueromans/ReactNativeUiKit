@@ -27,6 +27,7 @@ export type Fonts = {
   bold: Font;
   black: Font;
   semibold: Font;
+  extrabold: Font;
 };
 
 type Mode = 'adaptive' | 'exact';
@@ -65,18 +66,7 @@ export type $RemoveChildren<T extends React.ComponentType<any>> = $Omit<
 >;
 
 export type EllipsizeProp = 'head' | 'middle' | 'tail' | 'clip';
-
-export type ViewProps = React.ComponentProps<typeof View> & {
-  flex?: number;
-  row?: boolean;
-  center?: boolean;
-  start?: boolean;
-  end?: boolean;
-  middle?: boolean;
-  bottom?: boolean;
-  top?: boolean;
-  between?: boolean;
-  around?: boolean;
+export type PositionProps = {
   mb?: number;
   mt?: number;
   ml?: number;
@@ -91,12 +81,25 @@ export type ViewProps = React.ComponentProps<typeof View> & {
   ph?: number;
   pb?: number;
   pt?: number;
-  bg?: ColorValue;
-  bc?: string;
-  full?: boolean;
-  br?: number;
-  btlr?: number;
-  btrr?: number;
-  bblr?: number;
-  bbrr?: number;
 };
+export type ViewProps = React.ComponentProps<typeof View> &
+  PositionProps & {
+    flex?: number;
+    row?: boolean;
+    center?: boolean;
+    start?: boolean;
+    end?: boolean;
+    middle?: boolean;
+    bottom?: boolean;
+    top?: boolean;
+    between?: boolean;
+    around?: boolean;
+    bg?: ColorValue;
+    bc?: string;
+    full?: boolean;
+    br?: number;
+    btlr?: number;
+    btrr?: number;
+    bblr?: number;
+    bbrr?: number;
+  };
