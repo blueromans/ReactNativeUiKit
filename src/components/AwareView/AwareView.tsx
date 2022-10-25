@@ -82,7 +82,7 @@ const ScrollView = ({
     <KeyboardAwareScrollView
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      style={viewStyles}
+      contentContainerStyle={viewStyles}
       {...rest}
     >
       {children}
