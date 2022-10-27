@@ -128,13 +128,12 @@ const TextInput = ({
         {handleLeft()}
         <Controller
           control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange, value } }) => (
             <_TextInput
               style={[styles.textInput, theme?.styles?.input?.textInput, style]}
               placeholderTextColor={placeholderColor}
               onBlur={() => {
                 setFocused(false);
-                onBlur();
               }}
               onFocus={() => setFocused(true)}
               onChangeText={(_value: any) => onChange(_value)}
