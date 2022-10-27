@@ -23,6 +23,8 @@ export type Props = React.ComponentProps<typeof View> &
   React.ComponentProps<typeof RnTextInput> & {
     name: string;
     label?: string;
+    left?: React.ReactNode;
+    right?: React.ReactNode;
     style?: StyleProp<ViewStyle>;
     theme: Theme;
     control: any;
@@ -44,6 +46,8 @@ const TextInput = ({
   label,
   control,
   style,
+  left,
+  right,
   theme,
   rules,
   options,
@@ -82,7 +86,18 @@ const TextInput = ({
   );
   const InputComponent = (props: any) => <RnTextInput {...props} />;
   const _TextInput = type && options ? InputComponentWithMask : InputComponent;
-
+  const handleLeft = () => {
+    if (!left) {
+      return null;
+    }
+    return left;
+  };
+  const handleRight = () => {
+    if (!right) {
+      return null;
+    }
+    return right;
+  };
   return (
     <React.Fragment>
       <HelperText
@@ -97,6 +112,8 @@ const TextInput = ({
         {label}
       </HelperText>
       <View
+        row
+        center
         style={[
           styles.container,
           { height: baseHeight },
@@ -108,6 +125,7 @@ const TextInput = ({
           containerStyle,
         ]}
       >
+        {handleLeft()}
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -127,6 +145,7 @@ const TextInput = ({
           name={name}
           rules={rules}
         />
+        {handleRight()}
       </View>
       <HelperText type="error" visible={error} style={errorStyle}>
         {errorMessage}
@@ -140,8 +159,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   textInput: {
-    width: '100%',
-    height: '100%',
+    flex: 1,
     padding: 0,
     paddingHorizontal: INPUT_PADDING_HORIZONTAL,
   },

@@ -14,8 +14,7 @@ import { withTheme } from '../../core/theming';
 import type { $RemoveChildren, Theme } from '../../types';
 import { getIconButtonColor } from './utils';
 
-
-type IconButtonMode = 'outlined' | 'contained' | 'contained-tonal';
+type IconButtonMode = 'outlined' | 'contained';
 
 export type Props = $RemoveChildren<typeof TouchableHighlight> & {
   icon: IconSource;
@@ -94,9 +93,6 @@ const IconButton = ({
         accessibilityRole="button"
         accessibilityState={{ disabled }}
         disabled={disabled}
-        hitSlop={
-          { top: 6, left: 6, bottom: 6, right: 6 }
-        }
         {...rest}
       >
         <IconComponent color={iconColor} source={icon} size={size} />
