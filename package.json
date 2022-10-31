@@ -15,14 +15,14 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/blueromans/react-native-ui-kit.git"
+    "url": "https://github.com/blueromans/ReactNativeUiKit.git"
   },
   "author": "Yaşar ÖZYURT",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/blueromans/react-native-ui-kit/issues"
+    "url": "https://github.com/blueromans/ReactNativeUiKit/issues"
   },
-  "homepage": "https://github.com/blueromans/react-native-ui-kit#readme",
+  "homepage": "https://github.com/blueromans/ReactNativeUiKit#readme",
   "keywords": [
     "react-native",
     "react component",
