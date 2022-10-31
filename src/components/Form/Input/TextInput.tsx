@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {
   TextInput as RnTextInput,
@@ -80,12 +79,6 @@ const TextInput = ({
     error,
     theme,
   });
-
-  const InputComponentWithMask = (props: any) => (
-    <TextInputMask type={type} {...props} />
-  );
-  const InputComponent = (props: any) => <RnTextInput {...props} />;
-  const _TextInput = type && options ? InputComponentWithMask : InputComponent;
   const handleLeft = () => {
     if (!left) {
       return null;
@@ -128,22 +121,52 @@ const TextInput = ({
         {handleLeft()}
         <Controller
           control={control}
-          render={({ field: { onChange, value } }) => (
-            <_TextInput
-              style={[styles.textInput, theme?.styles?.input?.textInput, style]}
-              placeholderTextColor={placeholderColor}
-              onBlur={() => {
-                setFocused(false);
-              }}
-              onFocus={() => setFocused(true)}
-              onChangeText={(_value: any) => onChange(_value)}
-              value={value}
-              {...rest}
-            />
-          )}
-          name={name}
           rules={rules}
+          render={({ field: { onChange, onBlur, value } }) =>
+            type && options ? (
+              <TextInputMask
+                type={type}
+                style={[
+                  styles.textInput,
+                  theme?.styles?.input?.textInput,
+                  style,
+                ]}
+                placeholderTextColor={placeholderColor}
+                onBlur={() => {
+                  onBlur();
+                  setFocused(false);
+                }}
+                onFocus={() => {
+                  setFocused(true);
+                }}
+                onChangeText={onChange}
+                value={value}
+                {...rest}
+              />
+            ) : (
+              <RnTextInput
+                style={[
+                  styles.textInput,
+                  theme?.styles?.input?.textInput,
+                  style,
+                ]}
+                placeholderTextColor={placeholderColor}
+                onBlur={() => {
+                  onBlur();
+                  setFocused(false);
+                }}
+                onFocus={() => {
+                  setFocused(true);
+                }}
+                onChangeText={onChange}
+                value={value}
+                {...rest}
+              />
+            )
+          }
+          name={name}
         />
+
         {handleRight()}
       </View>
       <HelperText type="error" visible={error} style={errorStyle}>

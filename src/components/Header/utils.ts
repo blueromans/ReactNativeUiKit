@@ -35,13 +35,6 @@ type RenderHeaderContentProps = {
 
 export const DEFAULT_Header_HEIGHT = 56;
 
-export const modeTextVariant = {
-  small: 'titleLarge',
-  medium: 'headlineSmall',
-  large: 'headlineMedium',
-  'center-aligned': 'titleLarge',
-};
-
 export const renderHeaderContent = ({
   children,
   isDark,

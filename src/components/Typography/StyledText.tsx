@@ -23,6 +23,7 @@ type Props = React.ComponentProps<typeof NativeText> &
       | 'semibold'
       | 'bold'
       | 'black'
+      | 'extrabold'
       | 'extralight';
     color?: ColorValue;
     style?: StyleProp<TextStyle>;
