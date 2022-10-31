@@ -18,7 +18,6 @@ export type Props = React.ComponentProps<typeof Header> & {
   statusBarHeight?: number;
   bg?: string;
   children: React.ReactNode;
-  mode?: 'small' | 'medium' | 'large' | 'center-aligned';
   elevated?: boolean;
   theme: Theme;
   style?: StyleProp<ViewStyle>;
@@ -28,7 +27,6 @@ const HeaderWrapper = ({
   statusBarHeight,
   style,
   dark,
-  mode = Platform.OS === 'ios' ? 'center-aligned' : 'small',
   bg,
   elevated = false,
   ...rest

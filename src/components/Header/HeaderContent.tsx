@@ -24,11 +24,11 @@ export type Props = $RemoveChildren<typeof View> & {
     | 'medium'
     | 'light'
     | 'thin'
-    | 'semibold'
+    | 'extralight'
     | 'bold'
     | 'black'
-    | 'extrabold'
-    | 'extralight';
+    | 'semibold'
+    | 'extrabold';
   style?: StyleProp<ViewStyle>;
   theme: Theme;
 };

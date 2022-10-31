@@ -20,11 +20,11 @@ type Props = React.ComponentProps<typeof NativeText> &
       | 'medium'
       | 'light'
       | 'thin'
-      | 'semibold'
+      | 'extralight'
       | 'bold'
       | 'black'
-      | 'extrabold'
-      | 'extralight';
+      | 'semibold'
+      | 'extrabold';
     color?: ColorValue;
     style?: StyleProp<TextStyle>;
     fs?: number;
