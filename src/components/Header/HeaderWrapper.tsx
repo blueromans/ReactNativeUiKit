@@ -5,7 +5,6 @@ import {
   View,
   SafeAreaView,
   ViewStyle,
-  Platform,
 } from 'react-native';
 import { Header } from './Header';
 import { withTheme } from '../../core/theming';
