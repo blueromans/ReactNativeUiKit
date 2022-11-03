@@ -4,6 +4,7 @@ import type { StyleProp, ViewStyle } from 'react-native';
 import Modal, { Direction } from 'react-native-modal';
 
 import { withTheme } from '../../core/theming';
+import ModalContent from './ModalContent';
 
 export type Props = {
   hideModal?: () => void;
@@ -48,5 +49,6 @@ function RnModal({
     </Modal>
   );
 }
+RnModal.Content = ModalContent;
 
 export default withTheme(RnModal);
