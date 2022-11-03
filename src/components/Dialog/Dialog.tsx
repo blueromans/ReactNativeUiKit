@@ -51,6 +51,7 @@ const Dialog = ({
       theme={theme}
     >
       <ModalContent
+        theme={theme}
         style={[
           {
             borderRadius,
