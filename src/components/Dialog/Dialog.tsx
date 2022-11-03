@@ -9,13 +9,13 @@ import DialogScrollArea from './DialogScrollArea';
 import { withTheme } from '../../core/theming';
 import type { Theme } from '../../types';
 import type { Direction } from 'react-native-modal';
+import ModalContent from '../Modal/ModalContent';
 
 export type Props = {
-  dismissable?: boolean;
   onDismiss?: () => void;
   visible: boolean;
-  children: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
+  children?: React.ReactNode;
+  contentStyle?: StyleProp<ViewStyle>;
   swipeDirection?: Direction;
   backdropOpacity?: any;
   backdropColor?: string;
@@ -27,10 +27,9 @@ const DIALOG_ELEVATION: number = 24;
 
 const Dialog = ({
   children,
-  dismissable = true,
   onDismiss,
   visible = false,
-  style,
+  contentStyle,
   modalStyle,
   backdropColor,
   backdropOpacity,
@@ -44,23 +43,25 @@ const Dialog = ({
 
   return (
     <RnModal
-      dismissable={dismissable}
-      onDismiss={onDismiss}
+      hideModal={onDismiss}
       backdropOpacity={backdropOpacity}
-      backdropColor={backdropColor}
+      backdropColor={backdropColor as string}
       visible={visible}
-      modalStyle={modalStyle}
-      style={[
-        {
-          borderRadius,
-          backgroundColor,
-        },
-        styles.container,
-        style,
-      ]}
+      style={modalStyle}
       theme={theme}
     >
-      {children}
+      <ModalContent
+        style={[
+          {
+            borderRadius,
+            backgroundColor,
+          },
+          styles.container,
+          contentStyle,
+        ]}
+      >
+        {children}
+      </ModalContent>
     </RnModal>
   );
 };

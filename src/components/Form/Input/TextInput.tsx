@@ -20,13 +20,13 @@ import { getOutlinedInputColors } from './helpers';
 
 export type Props = React.ComponentProps<typeof View> &
   React.ComponentProps<typeof RnTextInput> & {
-    name: string;
+    name?: string;
     label?: string;
     left?: React.ReactNode;
     right?: React.ReactNode;
     style?: StyleProp<ViewStyle>;
     theme: Theme;
-    control: any;
+    methods?: any;
     rules?: any;
     options?: any;
     type?: TextInputMaskTypeProp;
@@ -41,9 +41,9 @@ export type Props = React.ComponentProps<typeof View> &
   };
 
 const TextInput = ({
-  name,
+  name = '',
   label,
-  control,
+  methods = null,
   style,
   left,
   right,
@@ -63,7 +63,10 @@ const TextInput = ({
 }: Props) => {
   const { roundness: borderRadius, baseHeight } = theme;
   const [focused, setFocused] = React.useState<boolean>(false);
-  const error: boolean = errorMessage != null ? true : false;
+  const error: boolean =
+    errorMessage != null || methods?.formState?.errors[name]?.message != null
+      ? true
+      : false;
   const hasActiveOutline = focused || error;
 
   const {
@@ -93,17 +96,19 @@ const TextInput = ({
   };
   return (
     <React.Fragment>
-      <HelperText
-        style={[
-          theme?.styles?.input?.label,
-          labelStyle,
-          { color: error ? errorColor : inputTextColor },
-          errorStyle,
-        ]}
-        visible={label != null}
-      >
-        {label}
-      </HelperText>
+      {label && (
+        <HelperText
+          style={[
+            theme?.styles?.input?.label,
+            labelStyle,
+            { color: error ? errorColor : inputTextColor },
+            errorStyle,
+          ]}
+          visible={true}
+        >
+          {label}
+        </HelperText>
+      )}
       <View
         row
         center
@@ -119,59 +124,78 @@ const TextInput = ({
         ]}
       >
         {handleLeft()}
-        <Controller
-          control={control}
-          rules={rules}
-          render={({ field: { onChange, onBlur, value } }) =>
-            type && options ? (
-              <TextInputMask
-                type={type}
-                style={[
-                  styles.textInput,
-                  theme?.styles?.input?.textInput,
-                  style,
-                ]}
-                placeholderTextColor={placeholderColor}
-                onBlur={() => {
-                  onBlur();
-                  setFocused(false);
-                }}
-                onFocus={() => {
-                  setFocused(true);
-                }}
-                onChangeText={onChange}
-                value={value}
-                {...rest}
-              />
-            ) : (
-              <RnTextInput
-                style={[
-                  styles.textInput,
-                  theme?.styles?.input?.textInput,
-                  style,
-                ]}
-                placeholderTextColor={placeholderColor}
-                onBlur={() => {
-                  onBlur();
-                  setFocused(false);
-                }}
-                onFocus={() => {
-                  setFocused(true);
-                }}
-                onChangeText={onChange}
-                value={value}
-                {...rest}
-              />
-            )
-          }
-          name={name}
-        />
+        {methods !== null ? (
+          <Controller
+            control={methods?.control}
+            rules={rules}
+            render={({ field: { onChange, onBlur, value } }) =>
+              type && options ? (
+                <TextInputMask
+                  type={type}
+                  style={[
+                    styles.textInput,
+                    theme?.styles?.input?.textInput,
+                    style,
+                  ]}
+                  placeholderTextColor={placeholderColor}
+                  onBlur={() => {
+                    onBlur();
+                    setFocused(false);
+                  }}
+                  onFocus={() => {
+                    setFocused(true);
+                  }}
+                  onChangeText={onChange}
+                  value={value}
+                  {...rest}
+                />
+              ) : (
+                <RnTextInput
+                  style={[
+                    styles.textInput,
+                    theme?.styles?.input?.textInput,
+                    style,
+                  ]}
+                  placeholderTextColor={placeholderColor}
+                  onBlur={() => {
+                    onBlur();
+                    setFocused(false);
+                  }}
+                  onFocus={() => {
+                    setFocused(true);
+                  }}
+                  onChangeText={onChange}
+                  value={value}
+                  {...rest}
+                />
+              )
+            }
+            name={name as string}
+          />
+        ) : type && options ? (
+          <TextInputMask
+            type={type}
+            style={[styles.textInput, theme?.styles?.input?.textInput, style]}
+            placeholderTextColor={placeholderColor}
+            {...rest}
+          />
+        ) : (
+          <RnTextInput
+            style={[styles.textInput, theme?.styles?.input?.textInput, style]}
+            placeholderTextColor={placeholderColor}
+            {...rest}
+          />
+        )}
 
         {handleRight()}
       </View>
-      <HelperText type="error" visible={error} style={errorStyle}>
-        {errorMessage}
-      </HelperText>
+      {error && (
+        <HelperText type="error" visible={error} style={errorStyle}>
+          {errorMessage != null
+            ? errorMessage
+            : methods?.formState?.errors[name]?.message}
+        </HelperText>
+      )}
     </React.Fragment>
   );
 };

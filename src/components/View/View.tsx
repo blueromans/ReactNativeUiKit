@@ -3,7 +3,7 @@ import { View as RNView, StyleSheet } from 'react-native';
 import type { ViewProps } from '../../types';
 
 export type Props = ViewProps & {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 const View = ({
