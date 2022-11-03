@@ -7,7 +7,6 @@ import { withTheme } from '../../core/theming';
 import ModalContent from './ModalContent';
 
 export type Props = {
-  hideModal?: () => void;
   visible: boolean;
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
@@ -20,7 +19,6 @@ export type Props = {
 
 function RnModal({
   visible = false,
-  hideModal,
   children,
   style,
   swipeDirection = 'down',
@@ -33,7 +31,6 @@ function RnModal({
     <Modal
       backdropOpacity={backdropOpacity}
       swipeDirection={swipeDirection}
-      onSwipeComplete={hideModal}
       backdropColor={backdropColor ? backdropColor : theme?.colors?.backdrop}
       style={[styles.modalStyle, theme?.styles?.modal?.style, style]}
       avoidKeyboard={true}
@@ -41,8 +38,6 @@ function RnModal({
       isVisible={visible}
       hideModalContentWhileAnimating={true}
       propagateSwipe={true}
-      onBackdropPress={hideModal}
-      onBackButtonPress={hideModal}
       {...rest}
     >
       {children}

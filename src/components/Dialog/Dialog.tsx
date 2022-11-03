@@ -12,7 +12,6 @@ import type { Direction } from 'react-native-modal';
 import ModalContent from '../Modal/ModalContent';
 
 export type Props = {
-  onDismiss?: () => void;
   visible: boolean;
   children?: React.ReactNode;
   contentStyle?: StyleProp<ViewStyle>;
@@ -27,7 +26,6 @@ const DIALOG_ELEVATION: number = 24;
 
 const Dialog = ({
   children,
-  onDismiss,
   visible = false,
   contentStyle,
   modalStyle,
@@ -43,12 +41,10 @@ const Dialog = ({
 
   return (
     <RnModal
-      hideModal={onDismiss}
       backdropOpacity={backdropOpacity}
       backdropColor={backdropColor as string}
       visible={visible}
       style={modalStyle}
-      theme={theme}
     >
       <ModalContent
         theme={theme}
