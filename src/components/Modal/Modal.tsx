@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
-
+import { StyleSheet } from 'react-native';
 import Modal, { Direction } from 'react-native-modal';
 
 import { withTheme } from '../../core/theming';
@@ -35,7 +35,7 @@ function RnModal({
       swipeDirection={swipeDirection}
       onSwipeComplete={hideModal}
       backdropColor={backdropColor ? backdropColor : theme?.colors?.backdrop}
-      style={[theme?.styles?.modalStyle, style]}
+      style={[styles.modalStyle, theme?.styles?.modal?.style, style]}
       avoidKeyboard={true}
       useNativeDriver={true}
       isVisible={visible}
@@ -49,6 +49,9 @@ function RnModal({
     </Modal>
   );
 }
+const styles = StyleSheet.create({
+  modalStyle: { margin: 0 },
+});
 RnModal.Content = ModalContent;
 
 export default withTheme(RnModal);

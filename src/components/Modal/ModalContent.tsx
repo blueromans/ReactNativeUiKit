@@ -1,31 +1,14 @@
 import * as React from 'react';
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import {
-  getStatusBarHeight,
-  getBottomSpace,
-} from 'react-native-iphone-x-helper';
-import { View } from '../View';
+import { Layout } from '../Layout';
+import type { Props } from '../Layout/types';
 
-export type Props = {
-  children: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
-};
-
-const TOP_INSET = getStatusBarHeight(true);
-const BOTTOM_INSET = getBottomSpace();
-
-function ModalContent({ children, style }: Props) {
+function ModalContent({ children, style, theme }: Props) {
   return (
-    <View
-      style={[
-        styles.wrapper,
-        { marginTop: TOP_INSET, marginBottom: BOTTOM_INSET },
-        style,
-      ]}
-    >
+    <Layout style={[styles.wrapper, theme?.styles?.modal?.content, style]}>
       {children}
-    </View>
+    </Layout>
   );
 }
 ModalContent.displayName = 'Modal.Content';
