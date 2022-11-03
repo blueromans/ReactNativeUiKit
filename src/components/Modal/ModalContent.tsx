@@ -4,9 +4,12 @@ import { StyleSheet } from 'react-native';
 import { Layout } from '../Layout';
 import type { Props } from '../Layout/types';
 
-function ModalContent({ children, style, theme }: Props) {
+function ModalContent({ children, style, theme, ...rest }: Props) {
   return (
-    <Layout style={[styles.wrapper, theme?.styles?.modal?.content, style]}>
+    <Layout
+      style={[styles.wrapper, theme?.styles?.modal?.content, style]}
+      {...rest}
+    >
       {children}
     </Layout>
   );
