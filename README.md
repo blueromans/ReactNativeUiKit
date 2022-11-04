@@ -41,7 +41,7 @@ Check the components and their usage in our [documentation](https://www.reactnat
 
 ## Author
 
-- [Yasar Ozyurt](https://yasarozyurt.com)
+- [Yasar Ozyurt](https://www.yasarozyurt.com)
 
 ## Troubleshooting
 
