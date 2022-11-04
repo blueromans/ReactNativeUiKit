@@ -29,6 +29,7 @@ const SelectInput = ({
   theme,
 }: InputProps) => {
   const [visible, setVisible] = useState<boolean>(false);
+  const [selectedItem, setSelectedItem] = useState<DataItem>();
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -40,6 +41,7 @@ const SelectInput = ({
     if (onSelect) {
       onSelect(item);
     }
+    setSelectedItem(item);
     hideModal();
   };
 
@@ -54,10 +56,12 @@ const SelectInput = ({
             methods={methods}
             name={name as string}
             rules={rules}
+            value={selectedItem?.label}
           />
         </View>
       </TouchableOpacity>
       <SelectDialog
+        selectedValue={selectedItem?.value}
         title={label}
         theme={theme}
         data={data}

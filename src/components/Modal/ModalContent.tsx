@@ -20,6 +20,7 @@ export default ModalContent;
 
 const styles = StyleSheet.create({
   wrapper: {
+    flex: 0,
     justifyContent: 'center',
   },
 });

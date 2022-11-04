@@ -7,8 +7,8 @@ import { Divider } from '../Divider';
 import RadioButton from '../RadioButton';
 import type { DataItem, Props } from './types';
 
-const SelectList = ({ data, style, onPressItem }: Props) => {
-  const [value, setValue] = useState<string>(data[0]?.value);
+const SelectList = ({ data, style, selectedValue, onPressItem }: Props) => {
+  const [value, setValue] = useState<string>(selectedValue || data[0]?.value);
 
   const _renderItem = ({ item }: { item: any }) => (
     <RadioButton.Item label={item?.label} value={item.value} />

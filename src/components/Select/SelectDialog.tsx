@@ -11,13 +11,18 @@ const SelectDialog = ({
   data,
   onPressItem,
   title,
+  selectedValue,
   ...rest
 }: SelectDialogProps) => {
   return (
     <Dialog {...rest}>
       <Dialog.Title>{title}</Dialog.Title>
       <Dialog.Content>
-        <Select.List data={data} onPressItem={onPressItem} />
+        <Select.List
+          selectedValue={selectedValue}
+          data={data}
+          onPressItem={onPressItem}
+        />
       </Dialog.Content>
     </Dialog>
   );
