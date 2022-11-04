@@ -31,11 +31,11 @@ export type Props = React.ComponentProps<typeof View> &
     options?: any;
     type?: TextInputMaskTypeProp;
     error?: string;
-    underlineColor?: string;
     outlineColor?: string;
     activeOutlineColor?: string;
     disabled?: boolean;
     errorStyle?: StyleProp<TextStyle>;
+    errorLabelStyle?: StyleProp<TextStyle>;
     labelStyle?: StyleProp<TextStyle>;
     containerStyle?: StyleProp<ViewStyle>;
   };
@@ -51,12 +51,12 @@ const TextInput = ({
   rules,
   options,
   type = 'cpf',
-  underlineColor: _underlineColor,
   outlineColor: customOutlineColor,
   activeOutlineColor,
   disabled,
   error: errorMessage,
   errorStyle,
+  errorLabelStyle,
   labelStyle,
   containerStyle,
   ...rest
@@ -69,19 +69,14 @@ const TextInput = ({
       : false;
   const hasActiveOutline = focused || error;
 
-  const {
-    inputTextColor,
-    activeColor,
-    outlineColor,
-    placeholderColor,
-    errorColor,
-  } = getOutlinedInputColors({
-    activeOutlineColor,
-    customOutlineColor,
-    disabled,
-    error,
-    theme,
-  });
+  const { inputTextColor, activeColor, outlineColor, placeholderColor } =
+    getOutlinedInputColors({
+      activeOutlineColor,
+      customOutlineColor,
+      disabled,
+      error,
+      theme,
+    });
   const handleLeft = () => {
     if (!left) {
       return null;
@@ -101,10 +96,8 @@ const TextInput = ({
           style={[
             theme?.styles?.input?.label,
             labelStyle,
-            { color: error ? errorColor : inputTextColor },
-            errorStyle,
+            { color: inputTextColor },
           ]}
-          visible={true}
         >
           {label}
         </HelperText>
@@ -121,6 +114,11 @@ const TextInput = ({
           },
           theme?.styles?.input?.container,
           containerStyle,
+          error
+            ? theme?.styles?.input?.errorStyle
+              ? theme?.styles?.input?.errorStyle
+              : errorStyle
+            : {},
         ]}
       >
         {handleLeft()}
@@ -134,6 +132,7 @@ const TextInput = ({
                   type={type}
                   style={[
                     styles.textInput,
+                    { height: baseHeight },
                     theme?.styles?.input?.textInput,
                     style,
                   ]}
@@ -153,6 +152,7 @@ const TextInput = ({
                 <RnTextInput
                   style={[
                     styles.textInput,
+                    { height: baseHeight },
                     theme?.styles?.input?.textInput,
                     style,
                   ]}
@@ -175,13 +175,23 @@ const TextInput = ({
         ) : type && options ? (
           <TextInputMask
             type={type}
-            style={[styles.textInput, theme?.styles?.input?.textInput, style]}
+            style={[
+              styles.textInput,
+              { height: baseHeight },
+              theme?.styles?.input?.textInput,
+              style,
+            ]}
             placeholderTextColor={placeholderColor}
             {...rest}
           />
         ) : (
           <RnTextInput
-            style={[styles.textInput, theme?.styles?.input?.textInput, style]}
+            style={[
+              styles.textInput,
+              { height: baseHeight },
+              theme?.styles?.input?.textInput,
+              style,
+            ]}
             placeholderTextColor={placeholderColor}
             {...rest}
           />
@@ -190,7 +200,10 @@ const TextInput = ({
         {handleRight()}
       </View>
       {error && (
-        <HelperText type="error" visible={error} style={errorStyle}>
+        <HelperText
+          type="error"
+          style={theme?.styles?.input?.errorLabelStyle || errorLabelStyle}
+        >
           {errorMessage != null
             ? errorMessage
             : methods?.formState?.errors[name]?.message}

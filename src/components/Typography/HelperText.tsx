@@ -1,30 +1,21 @@
 import React from 'react';
 import color from 'color';
 import { StyleSheet, StyleProp, TextStyle } from 'react-native';
-import Text from './Text';
 import { withTheme } from '../../core/theming';
 import type { $Omit, Theme } from '../../types';
+import StyledText from './StyledText';
 
 export type Props = $Omit<
-  $Omit<React.ComponentProps<typeof Text>, 'padding'>,
+  $Omit<React.ComponentProps<typeof StyledText>, 'padding'>,
   'type'
 > & {
   type?: 'error' | 'info';
-  visible?: boolean;
-  padding?: 'none' | 'normal';
   children: React.ReactNode;
   style?: StyleProp<TextStyle>;
   theme: Theme;
 };
 
-const HelperText = ({
-  style,
-  type = 'info',
-  visible = true,
-  theme,
-  padding = 'normal',
-  ...rest
-}: Props) => {
+const HelperText = ({ style, type = 'info', theme, ...rest }: Props) => {
   const { colors, dark } = theme;
 
   const textColor =
@@ -36,10 +27,10 @@ const HelperText = ({
           .string();
 
   return (
-    <Text
+    <StyledText
       style={[
         styles.text,
-        padding !== 'none' ? styles.padding : {},
+        styles.padding,
         {
           color: textColor,
         },
@@ -48,7 +39,7 @@ const HelperText = ({
       {...rest}
     >
       {rest.children}
-    </Text>
+    </StyledText>
   );
 };
 

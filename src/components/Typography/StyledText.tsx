@@ -15,7 +15,7 @@ import type { PositionProps } from '../../types';
 type Props = React.ComponentProps<typeof NativeText> &
   PositionProps & {
     alpha?: number;
-    family:
+    family?:
       | 'regular'
       | 'medium'
       | 'light'
@@ -32,7 +32,7 @@ type Props = React.ComponentProps<typeof NativeText> &
 
 const StyledText = ({
   alpha = 1,
-  family,
+  family = 'regular',
   style,
   color: overrideColor,
   fs,
