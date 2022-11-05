@@ -7,6 +7,7 @@ import type { Props } from '../Layout/types';
 function ModalContent({ children, style, theme, ...rest }: Props) {
   return (
     <Layout
+      flex={0}
       style={[styles.wrapper, theme?.styles?.modal?.content, style]}
       {...rest}
     >
@@ -20,7 +21,6 @@ export default ModalContent;
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 0,
     justifyContent: 'center',
   },
 });

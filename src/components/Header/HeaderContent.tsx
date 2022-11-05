@@ -12,14 +12,14 @@ import StyledText from '../Typography/StyledText';
 
 import { withTheme } from '../../core/theming';
 
-import type { $RemoveChildren, Theme } from '../../types';
+import type { Theme } from '../../types';
 
-export type Props = $RemoveChildren<typeof View> & {
+type Props = {
   color?: string;
-  title: React.ReactNode;
+  title?: string;
   titleStyle?: StyleProp<TextStyle>;
-  fs: number;
-  family:
+  fs?: number;
+  family?:
     | 'regular'
     | 'medium'
     | 'light'
@@ -35,20 +35,19 @@ export type Props = $RemoveChildren<typeof View> & {
 
 const HeaderContent = ({
   color: titleColor,
+  title,
   family = 'regular',
   fs,
   style,
   titleStyle,
   theme,
-  title,
-  ...rest
 }: Props) => {
   const titleTextColor = titleColor
     ? titleColor
     : theme?.settings?.title?.color;
 
   return (
-    <View style={[styles.container, style]} {...rest}>
+    <View style={[styles.container, style]}>
       <StyledText
         style={[
           {
@@ -61,7 +60,7 @@ const HeaderContent = ({
         family={family}
         numberOfLines={1}
       >
-        {title}
+        {title as string}
       </StyledText>
     </View>
   );

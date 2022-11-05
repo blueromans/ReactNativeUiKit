@@ -1,4 +1,4 @@
-import type { $DeepPartial } from '@callstack/react-theme-provider';
+import type { $DeepPartial } from '@blueromans/react-theme-provider';
 import type React from 'react';
 import type { ColorValue, View } from 'react-native';
 

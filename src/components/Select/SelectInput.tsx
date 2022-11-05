@@ -7,6 +7,7 @@ import TextInput from '../Form/Input/TextInput';
 import { View } from '../View';
 import SelectDialog from './SelectDialog';
 import type { DataItem, Props } from './types';
+import SelectModal from './SelectModal';
 
 type InputProps = Props & {
   label: string;
@@ -14,6 +15,7 @@ type InputProps = Props & {
   methods?: any;
   rules?: any;
   error?: string;
+  type?: 'modal' | 'dialog';
   onSelect?: (item: DataItem) => void;
   theme: Theme;
 };
@@ -22,6 +24,7 @@ const SelectInput = ({
   label,
   name,
   data,
+  type = 'dialog',
   error,
   rules,
   methods,
@@ -44,7 +47,7 @@ const SelectInput = ({
     setSelectedItem(item);
     hideModal();
   };
-
+  const ModalComponent = type === 'dialog' ? SelectDialog : SelectModal;
   return (
     <React.Fragment>
       <TouchableOpacity activeOpacity={1} onPress={showModal}>
@@ -60,7 +63,8 @@ const SelectInput = ({
           />
         </View>
       </TouchableOpacity>
-      <SelectDialog
+      <ModalComponent
+        closeAction={hideModal}
         selectedValue={selectedItem?.value}
         title={label}
         theme={theme}

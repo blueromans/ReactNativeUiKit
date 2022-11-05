@@ -8,7 +8,7 @@ import ModalContent from './ModalContent';
 
 export type Props = {
   visible: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   swipeDirection?: Direction;
   backdropOpacity?: any;

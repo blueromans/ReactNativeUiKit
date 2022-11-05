@@ -1,4 +1,4 @@
-import { createTheming } from '@callstack/react-theme-provider';
+import { createTheming } from '@blueromans/react-theme-provider';
 import { AppTheme } from '../styles/theme';
 import type { Theme } from '../types';
 
