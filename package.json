@@ -68,10 +68,7 @@
     "@commitlint/prompt-cli": "^17.1.2",
     "@react-native-community/eslint-config": "^3.1.0",
     "@release-it/conventional-changelog": "^1.1.0",
-    "@testing-library/jest-native": "^4.0.11",
-    "@testing-library/react-native": "11.0.0",
     "@types/color": "^3.0.0",
-    "@types/jest": "^24.0.13",
     "@types/node": "^13.1.0",
     "@types/react-dom": "^18.0.2",
     "@types/react-native": "^0.69.8",
@@ -85,8 +82,6 @@
     "babel-loader": "^8.2.3",
     "babel-test": "^0.1.1",
     "chalk": "^4.0.0",
-    "commitlint": "^8.3.4",
-    "conventional-changelog-cli": "^2.0.11",
     "dedent": "^0.7.0",
     "eslint": "^8.26.0",
     "eslint-plugin-prettier": "^3.0.0",
@@ -112,30 +107,10 @@
     "react": "*",
     "react-native": "*"
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "yarn lint && yarn typescript"
     }
-  },
-  "greenkeeper": {
-    "ignore": [
-      "expo",
-      "flow-bin",
-      "react",
-      "react-dom",
-      "react-native",
-      "react-test-renderer",
-      "@types/react-native",
-      "@types/jest",
-      "husky",
-      "eslint"
-    ]
   },
   "react-native-builder-bob": {
     "source": "src",
