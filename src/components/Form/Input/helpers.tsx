@@ -21,7 +21,9 @@ export const calculateInputHeight = (
 ): number => {
   const finalHeight = height > 0 ? height : labelHeight;
 
-  if (height > 0) return height;
+  if (height > 0) {
+    return height;
+  }
   return finalHeight < minHeight ? minHeight : finalHeight;
 };
 

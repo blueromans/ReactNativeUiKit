@@ -5,10 +5,7 @@ import type { $Omit } from '../../types';
 import HeaderAction from './HeaderAction';
 import HeaderBackIcon from './HeaderBackIcon';
 
-export type Props = $Omit<
-  React.ComponentProps<typeof HeaderAction>,
-  'icon'
-> & {
+export type Props = $Omit<React.ComponentProps<typeof HeaderAction>, 'icon'> & {
   color?: string;
   size?: number;
   disabled?: boolean;
@@ -16,12 +13,8 @@ export type Props = $Omit<
   style?: StyleProp<ViewStyle>;
 };
 
-const HeaderBackAction = ({...rest }: Props) => (
-  <HeaderAction
-    {...rest}
-    icon={HeaderBackIcon}
-    isLeading
-  />
+const HeaderBackAction = ({ ...rest }: Props) => (
+  <HeaderAction {...rest} icon={HeaderBackIcon} />
 );
 
 HeaderBackAction.displayName = 'Header.BackAction';

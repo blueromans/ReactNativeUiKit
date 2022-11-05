@@ -35,9 +35,13 @@ const AvatarText = ({
   color: customColor,
   ...rest
 }: Props) => {
-
-  const { backgroundColor = theme.colors?.primary as ColorValue, ...restStyle } = StyleSheet.flatten(style) || {};
-  const textColor = customColor ?? getContrastingColor(backgroundColor, white, 'rgba(0, 0, 0, .54)');
+  const {
+    backgroundColor = theme.colors?.primary as ColorValue,
+    ...restStyle
+  } = StyleSheet.flatten(style) || {};
+  const textColor =
+    customColor ??
+    getContrastingColor(backgroundColor, white, 'rgba(0, 0, 0, .54)');
   const { fontScale } = useWindowDimensions();
 
   return (

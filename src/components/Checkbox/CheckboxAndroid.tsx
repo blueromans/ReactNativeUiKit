@@ -21,7 +21,6 @@ const CheckboxAndroid = ({
   theme,
   disabled,
   onPress,
-  testID,
   ...rest
 }: Props) => {
   const checked = status === 'checked';

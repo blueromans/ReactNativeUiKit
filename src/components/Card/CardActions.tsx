@@ -24,9 +24,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 8,
   },
-  button: {
-    marginLeft: 8,
-  },
 });
 
 export default CardActions;

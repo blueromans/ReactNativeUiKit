@@ -27,8 +27,7 @@ try {
   let isErrorLogged = false;
 
   // Fallback component for icons
-  MaterialCommunityIcons = ({ name, color, size, ...rest }) => {
-    /* eslint-disable no-console */
+  MaterialCommunityIcons = ({ color, size, ...rest }) => {
     if (!isErrorLogged) {
       if (
         !/(Cannot find module|Module not found|Cannot resolve module)/.test(

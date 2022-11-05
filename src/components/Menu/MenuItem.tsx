@@ -124,9 +124,6 @@ const styles = StyleSheet.create({
   content: {
     justifyContent: 'center',
   },
-  md3LeadingIcon: {
-    marginLeft: 12,
-  },
   md3WithoutLeadingIcon: {
     marginLeft: 4,
   },

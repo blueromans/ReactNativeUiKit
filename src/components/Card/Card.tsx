@@ -36,7 +36,6 @@ type ContainedCardProps = {
 type Mode = 'elevated' | 'outlined' | 'contained';
 
 export type Props = React.ComponentProps<typeof View> & {
-  elevation?: 0 | 1 | 2 | 3 | 4 | 5 | number;
   onPress?: () => void;
   mode?: Mode;
   children: React.ReactNode;
@@ -45,7 +44,6 @@ export type Props = React.ComponentProps<typeof View> & {
 };
 
 const Card = ({
-  elevation: cardElevation = 1,
   onPress,
   mode: cardMode = 'elevated',
   children,

@@ -20,7 +20,6 @@ export type Props = React.ComponentPropsWithoutRef<typeof View> & {
   duration?: number;
   onDismiss?: any;
   children?: React.ReactNode;
-  elevation?: 0 | 1 | 2 | 3 | 4 | 5 | Animated.Value;
   wrapperStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
   theme: Theme;
@@ -34,7 +33,6 @@ const Snackbar = ({
   duration = DURATION_MEDIUM,
   onDismiss,
   children,
-  elevation = 2,
   wrapperStyle,
   style,
   theme,

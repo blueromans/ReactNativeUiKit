@@ -17,11 +17,9 @@ export type Props = React.ComponentProps<typeof IconButton> & {
   disabled?: boolean;
   accessibilityLabel?: string;
   onPress?: () => void;
-  isLeading?: boolean;
   style?: StyleProp<ViewStyle>;
   ref?: React.RefObject<TouchableWithoutFeedback>;
 };
-
 
 const HeaderAction = ({
   size = 24,
@@ -29,10 +27,8 @@ const HeaderAction = ({
   icon,
   disabled,
   onPress,
-  isLeading,
   ...rest
 }: Props) => {
-
   const actionIconColor = iconColor
     ? iconColor
     : color(black).alpha(0.54).rgb().string();

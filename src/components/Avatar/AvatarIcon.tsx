@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, ViewStyle, StyleSheet, StyleProp, ColorValue } from 'react-native';
+import {
+  View,
+  ViewStyle,
+  StyleSheet,
+  StyleProp,
+  ColorValue,
+} from 'react-native';
 
 import Icon, { IconSource } from '../Icon/Icon';
 import { withTheme } from '../../core/theming';
@@ -18,8 +24,15 @@ export type Props = React.ComponentProps<typeof View> & {
 };
 
 const Avatar = ({ icon, size = defaultSize, style, theme, ...rest }: Props) => {
-  const { backgroundColor = theme.colors?.primary, ...restStyle } = StyleSheet.flatten(style) || {};
-  const textColor = rest.color ?? getContrastingColor(backgroundColor as ColorValue, white, 'rgba(0, 0, 0, .54)');
+  const { backgroundColor = theme.colors?.primary, ...restStyle } =
+    StyleSheet.flatten(style) || {};
+  const textColor =
+    rest.color ??
+    getContrastingColor(
+      backgroundColor as ColorValue,
+      white,
+      'rgba(0, 0, 0, .54)'
+    );
 
   return (
     <View

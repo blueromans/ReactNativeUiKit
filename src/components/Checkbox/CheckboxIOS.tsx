@@ -15,14 +15,7 @@ export type Props = $RemoveChildren<typeof TouchableHighlight> & {
   theme: Theme;
 };
 
-const CheckboxIOS = ({
-  status,
-  disabled,
-  onPress,
-  theme,
-  testID,
-  ...rest
-}: Props) => {
+const CheckboxIOS = ({ status, disabled, onPress, theme, ...rest }: Props) => {
   const checked = status === 'checked';
   const indeterminate = status === 'indeterminate';
 

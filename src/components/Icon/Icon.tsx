@@ -1,11 +1,9 @@
 import React from 'react';
-import {
-  Image,
-  I18nManager,
-  ImageSourcePropType,
-} from 'react-native';
+import { Image, I18nManager, ImageSourcePropType } from 'react-native';
 
-import MaterialCommunityIcon, { accessibilityProps } from './MaterialCommunityIcon';
+import MaterialCommunityIcon, {
+  accessibilityProps,
+} from './MaterialCommunityIcon';
 import { withTheme } from '../../core/theming';
 import { isImageSource } from './utils';
 
@@ -28,7 +26,6 @@ type Props = IconProps & {
   source: any;
   theme: Theme;
 };
-
 
 const Icon = ({ source, color, size, theme, ...rest }: Props) => {
   const direction =
@@ -67,7 +64,12 @@ const Icon = ({ source, color, size, theme, ...rest }: Props) => {
     );
   } else if (typeof s === 'string') {
     return (
-      <MaterialCommunityIcon name={s} color={iconColor} size={size} direction={direction} />
+      <MaterialCommunityIcon
+        name={s}
+        color={iconColor}
+        size={size}
+        direction={direction}
+      />
     );
   } else if (typeof s === 'function') {
     return s({ color: iconColor, size, direction });

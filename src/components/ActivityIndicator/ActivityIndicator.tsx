@@ -118,7 +118,7 @@ const ActivityIndicator = ({
           );
           const outputRange = Array.from(new Array(frames), (_, frameIndex) => {
             let progress = (2 * frameIndex) / (frames - 1);
-            const rotation = index ? +(360 - 15) : -(180 - 15);
+            const rotation_ = index ? +(360 - 15) : -(180 - 15);
 
             if (progress > 1.0) {
               progress = 2.0 - progress;
@@ -126,7 +126,9 @@ const ActivityIndicator = ({
 
             const direction = index ? -1 : +1;
 
-            return `${direction * (180 - 30) * easing(progress) + rotation}deg`;
+            return `${
+              direction * (180 - 30) * easing(progress) + rotation_
+            }deg`;
           });
 
           const layerStyle = {

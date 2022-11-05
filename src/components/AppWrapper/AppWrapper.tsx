@@ -4,7 +4,6 @@ import {
   StatusBarStyle,
   StyleProp,
   TextStyle,
-  View,
   ViewStyle,
 } from 'react-native';
 import color from 'color';
@@ -14,6 +13,7 @@ import { Layout } from '../Layout';
 import { SnackBarWrapper } from '../SnackBar';
 import { ThemeProvider } from '../../core/theming';
 import type { Theme } from '../../types';
+import { View } from '../View';
 
 export type Props = {
   style?: StyleProp<ViewStyle>;
@@ -48,7 +48,7 @@ const AppWrapper = (props: Props) => {
     : theme?.colors?.background;
 
   return (
-    <View style={{ flex: 1, backgroundColor: backgroundColor }}>
+    <View flex={1} bg={backgroundColor}>
       <ThemeProvider theme={theme}>
         <StatusBar
           barStyle={statusBarStyle}

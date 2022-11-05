@@ -17,7 +17,6 @@ const getBorderColor = () => {
 const getBackgroundColor = ({
   customContainerColor,
 }: BaseProps & { customContainerColor?: string }) => {
-
   if (typeof customContainerColor !== 'undefined') {
     return customContainerColor;
   }
@@ -29,7 +28,6 @@ const getIconColor = ({
   theme,
   customIconColor,
 }: BaseProps & { customIconColor?: string }) => {
-
   if (typeof customIconColor !== 'undefined') {
     return customIconColor;
   }
@@ -37,11 +35,7 @@ const getIconColor = ({
   return theme?.colors?.text;
 };
 
-const getRippleColor = ({
-  iconColor,
-}: {
-  iconColor?: string;
-}) => {
+const getRippleColor = ({ iconColor }: { iconColor?: string }) => {
   return color(iconColor).alpha(0.32).rgb().string();
 };
 
@@ -82,7 +76,9 @@ export const getIconButtonColor = ({
       ...baseIconColorProps,
       customContainerColor,
     }),
-    rippleColor: getRippleColor({iconColor:iconColor !== undefined ? iconColor : ''}),
+    rippleColor: getRippleColor({
+      iconColor: iconColor !== undefined ? iconColor : '',
+    }),
     borderColor: getBorderColor(),
   };
 };

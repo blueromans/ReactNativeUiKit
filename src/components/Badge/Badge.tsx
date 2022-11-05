@@ -14,7 +14,6 @@ import type { Theme } from '../../types';
 const defaultSize = 20;
 
 export type Props = React.ComponentProps<typeof Text> & {
-  visible?: boolean;
   children?: string | number;
   size?: number;
   style?: StyleProp<TextStyle>;
@@ -26,7 +25,6 @@ const Badge = ({
   size = defaultSize,
   style,
   theme,
-  visible = true,
   ...rest
 }: Props) => {
   const { fontScale } = useWindowDimensions();
