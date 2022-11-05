@@ -4797,6 +4797,13 @@ eslint-plugin-jest@^26.5.3:
   dependencies:
     "@typescript-eslint/utils" "^5.10.0"
 
+eslint-plugin-jest@^27.1.4:
+  version "27.1.4"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-27.1.4.tgz#bdfaf51ee9ed0b86dac1e83753e22da072acaa92"
+  integrity sha512-evJ9E9id/z2Fu6LR+ncNySJ6UMs5RiJiv4JsmdA3gPWoq0AR+uZyva738+Y9Uln+3WaYX+3OYP9HJoau94Iurg==
+  dependencies:
+    "@typescript-eslint/utils" "^5.10.0"
+
 eslint-plugin-prettier@^3.0.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.4.1.tgz#e9ddb200efb6f3d05ffe83b1665a716af4a387e5"

@@ -37,13 +37,11 @@
   "scripts": {
     "typescript": "tsc --noEmit",
     "lint": "eslint --ext '.js,.ts,.tsx' .",
-    "test": "jest",
     "prepare": "bob build && node ./scripts/generate-mappings.js",
     "release": "release-it",
     "bootstrap": "yarn --cwd example && yarn --cwd docs && yarn",
     "docs": "yarn --cwd docs",
-    "commit": "commit",
-    "example": "yarn --cwd example"
+    "commit": "commit"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -84,6 +82,7 @@
     "chalk": "^4.0.0",
     "dedent": "^0.7.0",
     "eslint": "^8.26.0",
+    "eslint-plugin-jest": "^27.1.4",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react-native": "^3.5.0",
     "expo-constants": "^9.3.5",
