@@ -1,4 +1,4 @@
-<img alt="React Native Ui Kit" src="https://user-images.githubusercontent.com/29883389/197212969-5c3b98c8-63d2-4cf9-af35-05e1f26d4e37.png">
+<img alt="React Native Ui Kit" src="https://user-images.githubusercontent.com/29883389/200167728-a8062e6b-e3ea-4bb6-89a9-ec06f7e4b9f2.jpeg">
 
 # React Native Ui Kit
 
