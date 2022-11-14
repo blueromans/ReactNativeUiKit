@@ -7,11 +7,20 @@ import { Divider } from '../Divider';
 import RadioButton from '../RadioButton';
 import type { DataItem, Props } from './types';
 
-const SelectList = ({ data, style, selectedValue, onPressItem }: Props) => {
-  const [value, setValue] = useState<string>(selectedValue || data[0]?.value);
+const SelectList = ({
+  data,
+  value: ValueName = 'value',
+  label: LabelName = 'label',
+  style,
+  selectedValue,
+  onPressItem,
+}: Props) => {
+  const [value, setValue] = useState<string>(
+    selectedValue || data[0][ValueName]
+  );
 
   const _renderItem = ({ item }: { item: any }) => (
-    <RadioButton.Item label={item?.label} value={item.value} />
+    <RadioButton.Item label={item[LabelName]} value={item[ValueName]} />
   );
 
   const keyExtractor = (_item: any, index: number) => `key-${index}`;
@@ -21,7 +30,7 @@ const SelectList = ({ data, style, selectedValue, onPressItem }: Props) => {
   const _onPressItem = (_value: string) => {
     setValue(_value);
     const item: DataItem = data?.find(
-      (_item) => _item.value === _value
+      (_item) => _item[ValueName] === _value
     ) as DataItem;
     onPressItem(item);
   };

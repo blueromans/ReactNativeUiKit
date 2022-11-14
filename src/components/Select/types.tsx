@@ -1,8 +1,10 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 
-export type DataItem = { value: string; label: string };
+export type DataItem = any;
 
 export type Props = {
+  value?: string;
+  label?: string;
   data: Array<DataItem>;
   style?: StyleProp<ViewStyle>;
   selectedValue?: string;
