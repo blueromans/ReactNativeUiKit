@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   Animated,
@@ -9,15 +10,13 @@ import {
   Easing,
 } from 'react-native';
 
-import Button from '../Button/Button';
-import Text from '../Typography/Text';
 import { withTheme } from '../../core/theming';
 import type { Theme } from '../../types';
 
 export type Props = React.ComponentPropsWithoutRef<typeof View> & {
   visible?: boolean;
-  action?: any;
   duration?: number;
+  position?: 'bottom' | 'top';
   onDismiss?: any;
   children?: React.ReactNode;
   wrapperStyle?: StyleProp<ViewStyle>;
@@ -29,7 +28,7 @@ const DURATION_MEDIUM = 7000;
 
 const Snackbar = ({
   visible,
-  action,
+  position = 'bottom',
   duration = DURATION_MEDIUM,
   onDismiss,
   children,
@@ -103,19 +102,14 @@ const Snackbar = ({
     return null;
   }
 
-  const {
-    style: actionStyle,
-    label: actionLabel,
-    onPress: onPressAction,
-    ...actionProps
-  } = action || {};
-
-  const marginRight = action ? 0 : 16;
-  const textColor = theme?.colors?.accent;
   return (
     <SafeAreaView
       pointerEvents="box-none"
-      style={[styles.wrapper, wrapperStyle]}
+      style={[
+        styles.wrapper,
+        position === 'bottom' ? { bottom: 0 } : { top: 0 },
+        wrapperStyle,
+      ]}
     >
       <Animated.View
         pointerEvents="box-none"
@@ -144,24 +138,7 @@ const Snackbar = ({
         }
         {...rest}
       >
-        <Text style={[styles.content, { marginRight, color: colors?.surface }]}>
-          {children}
-        </Text>
-        {action ? (
-          <Button
-            onPress={() => {
-              onPressAction?.();
-              onDismiss?.();
-            }}
-            style={[styles.button, actionStyle]}
-            textColor={textColor}
-            compact
-            mode="text"
-            {...actionProps}
-          >
-            {actionLabel}
-          </Button>
-        ) : null}
+        {children}
       </Animated.View>
     </SafeAreaView>
   );
@@ -170,7 +147,6 @@ const Snackbar = ({
 const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',
-    bottom: 0,
     width: '100%',
   },
   container: {
@@ -179,16 +155,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 8,
     borderRadius: 4,
-  },
-  content: {
-    marginLeft: 16,
-    marginVertical: 14,
-    flexWrap: 'wrap',
-    flex: 1,
-  },
-  button: {
-    marginHorizontal: 8,
-    marginVertical: 6,
   },
   elevation: {
     elevation: 6,

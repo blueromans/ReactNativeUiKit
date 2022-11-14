@@ -4,26 +4,11 @@ import { SnackBarWrapper } from '../components/SnackBar';
 const DURATION_SHORT = 4000;
 
 export const showToast = (
-  title: string,
-  subTitle: string = '',
-  image: string = '',
-  theme: string = 'danger',
-  duration: number = DURATION_SHORT,
-  action = {
-    label: 'Undo',
-    onPress: () => {},
-  },
-  onDismiss = () => null
+  content: React.ReactNode,
+  position: 'bottom' | 'top' = 'bottom',
+  duration: number = DURATION_SHORT
 ) => {
-  SnackBarWrapper.show(
-    title,
-    subTitle,
-    image,
-    theme,
-    duration,
-    action,
-    onDismiss
-  );
+  SnackBarWrapper.show(content, position, duration);
 };
 
 export const layoutMaker = (width: number, height: number) =>

@@ -1,27 +1,19 @@
 import React from 'react';
-import type { TextStyle } from 'react-native';
 
 import Snackbar from './Snackbar';
 import { View } from '../View';
-import Text from '../Typography/Text';
 import type { Theme } from '../../types';
 
 const DURATION_SHORT = 4000;
 
 class SnackBarWrapper extends React.PureComponent<{
   theme: Theme;
-  titleStyle?: TextStyle;
-  subTitleStyle?: TextStyle;
 }> {
   state = {
     duration: DURATION_SHORT,
     isVisible: false,
-    title: '',
-    subTitle: '',
-    image: '',
-    action: {},
-    type: 'success',
-    onDismiss: () => null,
+    position: 'bottom',
+    content: null,
   };
   theme: Theme;
   static _ref: any = null;
@@ -31,16 +23,12 @@ class SnackBarWrapper extends React.PureComponent<{
   }
 
   static show(
-    title: string,
-    subTitle: string,
-    image: string,
-    type: string,
-    duration: number,
-    action: any,
-    onDismiss: () => void
+    content: React.ReactNode,
+    position: 'bottom' | 'top',
+    duration: number
   ) {
     if (this._ref !== null) {
-      this._ref.show(title, subTitle, image, type, duration, action, onDismiss);
+      this._ref.show(content, position, duration);
     }
   }
 
@@ -49,23 +37,15 @@ class SnackBarWrapper extends React.PureComponent<{
   }
 
   async show(
-    title: string,
-    subTitle: string,
-    image: string,
-    type: string,
-    duration: number,
-    action: any,
-    onDismiss: any
+    content: React.ReactNode,
+    position: 'bottom' | 'top',
+    duration: number
   ) {
     await this._setState({
       isVisible: true,
-      title,
-      subTitle,
-      image,
-      type,
+      content,
+      position,
       duration,
-      action,
-      onDismiss,
     });
   }
 
@@ -94,46 +74,21 @@ class SnackBarWrapper extends React.PureComponent<{
   }
 
   render() {
-    const { isVisible, title, subTitle, action, duration, onDismiss } =
-      this.state;
+    const { isVisible, content, duration, position } = this.state;
+
     return (
       <Snackbar
+        position={position as 'bottom' | 'top'}
         visible={isVisible}
-        action={action}
         onDismiss={() => {
-          onDismiss?.();
           this.hide();
         }}
         duration={duration}
       >
-        <View pv={5}>
-          <View row mr={action ? 0 : 16}>
-            <View middle>
-              <Text
-                style={[
-                  { color: this.theme?.colors?.surface },
-                  this.theme?.styles?.snackBar?.titleStyle,
-                  this.props?.titleStyle,
-                ]}
-              >
-                {title}
-              </Text>
-              {subTitle !== '' && (
-                <Text
-                  style={[
-                    { color: this.theme?.colors?.surface },
-                    this.theme?.styles?.snackBar?.subTitleStyle,
-                    this.props?.subTitleStyle,
-                  ]}
-                >
-                  {subTitle}
-                </Text>
-              )}
-            </View>
-          </View>
-        </View>
+        <View>{content}</View>
       </Snackbar>
     );
   }
 }
+
 export default SnackBarWrapper;
