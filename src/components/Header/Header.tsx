@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ViewStyle, Platform, StyleSheet, StyleProp } from 'react-native';
+import { View, ViewStyle, StyleSheet, StyleProp } from 'react-native';
 import color from 'color';
 
 import HeaderContent from './HeaderContent';
@@ -13,6 +13,7 @@ import {
   getHeaderColor,
   renderHeaderContent,
   DEFAULT_Header_HEIGHT,
+  HeaderModes,
 } from './utils';
 
 import HeaderWrapper from './HeaderWrapper';
@@ -20,6 +21,7 @@ import HeaderWrapper from './HeaderWrapper';
 export type Props = Partial<React.ComponentPropsWithRef<typeof View>> & {
   dark?: boolean;
   children: React.ReactNode;
+  mode?: 'small' | 'medium' | 'large' | 'center-aligned';
   elevated?: boolean;
   safeAreaInsets?: {
     bottom?: number;
@@ -36,6 +38,7 @@ const Header = ({
   dark,
   style,
   theme,
+  mode = 'small',
   elevated,
   safeAreaInsets,
   ...rest
@@ -45,6 +48,10 @@ const Header = ({
   let isDark: boolean;
 
   const backgroundColor = getHeaderColor(theme, elevated);
+
+  const isMode = (modeToCompare: HeaderModes) => {
+    return mode === modeToCompare;
+  };
 
   if (typeof dark === 'boolean') {
     isDark = dark;
@@ -60,28 +67,26 @@ const Header = ({
   let shouldCenterContent = false;
   let shouldAddLeftSpacing = false;
   let shouldAddRightSpacing = false;
-  if (Platform.OS === 'ios') {
-    let hasHeaderContent = false;
-    let leftItemsCount = 0;
-    let rightItemsCount = 0;
+  let hasHeaderContent = false;
+  let leftItemsCount = 0;
+  let rightItemsCount = 0;
 
-    React.Children.forEach(children, (child) => {
-      if (React.isValidElement(child)) {
-        if (child.type === HeaderContent) {
-          hasHeaderContent = true;
-        } else if (hasHeaderContent) {
-          rightItemsCount++;
-        } else {
-          leftItemsCount++;
-        }
+  React.Children.forEach(children, (child) => {
+    if (React.isValidElement(child)) {
+      if (child.type === HeaderContent) {
+        hasHeaderContent = true;
+      } else if (hasHeaderContent) {
+        rightItemsCount++;
+      } else {
+        leftItemsCount++;
       }
-    });
+    }
+  });
 
-    shouldCenterContent =
-      hasHeaderContent && leftItemsCount < 2 && rightItemsCount < 2;
-    shouldAddLeftSpacing = shouldCenterContent && leftItemsCount === 0;
-    shouldAddRightSpacing = shouldCenterContent && rightItemsCount === 0;
-  }
+  shouldCenterContent =
+    hasHeaderContent && leftItemsCount < 2 && rightItemsCount < 2;
+  shouldAddLeftSpacing = shouldCenterContent && leftItemsCount === 0;
+  shouldAddRightSpacing = shouldCenterContent && rightItemsCount === 0;
 
   const filterHeaderActions = React.useCallback(
     (isLeading = false) =>
@@ -115,8 +120,19 @@ const Header = ({
       {...rest}
     >
       {shouldAddLeftSpacing ? <View style={spacingStyle} /> : null}
-      {
-        <View style={[styles.columnContainer, styles.centerAlignedContainer]}>
+      {(isMode('small') || isMode('center-aligned')) &&
+        renderHeaderContent({
+          children,
+          isDark,
+          shouldCenterContent,
+        })}
+      {(isMode('medium') || isMode('large')) && (
+        <View
+          style={[
+            styles.columnContainer,
+            isMode('center-aligned') && styles.centerAlignedContainer,
+          ]}
+        >
           {/* Header top row with controls */}
           <View style={styles.controlsRow}>
             {/* Left side of row container, can contain HeaderBackAction or HeaderAction if it's leading icon  */}
@@ -124,11 +140,13 @@ const Header = ({
               children,
               isDark,
               renderOnly: [HeaderBackAction],
+              mode,
             })}
             {renderHeaderContent({
               children: filterHeaderActions(true),
               isDark,
               renderOnly: [HeaderAction],
+              mode,
             })}
             {/* Right side of row container, can contain other HeaderAction if they are not leading icons */}
             <View style={styles.rightActionControls}>
@@ -141,6 +159,7 @@ const Header = ({
                   HeaderContent,
                   HeaderWrapper,
                 ],
+                mode,
               })}
             </View>
           </View>
@@ -149,9 +168,10 @@ const Header = ({
             children,
             isDark,
             renderOnly: [HeaderContent],
+            mode,
           })}
         </View>
-      }
+      )}
       {shouldAddRightSpacing ? <View style={spacingStyle} /> : null}
     </View>
   );
