@@ -10,8 +10,6 @@ import HeaderBackAction from './HeaderBackAction';
 import type { Theme } from '../../types';
 import { black, white } from '../../styles/colors';
 
-export type HeaderModes = 'small' | 'medium' | 'large' | 'center-aligned';
-
 export const getHeaderColor = (theme: Theme, elevated?: boolean) => {
   const { colors } = theme;
 
@@ -30,7 +28,6 @@ type RenderHeaderContentProps = {
   shouldCenterContent?: boolean;
   renderOnly?: any;
   renderExcept?: any;
-  mode?: HeaderModes;
 };
 
 export const DEFAULT_Header_HEIGHT = 56;
@@ -38,10 +35,9 @@ export const DEFAULT_Header_HEIGHT = 56;
 export const renderHeaderContent = ({
   children,
   isDark,
-  shouldCenterContent = false,
+  shouldCenterContent = true,
   renderOnly,
   renderExcept,
-  mode = 'small',
 }: RenderHeaderContentProps) => {
   return (
     React.Children.toArray(children)
@@ -66,7 +62,6 @@ export const renderHeaderContent = ({
         const props: {
           color?: string;
           style?: StyleProp<ViewStyle>;
-          mode?: HeaderModes;
         } = {
           color:
             typeof child.props.color !== 'undefined'
@@ -77,7 +72,6 @@ export const renderHeaderContent = ({
         };
 
         if (child.type === HeaderContent) {
-          props.mode = mode;
           props.style = [
             i !== 0 && styles.v2Spacing,
             shouldCenterContent && styles.centerAlignedContent,
@@ -95,8 +89,5 @@ const styles = StyleSheet.create({
   },
   v2Spacing: {
     marginLeft: 8,
-  },
-  v3Spacing: {
-    marginLeft: 12,
   },
 });
