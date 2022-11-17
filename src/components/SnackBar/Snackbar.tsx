@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',
     width: '100%',
+    zIndex: 200,
   },
   container: {
     flexDirection: 'row',
