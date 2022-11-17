@@ -38,7 +38,7 @@ const Header = ({
   dark,
   style,
   theme,
-  mode = 'small',
+  mode = 'center-aligned',
   elevated,
   safeAreaInsets,
   ...rest
