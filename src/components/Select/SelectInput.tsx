@@ -24,6 +24,7 @@ const SelectInput = ({
   label,
   name,
   data,
+  selectedValue,
   type = 'dialog',
   error,
   rules,
@@ -32,8 +33,11 @@ const SelectInput = ({
   theme,
 }: InputProps) => {
   const [visible, setVisible] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<DataItem>();
-
+  const [selectedItem, setSelectedItem] = useState<DataItem>(
+    selectedValue
+      ? (data.find((item) => item?.value === selectedValue) as DataItem)
+      : data[0]
+  );
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 

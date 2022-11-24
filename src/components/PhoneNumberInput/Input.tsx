@@ -11,6 +11,7 @@ import CountryPickerModal from '../CountryPickerModal/Modal';
 import type { DataItem, Props } from './types';
 import countries from '../../data/countryCodes.json';
 import { HelperText } from '../Typography';
+import IconButton from '../IconButton/IconButton';
 import { INPUT_PADDING_HORIZONTAL } from '../Form/Input/constants';
 
 type InputProps = Props & {
@@ -21,28 +22,41 @@ type InputProps = Props & {
   placeholder?: string;
   error?: string;
   flagValue?: string;
+  showFlag?: boolean;
+  showDropDown?: boolean;
   errorLabelStyle?: StyleProp<TextStyle>;
   onSelect?: (item: DataItem) => void;
   theme: Theme;
 };
-
+const dropDown =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAi0lEQVRYR+3WuQ6AIBRE0eHL1T83FBqU5S1szdiY2NyTKcCAzU/Y3AcBXIALcIF0gRPAsehgugDEXnYQrUC88RIgfpuJ+MRrgFmILN4CjEYU4xJgFKIa1wB6Ec24FuBFiHELwIpQxa0ALUId9wAkhCnuBdQQ5ngP4I9wxXsBDyJ9m+8y/g9wAS7ABW4giBshQZji3AAAAABJRU5ErkJggg==';
 const PhoneNumberInput = ({
   label,
   name = 'phone',
   data = countries,
-  error,
+  error: errorMessage,
   placeholder,
+  selectedValue,
   flagValue = 'flag',
   value: ValueName = 'dial_code',
   rules,
+  showFlag = true,
+  showDropDown = true,
   methods,
   errorLabelStyle,
   onSelect,
   theme,
 }: InputProps) => {
   const [visible, setVisible] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<DataItem>(data[0]);
-
+  const [selectedItem, setSelectedItem] = useState<DataItem>(
+    selectedValue
+      ? (data.find((item) => item[ValueName] === selectedValue) as DataItem)
+      : data[0]
+  );
+  const error: boolean =
+    errorMessage != null || methods?.formState?.errors[name]?.message != null
+      ? true
+      : false;
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 
@@ -75,9 +89,15 @@ const PhoneNumberInput = ({
               <View pointerEvents="none">
                 <TextInput
                   left={
-                    <Text style={{ paddingLeft: INPUT_PADDING_HORIZONTAL }}>
-                      {selectedItem[flagValue]}
-                    </Text>
+                    showFlag && (
+                      <Text
+                        style={{
+                          paddingLeft: INPUT_PADDING_HORIZONTAL,
+                        }}
+                      >
+                        {selectedItem[flagValue]}
+                      </Text>
+                    )
                   }
                   label={label}
                   error={error || methods?.formState?.errors[name]?.message}
@@ -87,11 +107,20 @@ const PhoneNumberInput = ({
                   name={(name + '_code') as string}
                   rules={rules}
                   containerStyle={{
-                    minWidth: 100,
+                    minWidth: 110,
                     borderBottomRightRadius: 0,
                     borderTopRightRadius: 0,
                     borderRightWidth: 0,
                   }}
+                  style={{
+                    paddingHorizontal: 0,
+                    paddingLeft: 10,
+                  }}
+                  right={
+                    showDropDown && (
+                      <IconButton size={12} icon={{ uri: dropDown }} />
+                    )
+                  }
                   value={selectedItem[ValueName]}
                 />
               </View>
@@ -106,6 +135,10 @@ const PhoneNumberInput = ({
                 borderBottomLeftRadius: 0,
                 borderTopLeftRadius: 0,
               }}
+              style={{
+                paddingHorizontal: 0,
+                paddingRight: INPUT_PADDING_HORIZONTAL,
+              }}
               showErrorLabel={false}
               error={error || methods?.formState?.errors[name]?.message}
               methods={methods}
@@ -114,17 +147,16 @@ const PhoneNumberInput = ({
             />
           </View>
         </View>
-        {error ||
-          (methods?.formState?.errors[name]?.message && (
-            <HelperText
-              type="error"
-              style={theme?.styles?.input?.errorLabelStyle || errorLabelStyle}
-            >
-              {error != null
-                ? error
-                : methods?.formState?.errors[name]?.message}
-            </HelperText>
-          ))}
+        {error && (
+          <HelperText
+            type="error"
+            style={theme?.styles?.input?.errorLabelStyle || errorLabelStyle}
+          >
+            {errorMessage != null
+              ? errorMessage
+              : methods?.formState?.errors[name]?.message}
+          </HelperText>
+        )}
       </React.Fragment>
 
       <CountryPickerModal
