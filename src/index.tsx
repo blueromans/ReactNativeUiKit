@@ -55,6 +55,8 @@ export { default as Text } from './components/Typography/StyledText';
 export { default as NativeText } from './components/Typography/Text';
 export { default as View } from './components/View/View';
 export { default as Select } from './components/Select';
+export { default as CountryPickerModal } from './components/CountryPickerModal/Modal';
+export { default as PhoneNumberInput } from './components/PhoneNumberInput/Input';
 
 export { showToast, layoutMaker } from './utils/common';
 

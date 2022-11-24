@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { Layout } from '../Layout';
 import type { Props } from '../Layout/types';
 
-function ModalContent({ children, style, theme, ...rest }: Props) {
+const ModalContent = ({ children, style, theme, ...rest }: Props) => {
   return (
     <Layout
       flex={0}
@@ -14,7 +14,7 @@ function ModalContent({ children, style, theme, ...rest }: Props) {
       {children}
     </Layout>
   );
-}
+};
 ModalContent.displayName = 'Modal.Content';
 
 export default ModalContent;

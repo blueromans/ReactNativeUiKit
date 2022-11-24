@@ -19,9 +19,7 @@ const Provider = (props: Props) => {
       ...props.theme,
     };
 
-    return {
-      ...extendedThemeBase,
-    } as ReactNativeUiKit.AppTheme;
+    return { ...extendedThemeBase };
   };
 
   const { children } = props;

@@ -32,6 +32,7 @@ export type Props = React.ComponentProps<typeof View> &
     type?: TextInputMaskTypeProp;
     error?: string;
     outlineColor?: string;
+    showErrorLabel?: boolean;
     activeOutlineColor?: string;
     disabled?: boolean;
     errorStyle?: StyleProp<TextStyle>;
@@ -55,6 +56,7 @@ const TextInput = ({
   activeOutlineColor,
   disabled,
   error: errorMessage,
+  showErrorLabel = true,
   errorStyle,
   errorLabelStyle,
   labelStyle,
@@ -199,7 +201,7 @@ const TextInput = ({
 
         {handleRight()}
       </View>
-      {error && (
+      {error && showErrorLabel && (
         <HelperText
           type="error"
           style={theme?.styles?.input?.errorLabelStyle || errorLabelStyle}

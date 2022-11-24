@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import color from 'color';
 import * as React from 'react';
 import {
