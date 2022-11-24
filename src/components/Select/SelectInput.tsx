@@ -8,6 +8,7 @@ import { View } from '../View';
 import SelectDialog from './SelectDialog';
 import type { DataItem, Props } from './types';
 import SelectModal from './SelectModal';
+import IconButton from '../IconButton/IconButton';
 
 type InputProps = Props & {
   label: string;
@@ -15,10 +16,13 @@ type InputProps = Props & {
   methods?: any;
   rules?: any;
   error?: string;
+  showDropDown?: boolean;
   type?: 'modal' | 'dialog';
   onSelect?: (item: DataItem) => void;
   theme: Theme;
 };
+const dropDown =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAi0lEQVRYR+3WuQ6AIBRE0eHL1T83FBqU5S1szdiY2NyTKcCAzU/Y3AcBXIALcIF0gRPAsehgugDEXnYQrUC88RIgfpuJ+MRrgFmILN4CjEYU4xJgFKIa1wB6Ec24FuBFiHELwIpQxa0ALUId9wAkhCnuBdQQ5ngP4I9wxXsBDyJ9m+8y/g9wAS7ABW4giBshQZji3AAAAABJRU5ErkJggg==';
 
 const SelectInput = ({
   label,
@@ -29,6 +33,7 @@ const SelectInput = ({
   error,
   rules,
   methods,
+  showDropDown = true,
   onSelect,
   theme,
 }: InputProps) => {
@@ -64,6 +69,9 @@ const SelectInput = ({
             name={name as string}
             rules={rules}
             value={selectedItem?.label}
+            right={
+              showDropDown && <IconButton size={12} icon={{ uri: dropDown }} />
+            }
           />
         </View>
       </TouchableOpacity>
