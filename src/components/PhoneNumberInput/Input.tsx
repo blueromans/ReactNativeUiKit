@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleProp, TextStyle, TouchableOpacity, Text } from 'react-native';
 import type { Theme } from '../../types';
 import { withTheme } from '../../core/theming';
@@ -47,12 +46,15 @@ const PhoneNumberInput = ({
   onSelect,
   theme,
 }: InputProps) => {
+  const selectedItem_: DataItem = methods
+    ? (data.find(
+        (item) => item[ValueName] === methods?.getValues(name + '_code')
+      ) as DataItem)
+    : selectedValue
+    ? (data.find((item) => item[ValueName] === selectedValue) as DataItem)
+    : data[0];
   const [visible, setVisible] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<DataItem>(
-    selectedValue
-      ? (data.find((item) => item[ValueName] === selectedValue) as DataItem)
-      : data[0]
-  );
+  const [selectedItem, setSelectedItem] = useState<DataItem>(undefined);
   const error: boolean =
     errorMessage != null || methods?.formState?.errors[name]?.message != null
       ? true
@@ -73,13 +75,7 @@ const PhoneNumberInput = ({
     setSelectedItem(item);
     hideModal();
   };
-  useEffect(() => {
-    if (methods) {
-      methods?.setValue(name + '_code', data[0][ValueName], {
-        shouldValidate: true,
-      });
-    }
-  }, []);
+
   return (
     <React.Fragment>
       <React.Fragment>
@@ -95,7 +91,9 @@ const PhoneNumberInput = ({
                           paddingLeft: INPUT_PADDING_HORIZONTAL,
                         }}
                       >
-                        {selectedItem[flagValue]}
+                        {selectedItem
+                          ? selectedItem?.[flagValue]
+                          : selectedItem_?.[flagValue]}
                       </Text>
                     )
                   }
@@ -121,7 +119,11 @@ const PhoneNumberInput = ({
                       <IconButton size={12} icon={{ uri: dropDown }} />
                     )
                   }
-                  value={selectedItem[ValueName]}
+                  value={
+                    selectedItem
+                      ? selectedItem?.[ValueName]
+                      : selectedItem_?.[ValueName]
+                  }
                 />
               </View>
             </TouchableOpacity>
