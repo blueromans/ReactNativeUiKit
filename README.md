@@ -37,7 +37,7 @@ Refer to the [getting started guide](https://www.reactnativeuikit.com) for instr
 
 ## Documentation
 
-Check the components and their usage in our [documentation](https://www.reactnativeuikit.com).
+Check the components and their usage in our [documentation](https://www.reactnativeuikit.com/docs/category/components).
 
 ## Author
 
