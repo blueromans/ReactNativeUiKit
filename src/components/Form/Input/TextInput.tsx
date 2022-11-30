@@ -96,9 +96,9 @@ const TextInput = ({
       {label && (
         <HelperText
           style={[
+            { color: inputTextColor },
             theme?.styles?.input?.label,
             labelStyle,
-            { color: inputTextColor },
           ]}
         >
           {label}
@@ -138,7 +138,10 @@ const TextInput = ({
                     theme?.styles?.input?.textInput,
                     style,
                   ]}
-                  placeholderTextColor={placeholderColor}
+                  placeholderTextColor={
+                    theme?.styles?.input?.textInput?.placeholderTextColor ??
+                    placeholderColor
+                  }
                   onBlur={() => {
                     onBlur();
                     setFocused(false);
@@ -158,7 +161,10 @@ const TextInput = ({
                     theme?.styles?.input?.textInput,
                     style,
                   ]}
-                  placeholderTextColor={placeholderColor}
+                  placeholderTextColor={
+                    theme?.styles?.input?.textInput?.placeholderTextColor ??
+                    placeholderColor
+                  }
                   onBlur={() => {
                     onBlur();
                     setFocused(false);
@@ -183,7 +189,10 @@ const TextInput = ({
               theme?.styles?.input?.textInput,
               style,
             ]}
-            placeholderTextColor={placeholderColor}
+            placeholderTextColor={
+              theme?.styles?.input?.textInput?.placeholderTextColor ??
+              placeholderColor
+            }
             {...rest}
           />
         ) : (
@@ -194,7 +203,10 @@ const TextInput = ({
               theme?.styles?.input?.textInput,
               style,
             ]}
-            placeholderTextColor={placeholderColor}
+            placeholderTextColor={
+              theme?.styles?.input?.textInput?.placeholderTextColor ??
+              placeholderColor
+            }
             {...rest}
           />
         )}
@@ -204,7 +216,7 @@ const TextInput = ({
       {error && showErrorLabel && (
         <HelperText
           type="error"
-          style={theme?.styles?.input?.errorLabelStyle || errorLabelStyle}
+          style={theme?.styles?.input?.errorLabelStyle ?? errorLabelStyle}
         >
           {errorMessage != null
             ? errorMessage
