@@ -139,7 +139,7 @@ const TextInput = ({
                     style,
                   ]}
                   placeholderTextColor={
-                    theme?.styles?.input?.textInput?.placeholderTextColor ??
+                    theme?.styles?.input?.textInput?.placeholderTextColor ||
                     placeholderColor
                   }
                   onBlur={() => {
@@ -162,7 +162,7 @@ const TextInput = ({
                     style,
                   ]}
                   placeholderTextColor={
-                    theme?.styles?.input?.textInput?.placeholderTextColor ??
+                    theme?.styles?.input?.textInput?.placeholderTextColor ||
                     placeholderColor
                   }
                   onBlur={() => {
@@ -190,7 +190,7 @@ const TextInput = ({
               style,
             ]}
             placeholderTextColor={
-              theme?.styles?.input?.textInput?.placeholderTextColor ??
+              theme?.styles?.input?.textInput?.placeholderTextColor ||
               placeholderColor
             }
             {...rest}
@@ -204,7 +204,7 @@ const TextInput = ({
               style,
             ]}
             placeholderTextColor={
-              theme?.styles?.input?.textInput?.placeholderTextColor ??
+              theme?.styles?.input?.textInput?.placeholderTextColor ||
               placeholderColor
             }
             {...rest}
@@ -216,7 +216,7 @@ const TextInput = ({
       {error && showErrorLabel && (
         <HelperText
           type="error"
-          style={theme?.styles?.input?.errorLabelStyle ?? errorLabelStyle}
+          style={theme?.styles?.input?.errorLabelStyle || errorLabelStyle}
         >
           {errorMessage != null
             ? errorMessage
