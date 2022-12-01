@@ -35,7 +35,7 @@ const StyledText = ({
   family = 'regular',
   style,
   color: overrideColor,
-  fs,
+  fs = 14,
   mb,
   mt,
   ml,
@@ -59,10 +59,8 @@ const StyledText = ({
     .rgb()
     .string();
   const writingDirection = I18nManager.isRTL ? 'rtl' : 'ltr';
-
   return (
     <NativeText
-      {...rest}
       style={[
         styles.text,
         {
@@ -87,6 +85,7 @@ const StyledText = ({
         typeof m !== 'undefined' && { margin: m },
         style,
       ]}
+      {...rest}
     />
   );
 };
