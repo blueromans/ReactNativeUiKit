@@ -63,7 +63,6 @@ const PhoneNumberInput = ({
   const hideModal = () => setVisible(false);
 
   const handleItem = (item: DataItem) => {
-    console.log(item);
     if (methods) {
       methods?.setValue(name + '_code', item[ValueName], {
         shouldValidate: true,
@@ -75,7 +74,7 @@ const PhoneNumberInput = ({
     setSelectedItem(item);
     hideModal();
   };
-
+  const _rules: any = rules ? rules : null;
   return (
     <React.Fragment>
       <React.Fragment>
@@ -103,7 +102,7 @@ const PhoneNumberInput = ({
                   methods={methods}
                   showErrorLabel={false}
                   name={(name + '_code') as string}
-                  rules={rules}
+                  rules={_rules}
                   containerStyle={{
                     minWidth: 110,
                     borderBottomRightRadius: 0,
@@ -130,6 +129,7 @@ const PhoneNumberInput = ({
           </View>
           <View flex={1} bottom>
             <TextInput
+              rules={_rules}
               keyboardType="numeric"
               placeholder={placeholder}
               containerStyle={{
@@ -145,7 +145,6 @@ const PhoneNumberInput = ({
               error={error || methods?.formState?.errors[name]?.message}
               methods={methods}
               name={name as string}
-              rules={rules}
             />
           </View>
         </View>

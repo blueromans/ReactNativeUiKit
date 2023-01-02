@@ -46,30 +46,35 @@ const RadioButtonItem = ({
   mode,
   position = 'trailing',
 }: Props) => {
-  const radioButtonProps = { value, disabled, status, color, uncheckedColor };
-  const isLeading = position === 'leading';
   let radioButton: any;
-
-  if (mode === 'android') {
-    radioButton = <RadioButtonAndroid {...radioButtonProps} />;
-  } else if (mode === 'ios') {
-    radioButton = <RadioButtonIOS {...radioButtonProps} />;
-  } else {
-    radioButton = <RadioButton {...radioButtonProps} />;
-  }
 
   const textColor = theme?.colors?.text;
   const disabledTextColor = theme?.colors?.disabled;
-  const textAlign = isLeading ? 'right' : 'left';
 
   const computedStyle = {
     color: disabled ? disabledTextColor : textColor,
-    textAlign,
   } as TextStyle;
 
   return (
     <RadioButtonContext.Consumer>
       {(context?: RadioButtonContextType) => {
+        const radioButtonProps = {
+          value,
+          disabled,
+          status,
+          color: context?.color || color,
+          uncheckedColor,
+        };
+        const isLeading =
+          context?.position === 'leading' || position === 'leading';
+
+        if (context?.mode === 'android' || mode === 'android') {
+          radioButton = <RadioButtonAndroid {...radioButtonProps} />;
+        } else if (context?.mode === 'ios' || mode === 'ios') {
+          radioButton = <RadioButtonIOS {...radioButtonProps} />;
+        } else {
+          radioButton = <RadioButton {...radioButtonProps} />;
+        }
         return (
           <TouchableHighlight
             onPress={() =>
@@ -81,7 +86,20 @@ const RadioButtonItem = ({
             }
             disabled={disabled}
           >
-            <View style={[styles.container, style]} pointerEvents="none">
+            <View
+              style={[
+                styles.container,
+                style,
+                {
+                  backgroundColor:
+                    (value === context?.value || status === 'checked') &&
+                    context?.selectedColor
+                      ? context?.selectedColor
+                      : undefined,
+                },
+              ]}
+              pointerEvents="none"
+            >
               {isLeading && radioButton}
               <Text
                 style={[styles.label, styles.font, computedStyle, labelStyle]}
