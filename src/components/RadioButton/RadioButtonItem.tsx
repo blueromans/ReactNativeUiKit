@@ -10,23 +10,26 @@ import {
 import { withTheme } from '../../core/theming';
 import { RadioButtonContext, RadioButtonContextType } from './RadioButtonGroup';
 import { handlePress } from './utils';
-import TouchableHighlight from '../TouchableHighlight/TouchableHighlight';
 import RadioButton from './RadioButton';
-import Text from '../Typography/Text';
+import StyledText from '../Typography/StyledText';
 import RadioButtonAndroid from './RadioButtonAndroid';
 import RadioButtonIOS from './RadioButtonIOS';
 import type { Theme } from '../../types';
+import { TouchableOpacity } from '../TouchableOpacity';
 
 export type Props = {
   value: string;
   label: string;
+  description?: string;
   disabled?: boolean;
   onPress?: () => void;
   uncheckedColor?: string;
+  backgroundColor?: string;
   color?: string;
   status?: 'checked' | 'unchecked';
   style?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<TextStyle>;
+  descriptionStyle?: StyleProp<TextStyle>;
   theme: Theme;
   mode?: 'android' | 'ios';
   position?: 'leading' | 'trailing';
@@ -35,12 +38,15 @@ export type Props = {
 const RadioButtonItem = ({
   value,
   label,
+  description,
   style,
   labelStyle,
+  descriptionStyle,
   onPress,
   disabled,
   color,
   uncheckedColor,
+  backgroundColor,
   status,
   theme,
   mode,
@@ -76,7 +82,8 @@ const RadioButtonItem = ({
           radioButton = <RadioButton {...radioButtonProps} />;
         }
         return (
-          <TouchableHighlight
+          <TouchableOpacity
+            activeOpacity={1}
             onPress={() =>
               handlePress({
                 onPress: onPress,
@@ -95,20 +102,29 @@ const RadioButtonItem = ({
                     (value === context?.value || status === 'checked') &&
                     context?.selectedColor
                       ? context?.selectedColor
+                      : context?.backgroundColor
+                      ? context?.backgroundColor
+                      : backgroundColor
+                      ? backgroundColor
                       : undefined,
                 },
               ]}
               pointerEvents="none"
             >
               {isLeading && radioButton}
-              <Text
-                style={[styles.label, styles.font, computedStyle, labelStyle]}
-              >
-                {label}
-              </Text>
+              <View style={styles.label}>
+                <StyledText style={[styles.font, computedStyle, labelStyle]}>
+                  {label}
+                </StyledText>
+                {description && (
+                  <StyledText style={[styles.description, descriptionStyle]}>
+                    {description}
+                  </StyledText>
+                )}
+              </View>
               {!isLeading && radioButton}
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         );
       }}
     </RadioButtonContext.Consumer>
@@ -137,5 +153,8 @@ const styles = StyleSheet.create({
   },
   font: {
     fontSize: 16,
+  },
+  description: {
+    fontSize: 14,
   },
 });

@@ -7,6 +7,7 @@ export type Props = {
   color?: string;
   mode?: 'android' | 'ios';
   selectedColor?: string;
+  backgroundColor?: string;
   position?: 'leading' | 'trailing';
   children: React.ReactNode;
 };
@@ -16,6 +17,7 @@ export type RadioButtonContextType = {
   color?: string;
   mode?: 'android' | 'ios';
   selectedColor?: string;
+  backgroundColor?: string;
   position?: 'leading' | 'trailing';
   onValueChange: (item: string) => void;
 };
@@ -30,11 +32,20 @@ const RadioButtonGroup = ({
   color,
   mode,
   selectedColor,
+  backgroundColor,
   position = 'trailing',
   children,
 }: Props) => (
   <RadioButtonContext.Provider
-    value={{ value, onValueChange, color, mode, selectedColor, position }}
+    value={{
+      value,
+      onValueChange,
+      color,
+      mode,
+      selectedColor,
+      backgroundColor,
+      position,
+    }}
   >
     <View>{children}</View>
   </RadioButtonContext.Provider>
